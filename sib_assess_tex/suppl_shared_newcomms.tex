@@ -1,0 +1,32 @@
+\textwidth = 10 in
+\textheight = 7.0 in
+\oddsidemargin = -0.5 in
+\evensidemargin = -0.5 in
+\topmargin = -0.5 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\footskip = 0.65 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+
+\makeatletter
+\renewcommand{\thefigure}{\ifnum \c@chapter>\z@ \thechapter.\fi S\SupNum{}--\@arabic\c@figure}
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.3em}}
+\renewcommand{\thesection}{}
+\renewcommand\section{\@startsection {section}{1}{-5.6mm}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\Large\bfseries}}
+
+\makeatother
+
+
+\newcommand{\ArticleName}{``An Assessment of Sibship Reconstruction \\
+Programs with Simulated Data''}
+
+\author{Eric C. Anderson\thanks{\em Fisheries Ecology Division, Southwest Fisheries Science Center, National Marine Fisheries Service, NOAA, Santa Cruz, CA} \and 
+Anthony Almudevar\thanks{{\em Department of Biostatistics and Computational Biology,University of Rochester Medical School, Rochester, NY}}
+}
+
+
