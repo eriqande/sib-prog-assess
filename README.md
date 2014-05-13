@@ -13,7 +13,7 @@ bibtex sib_prog_eval_two_columns
 pdflatex sib_prog_eval_two_columns.tex
 pdflatex sib_prog_eval_two_columns.tex
 ```
-The resulting PDF file, `sib_prog_eval_two_columns/pdf` should then be complete.
+The resulting PDF file, `sib_prog_eval_two_columns.pdf` should then be complete.
 
 ## NOTE
 I have set this up, somewhat klugily and hastily, to allow typesetting in either
