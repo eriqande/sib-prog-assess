@@ -1,2 +1,9 @@
 *.DS_Store
 *~
+sib_prog_eval.pdf
+*.aux
+*.blg
+*.lof
+*.fff
+*.ttt
+*.log

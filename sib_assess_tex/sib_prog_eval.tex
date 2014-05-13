@@ -418,8 +418,8 @@ occurrences of any element of $U$ in the solution.  Remarkably, in their series 
 the authors of KINALYZER have never penalized their program for failing to return a partition.  To 
 compare a set cover solution $C$ to the true full sibling partition, $T$, they use what we will call $
 \W(C,T)$---the result of applying the Assignment Problem formulation to $T$ and $C$.     This 
-formulation does not penalize set cover solutions.  So, for example, if  $U=\{1,2,3,4,5,6\}$, $T=\
-{\{1,2,3\},\{4,5,6\}\}$, and $C=\{\{1,2,3,4\}, \{3,4,5,6\}\}$, then $\W(C,T)=0$, but the partition 
+formulation does not penalize set cover solutions.  So, for example, if  $U=\{1,2,3,4,5,6\}$,
+$T=\{\{1,2,3\},\{4,5,6\}\}$, and $C=\{\{1,2,3,4\}, \{3,4,5,6\}\}$, then $\W(C,T)=0$, but the partition 
 distance between them should be 2 (since two elements, 3 and 4, could be removed from both $T$ and $C$ 
 to make them identical).    Therefore, we also evaluate set cover solutions using a quantity that 
 includes a penalty for indviduals that appear in more than one sibling group in the set cover solution: 
