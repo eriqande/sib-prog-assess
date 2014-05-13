@@ -30,7 +30,7 @@ bibtex sib_prog_eval
 pdflatex sib_prog_eval.tex
 pdflatex sib_prog_eval.tex
 ```
-to get a submission-ready version, `sib_prog_eval.tex`.
+to get a submission-ready version, `sib_prog_eval.pdf`.
 
 Of course, if you want to typeset the two-column version you have to put the 
 asterisks back in there.
