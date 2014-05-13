@@ -1,0 +1,235 @@
+\begin{thebibliography}{41}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[\protect\citeauthoryear{Almudevar}{Almudevar}{2001}]{almudevar01b}
+Almudevar A (2001) Most powerful permutation invariant tests for relatedness
+  hypotheses using genotypic data. {\em Biometrics\/}, {\bf 57}, 1080--1088.
+
+\bibitem[\protect\citeauthoryear{Almudevar}{Almudevar}{2011}]{almudevar11}
+Almudevar A (2011) A commentary on some recent methods in sibling group
+  reconstruction based on set coverings. {\em Optimization Methods and Software
+  (in press)\/}.
+
+\bibitem[\protect\citeauthoryear{Almudevar \& Anderson}{Almudevar \&
+  Anderson}{2011}]{alm&and11}
+Almudevar A, Anderson EC (2011) A new version of PRT software for sibling
+  groups reconstruction with comments regarding several issues in the sibling
+  reconstruction problem. {\em Molecular Ecology Resources\/}, {\bf 12},
+  164--178.
+
+\bibitem[\protect\citeauthoryear{Almudevar \& Field}{Almudevar \&
+  Field}{1999}]{almudevar99}
+Almudevar A, Field C (1999) Estimation of single generation sibling
+  relationships based on {DNA} markers. {\em J. Agric. Biol. Env Stat.\/}, {\bf
+  4}, 136--165.
+
+\bibitem[\protect\citeauthoryear{Anderson \& Dunham}{Anderson \&
+  Dunham}{2008}]{And&Dun2008}
+Anderson EC, Dunham KK (2008) The influence of family groups on inferences made
+  with the program Structure. {\em Molecular Ecology Resources\/}, {\bf 8},
+  1219--1229.
+
+\bibitem[\protect\citeauthoryear{Ashley, Caballero, Chaovalitwongse, DasGupta,
+  Govindan, Sheikh, \& Berger-Wolf}{Ashley {\em et~al.\/}}{2009}]{ashley09}
+Ashley MV, Caballero IC, Chaovalitwongse W, DasGupta B, Govindan P, Sheikh SI,
+  Berger-Wolf TY (2009) KINALYZER, a computer program for reconstructing
+  sibling groups. {\em Molecular Ecology Resources\/}, {\bf 9}, 1127�1131.
+
+\bibitem[\protect\citeauthoryear{Beraldi, McRae, Gratten, Slate, Visscher, \&
+  Pemberton}{Beraldi {\em et~al.\/}}{2007}]{beraldi07}
+Beraldi D, McRae AF, Gratten J, Slate J, Visscher PM, Pemberton JM (2007)
+  Mapping quantitative trait loci underlying fitness-related traits in a
+  free-living sheep population. {\em Evolution\/}, {\bf 61}, 1403--1416.
+
+\bibitem[\protect\citeauthoryear{Berger-Wolf, Sheikh, DasGupta, V., Caballero,
+  Chaovalitwongse, \& Putrevu}{Berger-Wolf {\em et~al.\/}}{2007}]{bergerwolf07}
+Berger-Wolf TY, Sheikh SI, DasGupta B, V AM, Caballero IC, Chaovalitwongse W,
+  Putrevu SL (2007) Reconstructing sibling relationships in wild populations.
+  {\em Bioinformatics\/}, {\bf 23}, 49--56.
+
+\bibitem[\protect\citeauthoryear{Beyer \& May}{Beyer \& May}{2003}]{beyer03}
+Beyer J, May B (2003) A graph-theoretic approach to the partition of
+  individuals into full-sib familes. {\em Molecular Ecology\/}, {\bf 12},
+  2243--2250.
+
+\bibitem[\protect\citeauthoryear{Blouin}{Blouin}{2003}]{blouin03}
+Blouin MS (2003) DNA-based methods for pedigree reconstruction and kinship
+  analysis in natural populations. {\em Trends in Ecology and Evolution\/},
+  {\bf 18}, 503--511.
+
+\bibitem[\protect\citeauthoryear{Brown \& Dexter}{Brown \&
+  Dexter}{2012}]{BrownDexter2012}
+Brown D, Dexter D (2012) SibJoin: A Fast Heuristic for Half-Sibling
+  Reconstruction, {\em in:\/} {\em Algorithms in Bioinformatics\/} (edited by
+  Raphael B, Tang J), volume 7534 of {\em Lecture Notes in Computer Science\/},
+  44--56, Springer Berlin Heidelberg.
+
+\bibitem[\protect\citeauthoryear{Butler, Field, Herbinger, \& Smith}{Butler
+  {\em et~al.\/}}{2004}]{butler04}
+Butler K, Field C, Herbinger CM, Smith BR (2004) Accuracy, efficiency and
+  robustness of four algorithms allowing full sibship reconstruction from DNA
+  marker data. {\em Molecular Ecology\/}, {\bf 13}, 1589--1600.
+
+\bibitem[\protect\citeauthoryear{Chaovalitwongse, Berger-Wolf, DasGupta, \&
+  Ashley}{Chaovalitwongse {\em et~al.\/}}{2007}]{chaovalitwongse07}
+Chaovalitwongse A, Berger-Wolf TY, DasGupta B, Ashley MV (2007) Set covering
+  approach for reconstruction of sibling relationships. {\em Optimization
+  Methods and Software\/}, {\bf 22}, 11--24.
+
+\bibitem[\protect\citeauthoryear{Dunn, Clancey, Waits, \& Byers}{Dunn {\em
+  et~al.\/}}{2011}]{Dunnetal2011}
+Dunn SJ, Clancey E, Waits LP, Byers JA (2011) Inbreeding depression in
+  pronghorn (Antilocapra americana) fawns. {\em Molecular Ecology\/}, {\bf 20},
+  4889--4898.
+
+\bibitem[\protect\citeauthoryear{Fraser, Duchesne, \& Bernatchez}{Fraser {\em
+  et~al.\/}}{2005}]{Fraseretal2005}
+Fraser DJ, Duchesne P, Bernatchez L (2005) Migratory charr schools exhibit
+  population and kin associations beyond juvenile stages. {\em Mol Ecol\/},
+  {\bf 14}, 3133--46.
+
+\bibitem[\protect\citeauthoryear{Gusfield}{Gusfield}{2002}]{gusfield02}
+Gusfield D (2002) Partition-distance: A problem and class of perfect graphs
+  arising in clustering. {\em Information Processing Letters\/}, {\bf 82},
+  159--164.
+
+\bibitem[\protect\citeauthoryear{Halverson, Skelly, \& Caccone}{Halverson {\em
+  et~al.\/}}{2006}]{Halversonetal2006}
+Halverson MA, Skelly DK, Caccone A (2006) Kin distribution of amphibian larvae
+  in the wild. {\em Molecular Ecology\/}, {\bf 15}, 1139--1145.
+
+\bibitem[\protect\citeauthoryear{Jones, Small, Paczolt, \& Ratterman}{Jones
+  {\em et~al.\/}}{2010}]{jonesAG10}
+Jones AG, Small CM, Paczolt KA, Ratterman NL (2010) A practical guide to
+  methods of parentage analysis. {\em Molecular Ecology Resources\/}, {\bf 10},
+  6--30.
+
+\bibitem[\protect\citeauthoryear{Kalinowski, Wagner, \& Taper}{Kalinowski {\em
+  et~al.\/}}{2006}]{Kalinowsketal2006}
+Kalinowski ST, Wagner AP, Taper ML (2006) ML-RELATE: a computer program for
+  maximum likelihood estimation of relatedness and relationship. {\em Molecular
+  Ecology Notes\/}, {\bf 6}, 576--579.
+
+\bibitem[\protect\citeauthoryear{Konovalov, Manning, \& Henshaw}{Konovalov {\em
+  et~al.\/}}{2004}]{konovalov04}
+Konovalov DA, Manning C, Henshaw MT (2004) KINGROUP: a program for pedigree
+  relationship reconstruction and kin group assignments using genetic markers.
+  {\em Molecular Ecology Notes\/}, {\bf 4}, 779--782.
+
+\bibitem[\protect\citeauthoryear{Lauritzen \& Sheehan}{Lauritzen \&
+  Sheehan}{2003}]{Lau&She2003}
+Lauritzen SL, Sheehan NA (2003) Graphical models for genetic analyses. {\em
+  Statistical Science\/}, {\bf 18}, 489--514.
+
+\bibitem[\protect\citeauthoryear{Manel, Gaggiotti, \& Waples}{Manel {\em
+  et~al.\/}}{2005}]{Maneletal2005}
+Manel S, Gaggiotti OE, Waples RS (2005) {Assignment methods: matching
+  biological questions with appropriate techniques}. {\em Trends in Ecology \&
+  Evolution\/}, {\bf 20}, 136--142.
+
+\bibitem[\protect\citeauthoryear{Marshall, Coltman, Pemberton, Slate, Spalton,
+  Guinness, Smith, Pilkington, \& Clutton-Brock}{Marshall {\em
+  et~al.\/}}{2002}]{Marshalletal2002}
+Marshall TC, Coltman D, Pemberton J, Slate J, Spalton JA, Guinness FE, Smith
+  JA, Pilkington JG, Clutton-Brock TH (2002) Estimating the prevalence of
+  inbreeding from incomplete pedigrees. {\em Proceedings of the Royal Society
+  of London. Series B: Biological Sciences\/}, {\bf 269}, 1533--1539.
+
+\bibitem[\protect\citeauthoryear{Neigel}{Neigel}{1997}]{neigel97}
+Neigel JE (1997) A comparison of alternative strategies for estimating gene
+  flow from genetic markers. {\em Annual Review of Ecology and Systematics\/},
+  {\bf 28}, 105--128.
+
+\bibitem[\protect\citeauthoryear{Painter}{Painter}{1997}]{painter97}
+Painter I (1997) Sibling reconstruction without parental information. {\em
+  JABES\/}, {\bf 2}, 212--229.
+
+\bibitem[\protect\citeauthoryear{Pearse \& Avise}{Pearse \&
+  Avise}{2001}]{Pea&Avi2001}
+Pearse DE, Avise JC (2001) Turtle Mating Systems: Behavior, Sperm Storage, and
+  Genetic Paternity. {\em Journal of Heredity\/}, {\bf 92}, 206--211.
+
+\bibitem[\protect\citeauthoryear{Pearse \& Crandall}{Pearse \&
+  Crandall}{2004}]{Pea&Cra2004}
+Pearse DE, Crandall KA (2004) {Beyond F-ST: Analysis of population genetic data
+  for conservation}. {\em Conservation Genetics\/}, {\bf 5}, 585--602.
+
+\bibitem[\protect\citeauthoryear{Pemberton}{Pemberton}{2008}]{Pemberton2008}
+Pemberton JM (2008) Wild pedigrees: the way forward. {\em Proc Roy Soc B\/},
+  {\bf 275}, 613--21.
+
+\bibitem[\protect\citeauthoryear{Read, Lemay, Acheson, \& Boulding}{Read {\em
+  et~al.\/}}{2012}]{read12}
+Read K, Lemay M, Acheson S, Boulding E (2012) Using molecular pedigree
+  reconstruction to evaluate the long-term survival of outplanted
+  hatchery-reared larval and juvenile northern abalone ({\em Haliotis
+  kamtschatkana}\/). {\em Conservation Genetics\/}, {\bf 13}, 801--810.
+
+\bibitem[\protect\citeauthoryear{Robinson, Pilkington, Clutton-Brock,
+  Pemberton, \& Kruuk}{Robinson {\em et~al.\/}}{2006}]{Robinsonetal2006}
+Robinson MR, Pilkington JG, Clutton-Brock TH, Pemberton JM, Kruuk LE (2006)
+  Live fast, die young: trade-offs between fitness components and sexually
+  antagonistic selection on weaponry in Soay sheep. {\em Evolution\/}, {\bf
+  60}, 2168--2181.
+
+\bibitem[\protect\citeauthoryear{Sheikh, Berger-Wolf, Ashley, Caballero,
+  Chaovalitwongse, \& DasGupta}{Sheikh {\em
+  et~al.\/}}{2008{\natexlab{a}}}]{sheik08_err_tol}
+Sheikh SI, Berger-Wolf TY, Ashley MV, Caballero IC, Chaovalitwongse W, DasGupta
+  B (2008{\natexlab{a}}) Error tolerant sibship reconstruction in wild
+  populations. {\em Comput Syst Bioinformatics Conf\/}, {\bf 7}, 273--84.
+
+\bibitem[\protect\citeauthoryear{Sheikh, Berger-Wolf, Khokhar, \&
+  DasGupta}{Sheikh {\em et~al.\/}}{2008{\natexlab{b}}}]{sheik08}
+Sheikh SI, Berger-Wolf TY, Khokhar AA, DasGupta B (2008{\natexlab{b}})
+  Consensus methods for reconstruction of sibling relationships from genetic
+  data, {\em in:\/} {\em Proceedings of the 4th Multidisciplinary Workshop on
+  Advances in Preference Handling at AAAI 08\/}, 97--102.
+
+\bibitem[\protect\citeauthoryear{Sieberts, Wijsman, \& Thompson}{Sieberts {\em
+  et~al.\/}}{2002}]{Siebertsetal02}
+Sieberts SK, Wijsman EM, Thompson EA (2002) Relationship inference from trios
+  of individuals in the presence of typing error. {\em American Journal of
+  Human Genetics\/}, {\bf 70}, 170--180.
+
+\bibitem[\protect\citeauthoryear{Smith, Herbinger, \& Merry}{Smith {\em
+  et~al.\/}}{2001}]{Smithetal2001}
+Smith BR, Herbinger CM, Merry HR (2001) {Accurate partition of individuals into
+  full-sib families from genetic data without parental information}. {\em
+  Genetics\/}, {\bf 158}, 1329--38.
+
+\bibitem[\protect\citeauthoryear{Sogard, Gilbert-Horvath, Anderson, Fisher,
+  Berkeley, \& Garza}{Sogard {\em et~al.\/}}{2008}]{Sogardetal2005}
+Sogard SM, Gilbert-Horvath E, Anderson EC, Fisher R, Berkeley SA, Garza JC
+  (2008) Multiple paternity in viviparous kelp rockfish, Sebastes atrovirens.
+  {\em Environmental Biology of Fishes\/}, {\bf 81}, 7--13.
+
+\bibitem[\protect\citeauthoryear{Thomas \& Hill}{Thomas \&
+  Hill}{2002}]{thomas02}
+Thomas SC, Hill WG (2002) Sibship reconstruction in hierarchical population
+  structures using Markov chain Monte Carlo techniques. {\em Genetical
+  Research\/}, {\bf 79}, 227--234.
+
+\bibitem[\protect\citeauthoryear{Thompson}{Thompson}{1975}]{Thompson1975}
+Thompson EA (1975) The estimation of pairwise relationships. {\em Ann Hum
+  Genet\/}, {\bf 39}, 173--188.
+
+\bibitem[\protect\citeauthoryear{Wang}{Wang}{2007}]{Wang2007_triadic}
+Wang J (2007) Triadic IBD coefficients and applications to estimating pairwise
+  relatedness. {\em Genet Res\/}, {\bf 89}, 135--53.
+
+\bibitem[\protect\citeauthoryear{Wang \& Santure}{Wang \&
+  Santure}{2009}]{wang09}
+Wang J, Santure A (2009) Parentage and sibship inference From multilocus
+  genotype data under polygamy. {\em Genetics\/}, {\bf 181}, 1579--1594.
+
+\bibitem[\protect\citeauthoryear{Wang}{Wang}{2004}]{wang04}
+Wang JL (2004) Sibship reconstruction from genetic data with typing errors.
+  {\em Genetics\/}, {\bf 166}, 1963--1979.
+
+\bibitem[\protect\citeauthoryear{Wang}{Wang}{2012}]{Wang2012pairwise}
+Wang JL (2012) Computationally efficient sibship and parentage assignment from
+  multilocus marker data. {\em Genetics\/}, {\bf 10.1534/genetics.111.138149},
+  online ahead of print.
+
+\end{thebibliography}
