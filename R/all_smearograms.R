@@ -1,7 +1,8 @@
 require(graphics)
 source("./R/RecoverCodesWithinR.R") # for some useful functions
+OUTDIR <- "./tmp/plots/smearograms"
 
-
+# this must be run in the directory that contains sib-prog-assess.Rproj
 
 #### DEFINE TWO USEFUL FUNCTIONS FOR MAKING SMEAROGRAMS  ####
 # here is a function to make a single smearogram given
@@ -41,7 +42,7 @@ smear.panel <- function(pd1,
 # make a series of plots out of it.  Each scenario gets its own
 # page with all the PD calcs on it.  Note that the first of the pair
 # should have columns suffixed with x and the second with y
-two.methods.all.smears <- function(X, meth1="Method1", meth2="Method2", filepref="file") {
+two.methods.all.smears <- function(X, meth1="Method1", meth2="Method2", filepref="file", outdir) {
   
   par(mar=c(4.1, 4.1, 2.1, 1.1))
   DISTS <- c("part.dist","part.dist2","trimmed.part.dist","trimmed.part.dist2");  # will be convenient to have
@@ -55,7 +56,7 @@ two.methods.all.smears <- function(X, meth1="Method1", meth2="Method2", filepref
     
     file.name <- paste(filepref,"_",meth1,"_vs_",meth2,the.SCEN.names[SCEN], sep="")
     file.name <- paste(gsub("[^0-9A-Za-z_]","", file.name), ".pdf", sep="") # get all the spaces and periods out of it
-
+    file.name <- file.path(outdir, file.name)  # prepend the output directory to the name
     
     pdf(file = file.name, width = 13, height = 8.5)  # write to a pdf file directly.
     par(mfrow=c(3,4));
@@ -155,10 +156,9 @@ names(texlabstrs) <- labstrs
 
 
 # this script creates a boatload of plots, so put them all somewhere in /tmp
-dir.create("/tmp/sib_assess_plots");
-setwd("/tmp/sib_assess_plots");
-file.list <- "OrderedListOfFiles.txt"
-file.remove(file.list)
+dir.create(OUTDIR, recursive = T);
+file.list <- file.path(OUTDIR, "OrderedListOfFiles.txt")
+suppressWarnings(file.remove(file.list))
 
 
 
@@ -170,7 +170,7 @@ for(i in 1:(length(all.data)-1)) {
 	  write(paste("\\part{",latex.prog.names[names(all.data)[j]], " compared to ", latex.prog.names[names(all.data)[i]],
 	  	"\\label{sec:",names(all.data)[j],"_v_",names(all.data)[i], "}}", "\\newpage", sep=""), file=file.list, append=T)
 		merge.set <- merge(all.data[[i]], all.data[[j]], by=c("Code","NumLoc"))
-		two.methods.all.smears(merge.set, meth1=names(all.data)[i], meth2=names(all.data)[j]);
+		two.methods.all.smears(merge.set, meth1=names(all.data)[i], meth2=names(all.data)[j], outdir=OUTDIR);
 	}
 }
 
@@ -187,7 +187,7 @@ for(Y in list(col.none, col.high)) {
 	i<-i+1
 	write(paste("\\part{", latex.prog.names[labstrs[i]], " compared to ", latex.prog.names["Colony d=0.02, m=0.02"], "\\label{sec:", texlabstrs[i],"_v_ColMed}}", "\\newpage", sep=""), file=file.list, append=T)
 	merge.set <- merge(X, Y, by=c("Code","NumLoc"))
-	two.methods.all.smears(merge.set, meth1="Colony d=0.02, m=0.02", meth2=labstrs[i]);
+	two.methods.all.smears(merge.set, meth1="Colony d=0.02, m=0.02", meth2=labstrs[i], outdir=OUTDIR);
 }
 
 
