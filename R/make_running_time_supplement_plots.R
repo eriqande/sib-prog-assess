@@ -1,0 +1,129 @@
+setwd("/Users/eriq/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot")
+
+
+
+
+The.SCENS <- c("nosibs","allhalf","allpathalf","sfs_noh","sfs_wh","slfsg_noh","slfsg_wh","onelarge_noh","onelarge_wh", "lotta_large") 
+SCEN.latex <- gsub("_","",paste("\\",The.SCENS,sep=""))
+names(SCEN.latex) <- The.SCENS
+the.SCEN.names <- c("NoSibs", "AllHalf", "AllPatHalf", "SmallSGs", "SmallSGs_H", "BigSGs", "BigSGs_H", "OneBig", "OneBig_H", "LottaLarge")
+names(the.SCEN.names) <- The.SCENS
+
+latex.comms <- "running_times_latex_include.tex"
+file.remove(latex.comms)
+
+
+load("../prt_archive_03_30_2014.rData")  # get the latest results from Tony
+
+dl <- list(
+	co=read.table("../Colony_Results_All.txt", header=T),
+	ki=read.table("../Kinalyzer75s_PDs_and_Time.txt", header=T),
+	ff=read.table("../FamilyFinderAll.txt", header=T),
+	cp=read.table("../Colony_Pairwise_Results_All.txt", header=T),
+	prt=prt.archive  # these are the results that Tony sent on April 1. (after I put them in a text format).  They differ only in lotta_large from the results in Sept 2012.
+)
+
+# fix names from tony's prt_archive results data frame:
+names(dl$prt)[1:3]<-c("Scenario", "NumAlleles", "NumLoc" )
+names(dl$prt)[8] <- "part.dist2"  # have to change what tony called it.
+g<-c("l", "h", "n")  # then make GenoError there too
+dl$prt$GenoError <- g[dl$prt$Error.model]
+dl$prt$Minutes <- dl$prt$"Time.(ms)"/(1000*60) # and add a minutes column
+dl$prt$Number <- as.integer(gsub("r", "", dl$prt$Replication))
+
+
+# now, drop the other two genotyping error assumptions for colony:
+dl$co <- dl$co[dl$co$gtyp.err.assumption=="d.02m.02", ]
+
+# if you want to see how many of each condition were done, you can do this:
+cnts<-lapply(dl, function(x) table(x$GenoEr, x$NumAl, x$NumLo, x$Scen, dnn=c("GenoErr", "Alleles", "Loci", "Scenario")) )
+
+
+
+# make sure time is measured on the same scale in all.  Let's use "Minutes"
+# first get a Minutes column where we don't have one
+dl$ki$Minutes <- dl$ki$Seconds/60.0
+dl$ff$Minutes <- dl$ff$real.time.secs/60.0  # just use Real time here.  It doesn't make much difference anyway
+
+# now get a list of data frames that just have just the five classifying columns and Minutes:
+dm<-lapply(dl, function(x) x[, c("Scenario","NumAlleles", "NumLoc", "GenoError", "Number", "Minutes")])
+
+for(i in names(dm)) {dm[[i]][["Meth"]] = toupper(i)}
+
+# and, if you want to see how many are non-missing we should be able to do this:
+cnts.not.na<-lapply(dm, function(x) {x<-x[!is.na(x$Minutes), ]; table(x$GenoEr, x$NumAl, x$NumLo, x$Scen, dnn=c("GenoErr", "Alleles", "Loci", "Scenario"))} )
+
+
+
+# rbind the rows into a long data frame, but drop KI because it is way too high and it screws up
+# the plots because the upper ylim is so high
+stacked<-rbind(dm$co, dm$ff, dm$cp, dm$prt)
+
+# make sure that the Meth is a factor
+stacked$Meth <- factor(stacked$Meth)
+
+# now let's refactor GenoError and force the levels to be ordered as we want them to be:
+stacked$GenoError <- factor(stacked$GenoError, levels=c("n","l","h"))
+
+quartz("running_times", 1.2*11, 1.2*7.3)
+for(S in The.SCENS) { # cycle over the Scenarios.  One page of plots for each scenario
+ ss<-stacked[stacked$Scenario==S,]
+ 
+ par(oma=c(0,4,4,0))
+ par(mar=rep(2.1,4))
+ par(mfrow=c(5,5))
+ for(A in seq(5,25,by=5)) {
+	 for(L in seq(5,25,by=5)) {
+	 
+		pick<-ss$NumAlleles==A & ss$NumLoc==L  # logical vector to pick out the right number of alleles, etc
+		
+		b.vals <- boxplot(ss$Minutes[pick] ~ ss$Meth[pick], outline=F, boxwex=.5, plot=F)  # get all the info, so we can count up outliers later
+
+
+		# make the main plot		
+		boxplot(ss$Minutes[pick] ~ ss$Meth[pick], 
+				outline=F, boxwex=.25, ylim=c(0, 1.22*max(b.vals$stats[5,], na.rm=T)),
+				border="black"
+				)
+		mtext(paste(A, "Alleles ", L, "Loci"), 3, .85, adj=.5, cex=.76)  # put the title on this way, because it needs to be a little further out than normal
+
+				
+		# now plot the individual points to the right of each box
+		x.tweak<-c(.1, .2, .3) + 0.17
+		g.cols<-c("darkturquoise","orange","blue")
+		points(as.numeric(ss$Meth[pick])+x.tweak[ss$GenoError[pick]] + runif(n=sum(pick), min=-.03, max=.03), 
+					ss$Minutes[pick], 
+					col=g.cols[ss$GenoError[pick]], 
+					cex=.5
+		)
+		
+		 # now get the number and the mean of the outliers which are above the top of the chart
+		 # and we print those values out near in the top margin of the plot area when they exist
+		if(length(b.vals$out)>0) {
+		  off.chart <- b.vals$out > par("usr")[4]
+		  if(sum(off.chart>0)) {
+				o.grp <- factor(b.vals$group[off.chart])
+				o.means <- tapply(b.vals$out[off.chart], o.grp, mean)
+				o.cnt <- table(o.grp) 
+				mtext(paste( o.cnt, floor(o.means), sep=":"), 3, 0.1, at=as.numeric(levels(o.grp)), cex=.51)
+			}
+		}
+		
+		# now, also include the number that PRT did not complete on, in red in the upper right corner:
+		num.prt.fail <- max(45 - sum(pick & ss$Meth=="PRT") + sum(is.na(ss$Minutes[pick & ss$Meth=="PRT"])))  # this catches the ones that are just absent (i.e. not just NA---totally absent!)
+		if(num.prt.fail > 0) {
+			mtext(num.prt.fail, 3, 0.2, adj=1, col="red", cex=.6)
+		}
+	 }
+ }
+ # put the scenario name at the very top and add Minutes on the left to apply to all the y axes
+ mtext(the.SCEN.names[S], 3, 0.5, outer=T, cex=1.45)
+ mtext("Minutes", 2, 1, outer=T, cex=1.2, srt=90)
+ 
+ # make a pdf file and write a line to the latex file
+ file.name <- paste("running_times_noki_",S,".pdf", sep="")
+ dev.copy2pdf(file=file.name)  # note, I open these to almost full screen on my work laptop to get the right scaling/size of everything
+ write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{",file.name,"} \\caption{Running times of \\colony{} (CO), \\colony{}-P (CP), \\familyfinder{} (FF), and \\prt{} (PRT) in scenario ",SCEN.latex[S], "} \\label{fig:run-time-noki-",S,"} \\end{figure}\\clearpage", sep=""),
+			file=latex.comms, append=T)
+}
+
