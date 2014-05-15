@@ -62,6 +62,9 @@ two.methods.all.smears <- function(X, meth1="Method1", meth2="Method2", filepref
     par(mfrow=c(3,4));
     for (g in c('n','l','h')) { # cycle over genotyping error levels
       d <- X [X$Scenario.x==SCEN & X$GenoError.x==g, c(xd,yd,"NumLoc","NumAlleles.x")];  # now d has just the rows of interest and just the columns we want too
+      
+      NO_PLOT <- FALSE
+      if(nrow(d) == 0) NO_PLOT <- TRUE
       # now we cycle over the different versions of partition distances and plot them
       for(p in 1:4)  {
         x <- d[,p];
@@ -87,7 +90,12 @@ two.methods.all.smears <- function(X, meth1="Method1", meth2="Method2", filepref
     latex_command <- paste("\\begin{figure}\\includegraphics[width=\\textwidth]{../../",file.name,"} \\caption{",
                            latex.prog.names[meth2]," compared to ",latex.prog.names[meth1]," on scenario ", SCEN.latex[SCEN], " \\label{fig:",labname1,"_v_",
                            labname2,"_on_",gsub("_", "", SCEN),"}} \\end{figure}", sep="")
-    write(latex_command, file=file.list, append=T)
+    if(NO_PLOT == FALSE) {
+      write(latex_command, file=file.list, append=T)
+    }
+    else {
+      write(latex_command, file=missing.plots.file.list, append=T)
+    }
     dev.off()
     
   }
@@ -158,6 +166,7 @@ names(texlabstrs) <- labstrs
 # this script creates a boatload of plots, so put them all somewhere in ./tmp
 dir.create(OUTDIR, recursive = T);
 file.list <- file.path(OUTDIR, "latex_commands_for_smearograms.tex")
+missing.plots.file.list <- file.path(OUTDIR, "missing_plots.tex")
 suppressWarnings(file.remove(file.list))
 
 

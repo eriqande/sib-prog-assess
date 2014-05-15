@@ -42,7 +42,7 @@ out.file.num <- 0;
 
 for(panel.num in 1:6) {
   if(panel.num %% 2 == 1) {
-    file.name <- paste("mega_boxplot_alles",ALLES,"_num",out.file.num + 1,".pdf",sep="")
+    file.name <- paste("/mega_boxplot_alles",ALLES,"_num",out.file.num + 1,".pdf",sep="")
     pdf(file = file.path(OUTDIR, file.name), 12, 8) # make the plot window the size we want it
     par(oma=c(0,5,0,.3))
     par(mfrow=c(6,9))
@@ -164,7 +164,7 @@ for (SCEN in The.SCENS ) {
     
     
     #### INCOMPLETE HERE!!
-    latex_command <- paste("\\begin{figure}\\includegraphics[width=\\textwidth]{",file.name,"} \\caption{Boxplots of $\\PDS$ for all methods and all $n$75 scenarios. $A=",ALLES,"$ and $L=",LOCS-5,"$ ({\\em a}) and $L=",LOCS,"$ ({\\em b}).}",
+    latex_command <- paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, file.name,"} \\caption{Boxplots of $\\PDS$ for all methods and all $n$75 scenarios. $A=",ALLES,"$ and $L=",LOCS-5,"$ ({\\em a}) and $L=",LOCS,"$ ({\\em b}).}",
     	" \\label{fig:suppl_boxplot_A",ALLES,"_Num_",out.file.num,"} \\end{figure}", sep="")
     write(latex_command, file=latex.comms, append=T)
     

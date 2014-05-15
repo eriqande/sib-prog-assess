@@ -1,0 +1,11 @@
+*.DS_Store
+*~
+boxplots.pdf
+*.aux
+*.blg
+*.lof
+*.fff
+*.ttt
+*.log
+*.toc
+*.out

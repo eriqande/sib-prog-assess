@@ -1,0 +1,34 @@
+\documentclass[11pt,landscape]{report}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[colorlinks]{hyperref}
+
+
+
+
+\newcommand{\SupNum}{3}
+\input{../../sib_assess_tex/suppl_shared_newcomms.tex}
+\input{../../sib_assess_tex/sib_prog_name_newcomms.tex}
+
+
+
+\title{Supplement \SupNum{} to Article:\\
+\ArticleName\\
+\mbox{}\\
+{\em Partition Distance Boxplots} }
+
+
+
+\begin{document}
+\maketitle
+\section{Overview/Orientation}
+This supplement contains boxplot figures identical to the partition distance boxplot figures in in the main paper.  Here, however, results are presented for all the different levels of the number of alleles, $A$, and the number of loci, $L$.  In all figures, CO=\colony, CP=\colony{}-P, PRT=\prt{}, FF=\familyfinder, K2=\kinalyzer{} 2-allele algorithm, and KC=\kinalyzer{} consensus algorithm. The different $n75$ scenario names appear along the top.  For each scenario, the top panel shows results for data with no genotyping errors, the large middle panel for data with $d=.02$ and $m=.01$ and the bottom panel for $d=.07$ and $m=.03$.
+
+Note that the results for $L=20$ appear twice for every number of alleles. This was intentional, to allow comparisons on a single page to the $L=25$ results and to avoid large white spaces on the pages.
+
+\tableofcontents
+\listoffigures
+
+\input{../../tmp/plots/boxplots/latex_commands_for_boxplots.tex}
+
+\end{document}
