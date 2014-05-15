@@ -139,7 +139,8 @@ aggregated.two.methods.smears <- function(X, meth1="Method1", meth2="Method2", f
 #### MAKE THE PLOTS ####
 # make colony vs kinalyzer and show all 4 PD types in a 2x2 matrix and put another row below that
 # for the consense option.
-quartz("various_kina_smears", height=7.4, width=5.9)
+#postscript(file=file.path(OUTDIR, "various_kina_smears.ps"), height=7.4, width=5.9)
+quartz("various_kina_smears.ps", height=7.4, width=5.9)
 par(mfrow=c(3,2))
 aggregated.two.methods.smears(col.vs.kina,meth1="c",meth2="k");
 
@@ -148,14 +149,15 @@ aggregated.two.methods.smears(col.vs.kina,meth1="c",meth2="k");
 aggregated.two.methods.smears(col.vs.cons,meth1="c",meth2="b",columns=c(2),letters="e");
 aggregated.two.methods.smears(kina.vs.cons,meth1="k",meth2="b",columns=c(2),letters="f");
 dev.copy2eps(file=file.path(OUTDIR, "various_kina_smears.eps"));
-
+#dev.off()
 
 
 
 # now we are going to do another 3 by 2 set of panels.  The top row will be the
 # PRT results.  The middle the Family Finder Results and the bottom the colony pairwise
 # results.
-quartz("prt_ff_and_col_pair_smears", height=7.4, width=5.9)
+#postscript(file = file.path(OUTDIR, "prt_ff_and_col_pair_smears.eps"), height=7.4, width=5.9)
+quartz("prt_ff_and_col_pair_smears.eps", height=7.4, width=5.9)
 par(mfrow=c(3,2))
 col.vs.prt75s <- col.vs.prt[ col.vs.prt$Scenario.x != "lotta_large", ]
 aggregated.two.methods.smears(col.vs.prt75s, meth1="c", meth2="p",columns=c(2),letters="a");
@@ -169,3 +171,7 @@ col.vs.pair75s <- col.vs.col.pair [ col.vs.col.pair$Scenario.x != "lotta_large",
 aggregated.two.methods.smears(col.vs.pair75s, meth1="c",meth2="a",columns=c(2),letters="e");
 aggregated.two.methods.smears(col.vs.pair75s, meth1="c",meth2="a",columns=c(4),letters="f");
 dev.copy2eps(file = file.path(OUTDIR, "prt_ff_and_col_pair_smears.eps"));
+#dev.off()
+
+
+

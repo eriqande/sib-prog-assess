@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{helvet}
+\usepackage{amsfonts}
+\usepackage{rotating}
+\usepackage{psfrag}
+
+%% some handy things for making bold math
+\def\bm#1{\mathpalette\bmstyle{#1}}
+\def\bmstyle#1#2{\mbox{\boldmath$#1#2$}}
+\newcommand{\thh}{^\mathrm{th}}
+
+
+
+%% the page dimensions from TeXShop's default---very nice
+\textwidth = 6.5 in
+\textheight = 9 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+\newcommand{\PDS}{\mathrm{PD_S}}
+\newcommand{\PDST}{\mathrm{PD_S^T}}
+\newcommand{\W}{\mathrm{PD_{AP}}} % W for wrong! = PD from assignment problem on a set cover
+\newcommand{\WT}{\mathrm{PD_{AP}^T}}
+
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{center}
+\psfrag{cw}[][]{{\sf Colony} $\W$}
+\psfrag{cx}[][]{{\sf Colony} $\PDS$}
+\psfrag{cy}[][]{{\sf Colony} $\WT$}
+\psfrag{cz}[][]{{\sf Colony} $\PDST$}
+
+\psfrag{fw}[][]{{\sf FamilyFinder} $\W$}
+\psfrag{fx}[][]{{\sf FamilyFinder} $\PDS$}
+\psfrag{fy}[][]{{\sf FamilyFinder} $\WT$}
+\psfrag{fz}[][]{{\sf FamilyFinder} $\PDST$}
+
+\includegraphics*[width=\textwidth]{../cvkpsmear.eps}
+
+\end{center}
+
+
+
+
+ \end{document}
+ 

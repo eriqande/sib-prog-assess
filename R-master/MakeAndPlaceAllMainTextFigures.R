@@ -1,7 +1,9 @@
-IMGDIR="/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/doc/sib_assess_tex/images/"
+IMGDIR="/tmp/images/"
 
 # make the kinalyzer smearograms
-source("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/all_aggregated_smearograms.R")
+source("./R/all_aggregated_smearograms.R")
+
+# then copy the files that need fix-fragging into ./image_forge
 
 # now try fix-fragging
 setwd("./image_forge")
@@ -45,7 +47,7 @@ table(cpb$NumLoc, cpb$NumAlleles.x, cpb$Scenario.x)
 
 ### ------------------------------------------------------------
 # Now, do the boxplots
-source("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/boxplots2_with_prt_and_pairwise.R")
+source("./R/make_boxplots.R")
 
 # and copy them over for the paper:
 file.copy("mega_boxplot_alles10_num1.pdf", file.path(IMGDIR, "boxplots_for_paper10_num1.pdf"), overwrite=T)
