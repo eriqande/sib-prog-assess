@@ -1,0 +1,13 @@
+*.DS_Store
+*~
+biggest_sibship.pdf
+*.aux
+*.blg
+*.lof
+*.fff
+*.ttt
+*.log
+*.toc
+*.out
+*.fdb_latexmk
+*.fls

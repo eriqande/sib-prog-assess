@@ -179,7 +179,7 @@ for(a in c(5,10,15,20,25)) {
 	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
 		plot.four.quadrants(a, l )  # this is the one for the first plot I made
 		dev.off()
-		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{",file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\prt{} (PRT), \\familyfinder{} (FF), and \\kinalyzer{} 2-allele (KI), $A=",a,"$, $L=",l,"$} \\label{xplot-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
+		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\prt{} (PRT), \\familyfinder{} (FF), and \\kinalyzer{} 2-allele (KI), $A=",a,"$, $L=",l,"$} \\label{xplot-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
 }
@@ -189,14 +189,11 @@ for(a in c(5,10,15,20,25)) {
 	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
 		plot.four.quadrants(a, l, meths=c("CP", "CO", "KI", "KC") )  # this one has CP and KC in there.
 		dev.off()
-		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{",file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\colony{}-P (CP), \\kinalyzer{} 2-allele (KI), and \\kinalyzer{} consense (KC), $A=",a,"$, $L=",l,"$} \\label{xplot-kikc-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
+		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\colony{}-P (CP), \\kinalyzer{} 2-allele (KI), and \\kinalyzer{} consense (KC), $A=",a,"$, $L=",l,"$} \\label{xplot-kikc-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
 }
 
-
-# at the end, put the latex.comms where the need to be:
-#file.copy(latex.comms, SUPPL3DIR, overwrite=T)
 
 
 

@@ -1,0 +1,37 @@
+
+
+
+\documentclass[11pt,landscape]{report}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[colorlinks]{hyperref}
+
+
+\newcommand{\SupNum}{4}
+\input{../../sib_assess_tex/sib_prog_name_newcomms.tex}
+\input{../../sib_assess_tex/suppl_shared_newcomms.tex}
+
+
+
+\title{Supplement \SupNum{} to Article:\\
+\ArticleName\\
+\mbox{}\\
+{\em Largest Inferred Sibships}}
+
+
+
+\begin{document}
+\maketitle
+\section{Overview/Orientation}
+This supplement contains a series of plots useful for comparing how well each method identifies large full sibling groups, and also (to some extent) for assessing their performance at avoiding the inference of sibling groups where there are none.  The plots have a few nonstandard features.  First, the origin is in the middle and any direction away from it---whether right or left or up or down---records positive values.  Each of the four quadrants corresponds to a different inference method as indicated by the letter codes in the corners: CO=\colony, CP=\colony{}-P, PRT=\prt{}, FF=\familyfinder, K2=\kinalyzer{} 2-allele algorithm, and KC=\kinalyzer{} consensus algorithm.  The $y$-axis indicates the size of the largest true full sibling group in a simulated data set and the $x$-axis indicates the size of the largest inferred full sibling group.  The various clusters in the vertical direction correspond to the different scenarios.  The cluster centered on $y=1$ is for the three scenarios that have no full sibling groups (\nosibs{}, \allhalf{}, and \allpathalf{}).  The line centered on $y=5$ is for the scenarios \sfswh{} and \sfsnoh{}, because the largest true sibling group in those scenarios is of size 5.  Likewise the line centered on $y=20$ is for \slfsgnoh{} and \slfsgwh{}, and finally, the line centered on $y=30$ is for \onelargenoh{} and \onelargewh{}.  
+
+The placement of the points on the plot have been jiggled by adding a uniform random number between -0.5 and 0.5 in both the $x$ and the $y$ directions.  Vertical dotted gray lines give the range of correct values for largest inferred sibship under the various scenarios.  Turquoise plot points represent no genotyping error, orange points are for $d=0.02$ and $m=0.01$, and blue points are for the high genotyping error scenarios of $d=0.07$, and $m=0.03$.  Open circles correspond to data sets with no half siblings and open triangles denote data sets with half siblings.
+
+To understand the patterns revealed by these plots, it is helpful to verbally describe what can be observed in a single one.  For an example I use Figure~\ref{xplot-a10l10}.  The prominent pattern in the lower left quadrant shows that, when full sibships exist \kinalyzer{} (KI) infers the correct size of the largest sibling group very reliably when there is no genotyping error (turquoise), but when genotyping error is introduced it never identifies a full sibling group as large as the largest true full sibling group.  The effect is amplified as genotyping error increases (blue points).  The upper left quadrant, on the other hand shows that \colony{} typically identifies the size of the largest full sibling group and is relatively unaffected by increased genotyping error rate, apart from the occasional data set with very high genotyping error.  On the other hand, it always finds at least one sibship of size larger than 1 in cases where there aren't any full sibling groups.  The upper right quadrant shows that on some occasions \prt{} correctly identifies no sibships of size greater than 1 when there aren't any, and identifies the size of the largest sibship somewhat reliably except for a handful of outlier cases where it infers a larger full sibling group than any that exist in truth.  Finally, \familyfinder{} tends to find larger sibships than exist in reality and it appears that this is primarily (but not exclusively) due to the occurrence of half siblings in the data sets (such data sets are denoted by triangles).  
+
+
+\listoffigures
+
+\input{../../tmp/plots/biggest_sibship/latex_commands_for_biggest_sibship.tex}
+
+\end{document}
