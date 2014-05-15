@@ -1,7 +1,9 @@
 REGENERATE_SAVED_DATA <- FALSE
+
+OUTDIR <- "./tmp/plots/biggest_sibship"
 library(reshape)
 library(dichromat)  # to check out colors and see which don't work for color blind folks
-source("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/ProcessingOutputs/script/RecoverCodesWithinR.R") # for some useful functions
+source("R/RecoverCodesWithinR.R") # for some useful functions
 
 
 
@@ -99,16 +101,20 @@ save(res.list, file="/Users/eriq/prj/AlmudevarCollab/SibProgramsEvaluation/Final
 ####################################################################
 
 
-setwd("/Users/eriq/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/")
-latex.comms <- "latex_commands_for_biggest_sibship.tex"
-file.remove(latex.comms)
+#### SET UP OUTPUT DIRECTORY
+dir.create(OUTDIR, recursive = TRUE)
+latex.comms <- file.path(OUTDIR, "latex_commands_for_biggest_sibship.tex")
+suppressWarnings(file.remove(latex.comms))
 
 
-# just load that back in to save time here if not regenerating data
+#### LOAD DATA  (i havent put the resources to regenerate the data up on GitHub) ####
+# just load the data in to save time here if not regenerating data\
 if(!REGENERATE_SAVED_DATA) {
-	load("/Users/eriq/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/BiggestSibshipSavedData.Rda")
+	load("./scores/BiggestSibshipSavedData.Rda")
 }
 
+
+#### DEFINE SOME PLOTTING FUNCTIONS  ####
 xlabs<-c(70,60,50,40,30,20,10,0,10,20,30,40,50,60,70)
 ylabs<-c(30,20,10,0,10,20,30)
 # you need to have set up a plot space already
@@ -147,6 +153,7 @@ plot.a.quadrant <- function(X, xmult=1, ymult=1, add=T, ...) {
 }
 
 
+
 plot.four.quadrants <- function(num.alle, num.loc, meths=c("PRT", "CO", "KI", "FF")) {
 	plot.a.quadrant(subset(res.list[[meths[1]]], Num.Alleles==num.alle & NumLoc==num.loc), 1, 1, add=F, 
 		main=paste(num.alle, "Alleles   ", num.loc, "Loci")
@@ -164,23 +171,25 @@ plot.four.quadrants <- function(num.alle, num.loc, meths=c("PRT", "CO", "KI", "F
 }
 
 
+#### NOW ACTUALLY GENERATE THE PLOTS ####
 # make plots and copy them directly to the suppl3 latex directory
-SUPPL3DIR <- "/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/doc/suppl3"
-quartz("X-plots", width=11, height=7.5)
+#SUPPL3DIR <- "/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/doc/suppl3"
 for(a in c(5,10,15,20,25)) {
 	for(l in c(5,10,15,20,25)) {
+	  file.name <- paste("biggest_sibship_alle",a,"_loc",l,".pdf",sep="")
+	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
 		plot.four.quadrants(a, l )  # this is the one for the first plot I made
-		file.name <- paste("biggest_sibship_alle",a,"_loc",l,".pdf",sep="")
-		dev.copy2pdf(file=file.path(SUPPL3DIR, file.name))
+		dev.off()
 		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{",file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\prt{} (PRT), \\familyfinder{} (FF), and \\kinalyzer{} 2-allele (KI), $A=",a,"$, $L=",l,"$} \\label{xplot-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
 }
 for(a in c(5,10,15,20,25)) {
 	for(l in c(5,10,15,20,25)) {
+	  file.name <- paste("biggest_sibship_with_kikc_alle",a,"_loc",l,".pdf",sep="")
+	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
 		plot.four.quadrants(a, l, meths=c("CP", "CO", "KI", "KC") )  # this one has CP and KC in there.
-		file.name <- paste("biggest_sibship_with_kikc_alle",a,"_loc",l,".pdf",sep="")
-		dev.copy2pdf(file=file.path(SUPPL3DIR, file.name))
+		dev.off()
 		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{",file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\colony{}-P (CP), \\kinalyzer{} 2-allele (KI), and \\kinalyzer{} consense (KC), $A=",a,"$, $L=",l,"$} \\label{xplot-kikc-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
@@ -188,48 +197,10 @@ for(a in c(5,10,15,20,25)) {
 
 
 # at the end, put the latex.comms where the need to be:
-file.copy(latex.comms, SUPPL3DIR, overwrite=T)
+#file.copy(latex.comms, SUPPL3DIR, overwrite=T)
 
 
 
 
-# that is interesting to look at, and we can do something with this at some point.
-# note this:
-table(largest.compare$Max.True.Sibsize, largest.compare$Scenario)
-# it shows us how many observations there are for each scenario and each max number of 
-# true sib size
-# when you break it down by num alleles and num loc you see there are 45 observations in each:
-table(largest.compare$Max.True.Sibsize, largest.compare$Scenario, largest.compare$NumLoc, largest.compare$Num.Alleles)
-# that is 3 genoerror levels and 15 reps.  Here is the plan for a crazy figure:
-# 3 colors = 3 geno_error levels
-# 2 shapes = with or without half sibs
-# one figure for each combination of num.alle and num loc
-# I can fit four methods in the four quadrants.  Y-axis is correct size of largest sibship
-# x-axis is the size of inferred largest sibship. 
-# use positive or negative to put in different quadrants.  Cool! this will be interesting.
 
 
-if(0) {
-# How about looking at the Sibsizes greater than 1 in the nosibs?
-inferred$Scenario <- CodeToScenarioName(inferred$Code)
-inferred$NumAlle <- CodeToAlleNum(inferred$Code)
-
-
-wrongos <- subset(inferred, Scenario=="nosibs" & SibSize>1)
-
-# this makes a histogram where each individual in a sibship > size 1 in the sample is an observation and the
-# value each one carries is the posterior prob score of the sibship it is in
-## THIS ONLY WORKS FOR THE COLONY OUTPUT
-tweak <- by(wrongos, list(as.factor(wrongos$NumLoc), as.factor(wrongos$NumAlle)), 
-					function(x) hist(
-												rep(x$ProbScore, times=x$SibSize), 
-												breaks=seq(0,1,by=.1),
-												plot=F
-												)
-				)
-names(dimnames(tweak)) <- c("NumLoc", "NumAlle")
-
-# OK, now we can print tweaks and I see that it has the info I want, we just have to figure out 
-# how to extract it. It isn't particularly friendly.
-# I think I should focus solely on the NumAlleles = 10 case.
-}
