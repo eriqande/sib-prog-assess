@@ -148,7 +148,7 @@ aggregated.two.methods.smears(col.vs.kina,meth1="c",meth2="k");
 # here c=Colony, k=kinalyzer two allele, b=consense
 aggregated.two.methods.smears(col.vs.cons,meth1="c",meth2="b",columns=c(2),letters="e");
 aggregated.two.methods.smears(kina.vs.cons,meth1="k",meth2="b",columns=c(2),letters="f");
-dev.copy2eps(file=file.path(OUTDIR, "various_kina_smears.eps"));
+dev.copy2eps(file=file.path(OUTDIR, "various_kin_smears.eps"));
 #dev.off()
 
 

@@ -1,12 +1,10 @@
-IMGDIR="/tmp/images/"
+FINFIGOUT <- "./tmp/plots/figures_for_main_paper"
+dir.create(FINFIGOUT, recursive = TRUE)
 
 # make the kinalyzer smearograms
 source("./R/all_aggregated_smearograms.R")
 
-# then copy the files that need fix-fragging into ./image_forge
 
-# now try fix-fragging
-setwd("./image_forge")
 
 # function to do fix-fragging calls
 # infile should have no extension. nor should outfile
@@ -22,11 +20,16 @@ fix_frag <- function(infile, outfile, addToTop=10) {
 }
 
 
+### NOT DOING FIX-FRAGGING ON GITHUB.  NOT PORTABLE
 # now do it:
-final_fig <- fix_frag("various_kin_smear_forge", "various_kin_smear", 10)
-file.copy(final_fig, IMGDIR, overwrite=T)
-final_fig <- fix_frag("prt_ff_pair_smear_forge", "prt_ff_pair_smear", 10)
-file.copy(final_fig, IMGDIR, overwrite=T)
+# now try fix-fragging
+#setwd("./image_forge")
+# then copy the files that need fix-fragging into ./image_forge
+#stopifnot(all(file.copy(file.path(FINFIGOUT, c("various_kin_smears.eps", "prt_ff_and_col_pair_smears.eps") ),  "./image_forge")))
+#final_fig <- fix_frag("various_kin_smear_forge", "various_kin_smear", 10)
+#file.copy(final_fig, IMGDIR, overwrite=T)
+#final_fig <- fix_frag("prt_ff_pair_smear_forge", "prt_ff_pair_smear", 10)
+#file.copy(final_fig, IMGDIR, overwrite=T)
 
 
 
@@ -49,15 +52,17 @@ table(cpb$NumLoc, cpb$NumAlleles.x, cpb$Scenario.x)
 # Now, do the boxplots
 source("./R/make_boxplots.R")
 
+
 # and copy them over for the paper:
-file.copy("mega_boxplot_alles10_num1.pdf", file.path(IMGDIR, "boxplots_for_paper10_num1.pdf"), overwrite=T)
-file.copy("mega_boxplot_alles25_num2.pdf", file.path(IMGDIR, "boxplots_for_paper25_num2.pdf"), overwrite=T)
+BOXDIR <- "./tmp/plots/boxplots"
+stopifnot(file.copy(file.path(BOXDIR, "mega_boxplot_alles10_num1.pdf"), file.path(FINFIGOUT, "boxplots_for_paper10_num1.pdf"), overwrite=T))
+stopifnot(file.copy(file.path(BOXDIR, "mega_boxplot_alles25_num2.pdf"), file.path(FINFIGOUT, "boxplots_for_paper25_num2.pdf"), overwrite=T))
 
 
 
 
 # and do the lotta large boxplots:
-source("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/lotta_large_analyses_and_plots.R")
-file.copy("lotta_large_boxplots.pdf", IMGDIR, overwrite=T)
-
+source("./R/lotta_large_analyses_and_plots.R")
+file.copy("lotta_large_boxplots.pdf", file.path(FINFIGOUT, "lotta_large_boxplots.pdf"), overwrite=T)
+file.remove("lotta_large_boxplots.pdf")
 

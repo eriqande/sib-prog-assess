@@ -2,7 +2,6 @@ REGENERATE_SAVED_DATA <- FALSE
 
 OUTDIR <- "./tmp/plots/biggest_sibship"
 library(reshape)
-library(dichromat)  # to check out colors and see which don't work for color blind folks
 source("R/RecoverCodesWithinR.R") # for some useful functions
 
 
