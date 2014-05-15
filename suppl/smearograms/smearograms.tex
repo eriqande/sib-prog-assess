@@ -1,0 +1,74 @@
+%% Big NOTE! 
+% The figures for this document are big enough that I don't want
+% them sitting around on my hard drive. So, you have to run the
+% script:
+% /Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/all_smearograms.R
+% and that makes all the figures in a directory in /tmp.
+% then the contents of:
+%/tmp/sib_assess_plots/OrderedListOfFiles.txt
+% hold all the latex source that you want to put into
+% /Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/doc/suppl1/suppl1_figure_calls.tex
+% which gets called from this file
+
+
+\documentclass[11pt,landscape]{report}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[colorlinks]{hyperref}
+\usepackage{tocloft}
+
+
+\newcommand{\SupNum}{1}
+\input{../../sib_assess_tex/suppl_shared_newcomms.tex}
+\input{../../sib_assess_tex/sib_prog_name_newcomms.tex}
+
+
+% get TOC spacing onto one page
+\setlength\cftparskip{2pt}
+\setlength\cftbeforepartskip{2pt}
+
+
+
+\title{Supplement 1 to Article:\\
+\ArticleName\\
+\mbox{}\\
+{\em Partition Distance Scatterplots} }
+
+
+
+
+\begin{document}
+\maketitle
+\section{Overview/Orientation}
+This supplement contains all the partition distance scatterplots for all the pairwise comparisons between different sibship inference methods, broken down over different scenarios, genotyping error rates, and partition distances. Here is an example, with a legend plot next to it.
+\begin{center}
+\includegraphics[width=.3\textwidth]{smearo_example.png}
+~~~~~~~~~~~~~~~~~~~~~~~
+\includegraphics[width=.27\textwidth]{smearo_key.pdf}
+\end{center}
+The title of each plot has a comma separated string.  The first value is the true sibship configuration, and it denotes one of 
+\nosibs,
+\allhalf,
+\allpathalf,
+\sfsnoh,
+\sfswh,
+\slfsgnoh,
+\slfsgwh,
+\onelargenoh,
+\onelargewh, or
+\lottalarge.
+The second value is ``n'', ``l'', or ``h,'' according to whether the data were simulated with no genotyping errors, a low genotyping error rate ($d=0.02,~m=0.01$), or a high genotyping error rate ($d=0.07,~m=0.03$), respectively.
+The third value denotes the type of the partition distance used: PD\_AP = $\W$, PD\_S = $\PDS$, PD\_AP\^{}T = $\WT$, PD\_S\^{}T = $\PDST$.
+
+The colors and shapes of plotting symbols represent the number of loci and alleles respectively.  Cooler colors correspond to more loci and hotter colors to few loci.  Rounder shapes correspond to more alleles and ``pointier'' shapes correspond to fewer alleles.  Here is a mnemonic: with fewer loci and fewer alleles you are more likely to get burned or pricked when you try to estimate sibling structure.  The coloring and the plot characters try to reflect this.  
+
+Save a tree. Please don't print this out.  View it on your computer.
+\newpage  
+\tableofcontents
+
+\newpage
+\listoffigures
+
+\input{../../tmp/plots/smearograms/latex_commands_for_smearograms.tex}
+
+\end{document}

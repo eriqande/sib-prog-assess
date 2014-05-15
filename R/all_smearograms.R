@@ -84,7 +84,7 @@ two.methods.all.smears <- function(X, meth1="Method1", meth2="Method2", filepref
     if(!is.na(texlabstrs[meth1])) {labname1<-texlabstrs[meth1]} else { labname1<-meth1} 
     if(!is.na(texlabstrs[meth2])) {labname2<-texlabstrs[meth2]} else { labname2<-meth2} 
     
-    latex_command <- paste("\\begin{figure}\\includegraphics[width=\\textwidth]{/tmp/sib_assess_plots/",file.name,"} \\caption{",
+    latex_command <- paste("\\begin{figure}\\includegraphics[width=\\textwidth]{../../",file.name,"} \\caption{",
                            latex.prog.names[meth2]," compared to ",latex.prog.names[meth1]," on scenario ", SCEN.latex[SCEN], " \\label{fig:",labname1,"_v_",
                            labname2,"_on_",gsub("_", "", SCEN),"}} \\end{figure}", sep="")
     write(latex_command, file=file.list, append=T)
@@ -155,9 +155,9 @@ names(texlabstrs) <- labstrs
 #quartz(width=13, height=8.5)
 
 
-# this script creates a boatload of plots, so put them all somewhere in /tmp
+# this script creates a boatload of plots, so put them all somewhere in ./tmp
 dir.create(OUTDIR, recursive = T);
-file.list <- file.path(OUTDIR, "OrderedListOfFiles.txt")
+file.list <- file.path(OUTDIR, "latex_commands_for_smearograms.tex")
 suppressWarnings(file.remove(file.list))
 
 
