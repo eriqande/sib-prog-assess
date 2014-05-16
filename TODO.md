@@ -1,4 +1,6 @@
 
 
-1. Deal with the file_Colonyd002m002_vs_Colonyd0m0LottaLarge.pdf and its mate by dropping them from the ordered list of files.
-2. Save and refine workflow for all the supplement plots.
+1. Get the appendix typesetting squared away
+2. Make a compile-document.R script
+3. Updated REAMDE to explain that, and to explain that the main document figures do not currently get regenerated.
+
