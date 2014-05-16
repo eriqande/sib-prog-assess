@@ -2,16 +2,13 @@
 % ------
 % Fonts and typesetting settings
 \usepackage[sc]{mathpazo}
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 \linespread{1.05} % Palatino needs more space between lines
 
 \usepackage{microtype}
 % ------
 % Page layout
 \usepackage[labelfont=bf,labelformat=simple,labelsep=quad]{caption}
-
-
-
 
 \usepackage{graphicx}
 \usepackage{amssymb}
@@ -45,7 +42,6 @@
 \newcommand{\etc}{{\em etc.}\@\xspace}
 
 
-
 %% the page dimensions from TeXShop's default---very nice
 \textwidth = 6.5 in
 \textheight = 9 in
@@ -74,13 +70,12 @@
 \makeatother
 
 
-\fancyhead{} % clear all header fields
-\chead[]{\vspace*{-.15in}\includegraphics[width=\textwidth]{images/banner.pdf}}
-\cfoot[]{}
-\fancyhead[LE]{{\bf \thepage}~~{\sl SUPPORTING INFORMATION FOR:} ANDERSON \& ALMUDEVAR}
-\fancyfoot[RE,LO]{{\footnotesize This supporting information is a US Government work and is in the public 
-domain in the USA.}}
-\renewcommand{\headrulewidth}{0pt}
+%\fancyhead{} % clear all header fields
+%\chead[]{\vspace*{-.15in}\includegraphics[width=\textwidth]{banner.pdf}}
+%\cfoot[]{}
+%\fancyhead[LE]{{\bf \thepage}~~{\sl SUPPORTING INFORMATION FOR:} ANDERSON \& ALMUDEVAR}
+%\fancyfoot[RE,LO]{{\footnotesize This supporting information is a US Government work and is in the public domain in the USA.}}
+%\renewcommand{\headrulewidth}{0pt}
 
 
 %% Commands for some mathematical notation:
@@ -102,7 +97,7 @@ domain in the USA.}}
 \begin{document}
 
 
-\pagestyle{fancyplain}
+%\pagestyle{fancyplain}
 
 
 
@@ -115,14 +110,14 @@ domain in the USA.}}
     \uppercase{ Eric C. Anderson$^*$ and Anthony Almudevar$^\dagger$} \\
        \mbox{}\\
     $^*${\em Fisheries Ecology Division, Southwest Fisheries Science Center, Santa Cruz, CA, 
-    USA,~$^\dagger$Department of Biostatistics and Computational Biology,
+    USA, ~$^\dagger$Department of Biostatistics and Computational Biology,
 		University of Rochester Medical School, Rochester, NY}\\
     \mbox{}\\
     These appendices authored by Anthony Almudevar.\\
     Correspondence regarding these appendices: Anthony\_Almudevar@URMC.Rochester.edu
-%    \begin{abstract}
-%      Boing Boing Boing
-%    \end{abstract}
+    \begin{abstract}
+      Boing Boing Boing
+    \end{abstract}
 \vspace*{.4in}
    \end{strip}
 
@@ -182,23 +177,6 @@ correct except that a single true sibling group of size $m$ is split into two gr
 to another true sibling group. The number of errors has clearly increased (there are now false positives in 
 addition to the original false negatives), but PD remains $k$. 
 
-%%%%%%%%%%%%%%%
-\begin{table*}
-\caption{Values of \emph{variation of information} distance involving sample partitions $\calp_1, \calp_2, 
-\calp_3, \calp_4$ for varying values of $n$ (natural logarithms are used).}\label{vi.table}
-\rule{\textwidth}{0.90pt}
-\begin{center}
-\begin{tabular}{r|ccccccccccc}
-\multicolumn{1}{r}{$n=$} &   4  & 6  & 8  & 10  & 12  & 14  & 16  & 18  & 20  & 22  & 24 \\ \hline
-$VI(\calp_1, \calp_2)$ & 0.347  &  0.347  & 0.347  &  0.347  & 0.347   & 0.347   & 0.347   & 0.347   & 0.347   & 0.347   & 0.347 \\
-$VI(\calp_1, \calp_3)$ & 0.594  & 0.465  & 0.385   & 0.330   & 0.290   & 0.260   & 0.236   & 0.216   & 0.200   & 0.186   & 0.174 \\
-$VI(\calp_1, \calp_4)$ & 1.125  & 0.901  & 0.754   & 0.650   & 0.574   & 0.515   & 0.468   & 0.429   & 0.397   & 0.370   & 0.346
-\end{tabular}
-\end{center}
-\rule{\textwidth}{0.90pt}
-\end{table*}
-%%%%%%%%%%%%%%%%%%%
-
 
 Despite these concerns, we cannot accept the metric proposed in \citet{BrownDexter2012} as an alternative, 
 which we will briefly discuss. Two partitions $\calp = (P_1, \ldots, P_p)$ and $\calp^\prime = (P^\prime_1, 
@@ -242,15 +220,47 @@ upper bound of $\log n$ if $p = n$, $p^\prime = 1$.
 
 
 %% A little hack to stop the banner from printing:
-\chead[]{}
-\fancyhead[RO]{{\sl SUPPORTING INFORMATION FOR:} ``AN ASSESSMENT OF SIBSHIP RECONSTRUCTION\ldots''~~{\bf 
-\thepage}}
+%\chead[]{}
+%\fancyhead[RO]{{\sl SUPPORTING INFORMATION FOR:} ``AN ASSESSMENT OF SIBSHIP RECONSTRUCTION\ldots''~~{\bf \thepage}}
  
 
 Given these properties, \citet{BrownDexter2012} propose its use as a partition distance, further introducing 
 a normalization scheme to force the metric into the unit interval. We note that they propose an extended 
 construction for nested half-sibling structures, however, for our discussion it suffices to consider 
 partitions only. 
+
+
+\begin{table}
+\caption{Schematic representations of example partitions $\calp_1$, $\calp_2$, $\calp_3$ and $\calp_4$ for 
+$n = 6$.}\label{pex.table}
+\begin{center}
+\begin{tabular}{r|c|c}\hline
+$\calp_1$ &AAAAAA&BBBBBB \\
+$\calp_2$ &AAACCC&BBBBBB \\
+$\calp_3$ &AAAAAB&BBBBBB \\
+$\calp_4$ &AAAAAB&ABBBBB 
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%
+\begin{table*}
+\caption{Values of \emph{variation of information} distance involving sample partitions $\calp_1, \calp_2, \calp_3, \calp_4$ for varying values of $n$ (natural logarithms are used).}\label{vi.table}
+\rule{\textwidth}{0.90pt}
+\begin{center}
+\begin{tabular}{r|ccccccccccc}
+\multicolumn{1}{r}{$n=$} &   4  & 6  & 8  & 10  & 12  & 14  & 16  & 18  & 20  & 22  & 24 \\ \hline
+$VI(\calp_1, \calp_2)$ & 0.347  &  0.347  & 0.347  &  0.347  & 0.347   & 0.347   & 0.347   & 0.347   & 0.347   & 0.347   & 0.347 \\
+$VI(\calp_1, \calp_3)$ & 0.594  & 0.465  & 0.385   & 0.330   & 0.290   & 0.260   & 0.236   & 0.216   & 0.200   & 0.186   & 0.174 \\
+$VI(\calp_1, \calp_4)$ & 1.125  & 0.901  & 0.754   & 0.650   & 0.574   & 0.515   & 0.468   & 0.429   & 0.397   & 0.370   & 0.346
+\end{tabular}
+\end{center}
+\rule{\textwidth}{0.90pt}
+\end{table*}
+%%%%%%%%%%%%%%%%%%%
+
 
 There are two problems with this metric. The first involves the relationship between varying forms of 
 partition differences and the resulting value of  $VI(\calp, \calp^\prime)$. To clarify the issue, suppose 
@@ -260,23 +270,24 @@ $n$ is an even integer, and define partitions on $\{ 1,\ldots, 2n \}$: $\calp_1 
 \} )$. To fix ideas, this may correspond to a case in which a true partition $\calp_1$ consists of two 
 sibling groups of size $n$,  $\calp_2$ is an estimate which incorrectly splits the first group into equal 
 halves, $\calp_3$ is an estimate which incorrectly moves one individual from the first to the second group, 
-and $\calp_4$ is an estimate which incorrectly exchanges two individuals between groups.  Values of 
-$VI(\calp_1, \calp_j)$ for $n = 4, 6, \ldots, 24$ are given in Table \ref{vi.table}. First note that the 
-distributions induced by $\calp_1, \calp_2$ do not vary with $n$, so neither does $VI(\calp_1, \calp_2)$. On 
-the other hand, $VI(\calp_1, \calp_3)$ decreases with $n$, so that $VI(\calp_1, \calp_2) <  VI(\calp_1, 
-\calp_3)$ for $n \leq 8$. However, it seems unreasonable to score  $\calp_2$ as a more accurate estimate 
-than $\calp_3$, especially for sibling groups of size $n = 8$ (the PD would assign errors of 4 and 1 
-respectively).  The situation is more severe for the case of $\calp_4$, for which $VI(\calp_1, \calp_2) <  
-VI(\calp_1, \calp_4)$ for all $n \leq 22$ (for $n = 22$ the respective PD errors would be 11, 1 and 2 when 
-comparing $\calp_1$ to $\calp_2$, $\calp_3$ and $\calp_4$). 
-
+and $\calp_4$ is an estimate which incorrectly exchanges two individuals between groups. These partitions 
+are represented schematically in Table \ref{pex.table}.  Values of $VI(\calp_1, \calp_j)$ for $n = 4, 6, 
+\ldots, 24$ are given in Table \ref{vi.table}. First note that the distributions induced by $\calp_1, 
+\calp_2$ do not vary with $n$, so neither does $VI(\calp_1, \calp_2)$. On the other hand, $VI(\calp_1, 
+\calp_3)$ decreases with $n$, so that $VI(\calp_1, \calp_2) <  VI(\calp_1, \calp_3)$ for $n \leq 8$. 
+However, it seems unreasonable to score  $\calp_2$ as a more accurate estimate than $\calp_3$, especially 
+for sibling groups of size $n = 8$ (the PD would assign errors of 4 and 1 respectively).  The situation is 
+more severe for the case of $\calp_4$, for which $VI(\calp_1, \calp_2) <  VI(\calp_1, \calp_4)$ for all $n 
+\leq 22$ (for $n = 22$ the respective PD errors would be 11, 1 and 2 when comparing $\calp_1$ to $\calp_2$, 
+$\calp_3$ and $\calp_4$). 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table*}
-\caption{\textcolor{red}{This caption needs updating: (= 20 hours)Values of \emph{variation of information} 
-distance involving sample partitions $\calp_1, \calp_2, \calp_3, \calp_4$ for varying values of $n$ (natural 
-logarithms are used).}}\label{rgoa.table}
+\caption{Comparison of PRT and RGOA  using simulated data from 6 pedigree models (Table 5 \citep{Chou2012}). 
+The table includes the number of replications (N Repl.), the time taken for the study (total of all 
+replications) and the mean accuracy based on partition distance. For PRT, total number of correct precdigree 
+estimates is also given (partition distance equals 0). For details, see Appendix 3.}\label{rgoa.table}
 \rule{\textwidth}{0.90pt}
 \begin{center}
 \begin{tabular}{c|cccc|ccc}
@@ -341,15 +352,15 @@ standard Windows based PC was used). In each case the accuracy was assessed usin
 the total number of correct estimates of the 100 replications ($PD = 0$), the mean accuracy, and the total 
 time in seconds for the total simulation study. For example, the time taken to simulate 100 replications of 
 model `Rand-j10-o50-l4-a10', calculate the estimates and evaluate $PD$ was 2134.2 seconds, so that a single 
-MSG estimate averaged within 21.4 seconds. 
-The accuracy attained by the RGOA was comparable, however the computation time far exceeded that attained by 
-PRT. Our understanding of the study is that the algorithm was allowed to estimate sibling partitions of 
-model replications within an allowed time of 72,000 seconds (= 20 hours). In that time, for model `Rand-j10-
-o50-l4-a10' 3 estimates were completed, so that 5 hours is the most favorable report of the average 
-computation time for an estimate. This exceeds by far the 21.4 seconds attained by PRT, with no apparent 
-compromise in accuracy. Essentially the same conclusion may be reached for the remaining models. We 
-conjecture that both algorithms attain close to the optimal accuracy given the inherent statistical error of 
-the problem (see \cite{almudevar99} for methods with which to estimate this type of error).        
+MSG estimate averaged within 21.4 seconds. The accuracy attained by the RGOA was comparable, however the 
+computation time far exceeded that attained by PRT. Our understanding of the study is that the algorithm was 
+allowed to estimate sibling partitions of model replications within an allowed time of 72,000 seconds (= 20 
+hours). In that time, for model `Rand-j10-o50-l4-a10' 3 estimates were completed, so that 5 hours is the 
+most favorable report of the average computation time for an estimate. This exceeds by far the 21.4 seconds 
+attained by PRT, with no apparent compromise in accuracy. Essentially the same conclusion may be reached for 
+the remaining models. We conjecture that both algorithms attain close to the optimal accuracy given the 
+inherent statistical error of the problem (see \cite{almudevar99} for methods with which to estimate this 
+type of error).        
 
 It must be noted that summaries of the performance of PRT given in Table 4 of \citet{Chou2012} (identified 
 as `A\&F') are misleading, which presumably accounts for the failure in \citet{Chou2012} to accept PRT as a 
@@ -362,11 +373,89 @@ completes the same estimate in 34.1 seconds \citep{alm&and11}. As reported in \c
 modification was needed to complete that estimate. We must conclude, therefore, that the authors of 
 \citet{Chou2012} have not correctly implemented the algorithm as described in \citet{almudevar99}. 
 
+\section*{Appendix 5 - PRT Parameter Settings} 
+
+As discussed in Appendix 1, PRT currently supports tolerance for genotyping error. A parameter $K$ may be 
+specified, giving the maximum number of genotype errors permitted per individual. Here, an error refers to 
+an allele incompatible with Mendelian inheritance. A set of individuals is a FSG as long as it contains no 
+more than $K$ errors in any individual.  
+
+In order to determine the values of $K$ for this study the following procedure was used. For each allele/
+loci/  error model PRT was run for 50 OneBig models using error parameter values $K =  1,2,3,4$. A 
+\emph{minimax} criterion was then used for selecting $K$, that is, for each allele/loci model the value of 
+$K$ minimizing the maximum median partition distance across the three error models was used. The value of $K
+$ for the 20/20 model was changed from 3 to 4 to preserve monotonicity. 
+
+For all models, the modified MSG-MG algorithm was used. For most models the MSG-MG algorithm used the 
+default settings (see documentation): 
+\begin{eqnarray*}
+\mbox{Minimum MSG Size} &=& \mbox{number of individuals in sample} \\
+\mbox{Min MSG Size Increment} &=&  10  \\
+\mbox{Number of MSG Iterations} &=& 
+ 2 + \mbox{(Minimum MSG Size – 4) div 10}  
+\end{eqnarray*}
+with remaining options set to
+\begin{eqnarray*}
+\mbox{Maximum Partition List Size} & = & 5000 \\
+\mbox{Max Sib Size for Full Search} & = & 10 \\
+\mbox{Reduced Search Deletion} & = & 1 \\
+\mbox{Number of Error Iterations} & = & 20.
+\end{eqnarray*}
+However, for the LottaLarge models with 20 or 25 loci, the following options were used
+\begin{eqnarray*}
+\mbox{Minimum MSG Size} & = & 25 \\
+\mbox{Min MSG Size Increment} & = & 5 \\
+\mbox{Number of MSG Iterations} & = & 4 \\
+\mbox{Maximum Partition List Size} & = & 10000 \\
+\mbox{Max Sib Size for Full Search} & = & 5 \\
+\mbox{Reduced Search Deletion} & = & 1 \\
+\mbox{Number of Error Iterations} & = & 1.
+\end{eqnarray*}
+These settings reduced the memory requirements for these more computationally challenging models. 
+
+% latex table generated in R 3.0.1 by xtable 1.7-3 package
+% Sat May 03 14:19:16 2014
+\begin{table*}
+\caption{Maximum number of genotype errors $K$ used for evaluation study of PRT, for allele/loci model. The 
+value of $K$ was selected using the minimax selection procedure described in Appendix 5. The value of $K$ 
+for the 20/20 model was changed from 3 to 4 to preserve monotonicity. The minimax median $PD$ is also 
+listed.}\label{k.table}
+\centering
+\begin{tabular}{r|rrrrr|rrrrr} \hline
+  & \multicolumn{5}{c|}{$K$} & \multicolumn{5}{c}{Minimax median $PD$} \\
+ & \multicolumn{5}{l|}{$N$ loci =} & \multicolumn{5}{l}{$N$ loci =} \\
+$N$ alleles  & 5 & 10 & 15 & 20 & 25 & 5 & 10 & 15 & 20 & 25 \\ 
+  \hline
+5 & 1 & 1 & 1 & 2 & 2 & 43.0 & 38.0 & 27.0 & 25.0 & 23.0 \\ 
+  10 & 1 & 2 & 3 & 3 & 4 & 28.5 & 1.0 & 0.5 & 0.0 & 0.0 \\ 
+  15 & 1 & 2 & 3 & 3 & 4 & 23.0 & 1.0 & 1.0 & 0.0 & 0.0 \\ 
+  20 & 1 & 3 & 3 & 4 & 4 & 2.0 & 0.0 & 0.0 & 0.0 & 0.0 \\ 
+  25 & 2 & 3 & 3 & 4 & 4 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\ 
+   \hline
+\end{tabular}
+\end{table*}
+
+
+\section*{Appendix 6 - AA's take} 
+
+Given data of sufficient quality ($\geq 10$ alleles and $\geq 15$ loci) PRT can be generally recommended for 
+all models except those dominated by small sibling groups. Interestingly, given it's emphasis on large 
+sibling groups, PRT consistently performs as well, or better, than all other algorithms for the NoSibs, 
+AllHalf and AllPatHalf models, across all error models. 
+
+For larger sibling groups the situation varies (we again consider $\geq 10$ alleles and $\geq 15$ loci). For 
+the OneBig and OneBig\_H models PRT appears to be consistently most accurate, although the accuracy of CO 
+and FF is comparable. For the BigSGs and BigSGs\_H models CO offers the best accuracy consistently, although 
+CP, PRT and FF remain viable alternatives. For these two models, memory requirements sometimes hampered the 
+performance of PRT. For especially large problems careful tuning of memory parameters will be required. 
+
+For the SmallSGs and  SmallSGs\_H model CO and CP was consistently most accurate.   
+
 
 
 \bibliographystyle{men}
 {\footnotesize
-\bibliography{../../sib_assess_tex/SibEvalBib}}
+\bibliography{SibEvalBib.bib}}
 
 
 \end{document}
