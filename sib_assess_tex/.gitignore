@@ -2,9 +2,12 @@
 *~
 sib_prog_eval.pdf
 sib_prog_eval_two_columns.pdf
+main-body-text-one-col.tex
 *.aux
 *.blg
 *.lof
 *.fff
 *.ttt
 *.log
+*.fdb_latexmk
+*.fls
