@@ -2,7 +2,7 @@
 % ------
 % Fonts and typesetting settings
 \usepackage[sc]{mathpazo}
-%\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}
 \linespread{1.05} % Palatino needs more space between lines
 
 \usepackage{microtype}
@@ -70,12 +70,12 @@
 \makeatother
 
 
-%\fancyhead{} % clear all header fields
-%\chead[]{\vspace*{-.15in}\includegraphics[width=\textwidth]{banner.pdf}}
-%\cfoot[]{}
-%\fancyhead[LE]{{\bf \thepage}~~{\sl SUPPORTING INFORMATION FOR:} ANDERSON \& ALMUDEVAR}
-%\fancyfoot[RE,LO]{{\footnotesize This supporting information is a US Government work and is in the public domain in the USA.}}
-%\renewcommand{\headrulewidth}{0pt}
+\fancyhead{} % clear all header fields
+\chead[]{\vspace*{-.15in}\includegraphics[width=\textwidth]{images/banner.pdf}}
+\cfoot[]{}
+\fancyhead[LE]{{\bf \thepage}~~{\sl SUPPORTING INFORMATION FOR:} ANDERSON \& ALMUDEVAR}
+\fancyfoot[RE,LO]{{\footnotesize This supporting information is a US Government work and is in the public domain in the USA.}}
+\renewcommand{\headrulewidth}{0pt}
 
 
 %% Commands for some mathematical notation:
@@ -97,7 +97,7 @@
 \begin{document}
 
 
-%\pagestyle{fancyplain}
+\pagestyle{fancyplain}
 
 
 
@@ -110,14 +110,14 @@
     \uppercase{ Eric C. Anderson$^*$ and Anthony Almudevar$^\dagger$} \\
        \mbox{}\\
     $^*${\em Fisheries Ecology Division, Southwest Fisheries Science Center, Santa Cruz, CA, 
-    USA, ~$^\dagger$Department of Biostatistics and Computational Biology,
+    USA,~$^\dagger$Department of Biostatistics and Computational Biology,
 		University of Rochester Medical School, Rochester, NY}\\
     \mbox{}\\
     These appendices authored by Anthony Almudevar.\\
     Correspondence regarding these appendices: Anthony\_Almudevar@URMC.Rochester.edu
-    \begin{abstract}
-      Boing Boing Boing
-    \end{abstract}
+%    \begin{abstract}
+%      Boing Boing Boing
+%    \end{abstract}
 \vspace*{.4in}
    \end{strip}
 
@@ -219,9 +219,9 @@ upper bound of $\log n$ if $p = n$, $p^\prime = 1$.
 
 
 
-%% A little hack to stop the banner from printing:
-%\chead[]{}
-%\fancyhead[RO]{{\sl SUPPORTING INFORMATION FOR:} ``AN ASSESSMENT OF SIBSHIP RECONSTRUCTION\ldots''~~{\bf \thepage}}
+% A little hack to stop the banner from printing:
+\chead[]{}
+\fancyhead[RO]{{\sl SUPPORTING INFORMATION FOR:} ``AN ASSESSMENT OF SIBSHIP RECONSTRUCTION\ldots''~~{\bf \thepage}}
  
 
 Given these properties, \citet{BrownDexter2012} propose its use as a partition distance, further introducing 
@@ -389,7 +389,7 @@ $ for the 20/20 model was changed from 3 to 4 to preserve monotonicity.
 For all models, the modified MSG-MG algorithm was used. For most models the MSG-MG algorithm used the 
 default settings (see documentation): 
 \begin{eqnarray*}
-\mbox{Minimum MSG Size} &=& \mbox{number of individuals in sample} \\
+\mbox{Minimum MSG Size} &=& \mbox{\# of indivs in sample} \\
 \mbox{Min MSG Size Increment} &=&  10  \\
 \mbox{Number of MSG Iterations} &=& 
  2 + \mbox{(Minimum MSG Size – 4) div 10}  
@@ -455,7 +455,7 @@ For the SmallSGs and  SmallSGs\_H model CO and CP was consistently most accurate
 
 \bibliographystyle{men}
 {\footnotesize
-\bibliography{SibEvalBib.bib}}
+\bibliography{../../sib_assess_tex/SibEvalBib}}
 
 
 \end{document}
