@@ -1,0 +1,49 @@
+\begin{thebibliography}{7}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[\protect\citeauthoryear{Almudevar \& Anderson}{Almudevar \&
+  Anderson}{2011}]{alm&and11}
+Almudevar A, Anderson EC (2011) A new version of PRT software for sibling
+  groups reconstruction with comments regarding several issues in the sibling
+  reconstruction problem. {\em Molecular Ecology Resources\/}, {\bf 12},
+  164--178.
+
+\bibitem[\protect\citeauthoryear{Almudevar \& Field}{Almudevar \&
+  Field}{1999}]{almudevar99}
+Almudevar A, Field C (1999) Estimation of single generation sibling
+  relationships based on {DNA} markers. {\em J. Agric. Biol. Env Stat.\/}, {\bf
+  4}, 136--165.
+
+\bibitem[\protect\citeauthoryear{Brown \& Dexter}{Brown \&
+  Dexter}{2012}]{BrownDexter2012}
+Brown D, Dexter D (2012) SibJoin: A Fast Heuristic for Half-Sibling
+  Reconstruction, {\em in:\/} {\em Algorithms in Bioinformatics\/} (edited by
+  Raphael B, Tang J), volume 7534 of {\em Lecture Notes in Computer Science\/},
+  44--56, Springer Berlin Heidelberg.
+
+\bibitem[\protect\citeauthoryear{Chou, Chaovalitwongse, Berger-Wolf, DasGupta,
+  \& Ashley}{Chou {\em et~al.\/}}{2012}]{Chou2012}
+Chou CA, Chaovalitwongse WA, Berger-Wolf TY, DasGupta B, Ashley MV (2012)
+  Capacitated clustering problem in computational biology: Combinatorial and
+  statistical approach for sibling reconstruction. {\em Computers \& Operations
+  Research\/}, {\bf 39}, 609 -- 619.
+
+\bibitem[\protect\citeauthoryear{Herbinger, O'Reilly, Doyle, Wright, \&
+  O'Flynn}{Herbinger {\em et~al.\/}}{1999}]{herbinger99}
+Herbinger C, O'Reilly PT, Doyle RW, Wright JM, O'Flynn F (1999) Early growth
+  performance of Atlantic salmon full-sib familes reared in single family tanks
+  or in mixed family tanks. {\em Aquaculture\/}, {\bf 173}, 105--116.
+
+\bibitem[\protect\citeauthoryear{Kraskov, St{\"o}gbauer, Andrzejak, \&
+  Grassberger}{Kraskov {\em et~al.\/}}{2005}]{kraskovEtAl2005}
+Kraskov A, St{\"o}gbauer H, Andrzejak RG, Grassberger P (2005) Hierarchical
+  clustering using mutual information. {\em EPL (Europhysics Letters)\/}, {\bf
+  70}, 278.
+
+\bibitem[\protect\citeauthoryear{O'Reilly, Herbinger, \& Wright}{O'Reilly {\em
+  et~al.\/}}{1998}]{oreilly98}
+O'Reilly PT, Herbinger C, Wright JM (1998) Analysis of parentage determination
+  in Atlantic salmon (Salmo salar) using microsatellites. {\em Animal
+  Genetics\/}, {\bf 29}, 363--370.
+
+\end{thebibliography}

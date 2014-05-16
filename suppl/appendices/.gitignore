@@ -1,0 +1,14 @@
+*.DS_Store
+*~
+appendices.pdf
+*.aux
+*.blg
+*.lof
+*.fff
+*.ttt
+*.log
+*.toc
+*.out
+*.fdb_latexmk
+*.fls
+*.pdfsync

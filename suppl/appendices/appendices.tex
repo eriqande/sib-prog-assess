@@ -1,0 +1,372 @@
+\documentclass[twoside,10pt,twocolumn]{article}
+% ------
+% Fonts and typesetting settings
+\usepackage[sc]{mathpazo}
+\usepackage[T1]{fontenc}
+\linespread{1.05} % Palatino needs more space between lines
+
+\usepackage{microtype}
+% ------
+% Page layout
+\usepackage[labelfont=bf,labelformat=simple,labelsep=quad]{caption}
+
+
+
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{subfigure}
+\usepackage{pdfsync}
+\usepackage{xspace}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{cuted}
+\usepackage{flushend}
+\usepackage{url}
+\usepackage{color}
+%\usepackage{balance}
+\usepackage{xr}
+
+
+%% some handy things for making bold math
+\def\bm#1{\mathpalette\bmstyle{#1}}
+\def\bmstyle#1#2{\mbox{\boldmath$#1#2$}}
+\newcommand{\thh}{^\mathrm{th}}
+
+
+%% Some pretty etc.'s, etc...
+\newcommand{\cf}{{\em cf.}\xspace }
+\newcommand{\eg}{{\em e.g.},\xspace }
+\newcommand{\ie}{{\em i.e.},\xspace }
+\newcommand{\etal}{{\em et al.}\ }
+\newcommand{\etc}{{\em etc.}\@\xspace}
+
+
+
+%% the page dimensions from TeXShop's default---very nice
+\textwidth = 6.5 in
+\textheight = 9 in
+\oddsidemargin = -0.01 in
+\evensidemargin = -0.01 in
+\topmargin = -0.7 in
+\headheight = 0.25 in
+\headsep = 0.25 in
+\parskip = 0.0in
+\parindent = 0.25in
+
+\setlength{\columnsep}{.4in}
+
+
+
+%% change section heading styles
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {1.5ex \@plus 0ex}%
+                                   {\normalfont\normalsize\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\itshape}}
+\makeatother
+
+
+\fancyhead{} % clear all header fields
+\chead[]{\vspace*{-.15in}\includegraphics[width=\textwidth]{images/banner.pdf}}
+\cfoot[]{}
+\fancyhead[LE]{{\bf \thepage}~~{\sl SUPPORTING INFORMATION FOR:} ANDERSON \& ALMUDEVAR}
+\fancyfoot[RE,LO]{{\footnotesize This supporting information is a US Government work and is in the public 
+domain in the USA.}}
+\renewcommand{\headrulewidth}{0pt}
+
+
+%% Commands for some mathematical notation:
+\newcommand{\dates}{\mathscr{D}}
+\newcommand{\observ}{\mathscr{O}}
+\newcommand{\latent}{\mathscr{L}}
+\newcommand{\bz}{\bm{z}}
+\newcommand{\btheta}{\bm{\theta}}
+\newcommand{\bS}{\bm{S}}
+
+%% AA \newcommands 
+
+\newcommand{\bcaa}{\begin{color}{green}}
+\newcommand{\ecaa}{\end{color}}
+\newcommand{\calp}{{\cal P}}
+
+%\externaldocument{../herring_revision1}
+
+\begin{document}
+
+
+\pagestyle{fancyplain}
+
+
+
+   \begin{strip}
+   \vspace*{-.1in}
+   \mbox{}\\
+   \mbox{}\\
+        {\LARGE\bf An Assessment of Sibship Reconstruction Programs with Simulated Data \par}
+    \mbox{}\\
+    \uppercase{ Eric C. Anderson$^*$ and Anthony Almudevar$^\dagger$} \\
+       \mbox{}\\
+    $^*${\em Fisheries Ecology Division, Southwest Fisheries Science Center, Santa Cruz, CA, 
+    USA,~$^\dagger$Department of Biostatistics and Computational Biology,
+		University of Rochester Medical School, Rochester, NY}\\
+    \mbox{}\\
+    These appendices authored by Anthony Almudevar.\\
+    Correspondence regarding these appendices: Anthony\_Almudevar@URMC.Rochester.edu
+%    \begin{abstract}
+%      Boing Boing Boing
+%    \end{abstract}
+\vspace*{.4in}
+   \end{strip}
+
+
+\section*{Appendix 1 - New features of PRT V2.2} 
+
+A number of features have been added to PRT, constituting realease V2.2, available at  
+\url{www.urmc.rochester.edu/biostat/people/faculty/almudevar.cfm}  (the immediately preceding release V2.0 
+is described in \citet{alm&and11}).
+
+\subsection*{Genotyping errors}
+
+V2.0 introduced \emph{post hoc} genotype error screening.  Following a partition estimate, each individual 
+is checked to see if it can form a FSG with each other SG at all loci except exactly one. All such instances 
+are reported. V2.2 introduces genotyping error tolerance into the partition estimate itself. An optional 
+value $K$ is chosen representing the maximum number of genotype errors permitted per individual ($K=0$ 
+forces no error tolerance). If genotype errors are flagged, they are reset to the missing value code. The 
+algorithm is then repeated with the modified data. This process may be iterated any number of times.   The 
+value $K$ is ideally chosen to conform to the anticipated error rate. 
+
+\subsection*{Memory management}
+
+The method by which PRT allocates memory has been significantly redesigned. The user now allocates a fixed 
+block of random access memory in advance. In \citet{almudevar99}, an \emph{Atlantic salmon} data set of 760 
+individuals \citep{oreilly98, herbinger99} was used to demonstrate a modification of the MSG algorithm 
+designed for large data sets. As reported in \citet{almudevar99} the memory burden on the unmodified 
+algorithm was too great, but the modified algorithm was able to complete the problem.  Currently, we have 
+found that allocating 750MB is sufficient for the completion of the \emph{Atlantic salmon} data set 
+partition without requiring the large sample modification (see also \citealt{alm&and11} for a discussion of 
+this issue).  However, the modified algorithm is still retained, as we find it is considerably less time 
+consuming, with little apparent loss in accuracy, provided the parameters are suitably chosen (see PRT 
+documentation for recommendations on this point).   
+  
+\subsection*{Batch mode}
+
+While PRT V2.x is designed as a GUI driven application, a batch mode has been implemented. This is invoked 
+by reading a script file containing macro commands. Each control of the GUI is assigned a macro command, 
+consisting of a control label, with optional parameters as required. When the script file is read, each 
+macro command is interpreted in sequence, directly modifying GUI options or activating control buttons as 
+appropriate (see PRT documentation for detailed instructions).   
+
+\section*{Appendix 2 - A note on partition distances} 
+
+It is important to consider carefully the selection of the partition distance.  One natural metric is the 
+number of incorrect pairwise kinships (which can be further decomposed into false positives and false 
+negatives). The problem with this type of metric, at least when used without adjustment, is that it is 
+highly sensitive to partition features which are not in error. For example, if a partition estimate is 
+correct except for splitting of one individual from a true sibling group of size $m$, then the number of 
+errors will be scored as $m-1$, rendering comparisons difficult to interpret. The PD, on the other hand, 
+will assign an error of 1 to this estimate, offering the intuitive intepretation that one single individual 
+has been incorrectly assigned.      
+
+However, the PD is a relatively coarse metric, particularly when partition differences are accounted for by 
+more than a few individuals. An example is offered in \citet{BrownDexter2012}. Suppose a partition is 
+correct except that a single true sibling group of size $m$ is split into two groups of size $k$ and $m-k$ 
+(taking $k \leq m-k$). Then PD = $k$. Next, suppose the error is compounded by joining the size $k$ group  
+to another true sibling group. The number of errors has clearly increased (there are now false positives in 
+addition to the original false negatives), but PD remains $k$. 
+
+%%%%%%%%%%%%%%%
+\begin{table*}
+\caption{Values of \emph{variation of information} distance involving sample partitions $\calp_1, \calp_2, 
+\calp_3, \calp_4$ for varying values of $n$ (natural logarithms are used).}\label{vi.table}
+\rule{\textwidth}{0.90pt}
+\begin{center}
+\begin{tabular}{r|ccccccccccc}
+\multicolumn{1}{r}{$n=$} &   4  & 6  & 8  & 10  & 12  & 14  & 16  & 18  & 20  & 22  & 24 \\ \hline
+$VI(\calp_1, \calp_2)$ & 0.347  &  0.347  & 0.347  &  0.347  & 0.347   & 0.347   & 0.347   & 0.347   & 0.347   & 0.347   & 0.347 \\
+$VI(\calp_1, \calp_3)$ & 0.594  & 0.465  & 0.385   & 0.330   & 0.290   & 0.260   & 0.236   & 0.216   & 0.200   & 0.186   & 0.174 \\
+$VI(\calp_1, \calp_4)$ & 1.125  & 0.901  & 0.754   & 0.650   & 0.574   & 0.515   & 0.468   & 0.429   & 0.397   & 0.370   & 0.346
+\end{tabular}
+\end{center}
+\rule{\textwidth}{0.90pt}
+\end{table*}
+%%%%%%%%%%%%%%%%%%%
+
+
+Despite these concerns, we cannot accept the metric proposed in \citet{BrownDexter2012} as an alternative, 
+which we will briefly discuss. Two partitions $\calp = (P_1, \ldots, P_p)$ and $\calp^\prime = (P^\prime_1, 
+\ldots, P^\prime_{p^\prime})$ of $\left\{ 1, \ldots, n\right\}$ induce probability distributions $P(i) = |
+P_i|/n$ and $P^\prime(i^\prime) = |P^\prime_{i^\prime}|/n$ on sets $\left\{ 1, \ldots, p\right\}$ and $\left
+\{ 1, \ldots, p^\prime\right\}$ respectively, where $|P_i|$ denotes the number of elements in set $i$ of 
+partition $\calp$. In addition, the joint distribution  $P^*(i,i^\prime) = |P_i \cap P^\prime_{i^\prime}|/n$ 
+is defined on  $\left\{ 1, \ldots, p\right\} \times \{ 1, \ldots, p^\prime \}$. The respective 
+\emph{entropies} of  $\calp$ and $\calp^\prime$ are
+\begin{eqnarray}
+H(\calp) &=& - \sum_{i=1}^p P(i) \log P(i) \\
+H(\calp^\prime) &=& - \sum_{i^\prime =1}^{p^\prime} P^\prime(i^\prime) \log P^\prime(i^\prime).
+\end{eqnarray}
+We may also associate an entropy with the joint probability distribution $P^*$:
+\begin{displaymath}
+H(\calp, \calp^\prime) = - \sum_{i=1}^p \sum_{i^\prime=1}^{p^\prime} P^*(i, i^\prime) \log P^*(i, i^\prime),
+\end{displaymath}
+where the standard convention in entropy calculations is to interpret $(0\log 0)$ as 0. The entropy of a 
+distribution defined on $m$ outcomes ranges from 0 (for a distribution which assigns a probability of 1 to a 
+single outcome) to $\log m$ (for a distribution which assigns a probability of $1/m$ to each outcome). The 
+\emph{mutual information} of  $\calp$ and $\calp^\prime$ is defined as 
+\begin{eqnarray*}
+I(\calp, \calp^\prime) & = & \sum_{i=1}^p \sum_{i^\prime=1}^{p^\prime} P^*(i, i^\prime) \log \frac{P^*(i, i^
+\prime)}{P(i)P^\prime(i^\prime)} \\
+	& = & H(\calp) + H(\calp^\prime) - H(\calp, \calp^\prime).
+\end{eqnarray*}
+This leads to a related quantity, generally referred to as the \emph{variation of information}
+\begin{eqnarray*}
+VI(\calp, \calp^\prime) & = & \{ H(\calp) - I(\calp, \calp^\prime) \}  \\
+&\mbox{}& ~~ \mbox{}+  \{ H(\calp^\prime) - I(\calp, \calp^\prime) \} \\
+& = & H(\calp, \calp^\prime) -  I(\calp, \calp^\prime).
+\end{eqnarray*}
+It is well known that  $VI(\calp, \calp^\prime)$ is a true metric (it attains a minimum value of 0 if and 
+only if $\calp = \calp^\prime$, it is symmetric, and it satisfies the triangle inequality). Also, $VI(\calp, 
+\calp^\prime)$ is bounded above by $H(\calp, \calp^\prime)$. In this application, because there are no more 
+than $n$ possible outcomes, the joint entropy $H(\calp, \calp^\prime)$ has a sharp upper bound of $\log n$ 
+(this bound is achievable if at least one of $p, p^\prime = n$). Then $VI(\calp, \calp^\prime)$ attains the 
+upper bound of $\log n$ if $p = n$, $p^\prime = 1$. 
+
+
+
+
+%% A little hack to stop the banner from printing:
+\chead[]{}
+\fancyhead[RO]{{\sl SUPPORTING INFORMATION FOR:} ``AN ASSESSMENT OF SIBSHIP RECONSTRUCTION\ldots''~~{\bf 
+\thepage}}
+ 
+
+Given these properties, \citet{BrownDexter2012} propose its use as a partition distance, further introducing 
+a normalization scheme to force the metric into the unit interval. We note that they propose an extended 
+construction for nested half-sibling structures, however, for our discussion it suffices to consider 
+partitions only. 
+
+There are two problems with this metric. The first involves the relationship between varying forms of 
+partition differences and the resulting value of  $VI(\calp, \calp^\prime)$. To clarify the issue, suppose 
+$n$ is an even integer, and define partitions on $\{ 1,\ldots, 2n \}$: $\calp_1 = ( \{1,\ldots, n\}, \{n+1, 
+\ldots, 2n\}  )$,  $\calp_2 = ( \{1, \ldots, n/2\}, \{n/2+1, \ldots,  n\}, \{ n+1, \ldots, 2n\} )$, $\calp_3 
+= ( \{1, \ldots, n-1\}, \{n , \ldots, 2n\} )$. $\calp_4 = ( \{1, \ldots, n-1, n+1\}, \{n , n+2, \ldots, 2n
+\} )$. To fix ideas, this may correspond to a case in which a true partition $\calp_1$ consists of two 
+sibling groups of size $n$,  $\calp_2$ is an estimate which incorrectly splits the first group into equal 
+halves, $\calp_3$ is an estimate which incorrectly moves one individual from the first to the second group, 
+and $\calp_4$ is an estimate which incorrectly exchanges two individuals between groups.  Values of 
+$VI(\calp_1, \calp_j)$ for $n = 4, 6, \ldots, 24$ are given in Table \ref{vi.table}. First note that the 
+distributions induced by $\calp_1, \calp_2$ do not vary with $n$, so neither does $VI(\calp_1, \calp_2)$. On 
+the other hand, $VI(\calp_1, \calp_3)$ decreases with $n$, so that $VI(\calp_1, \calp_2) <  VI(\calp_1, 
+\calp_3)$ for $n \leq 8$. However, it seems unreasonable to score  $\calp_2$ as a more accurate estimate 
+than $\calp_3$, especially for sibling groups of size $n = 8$ (the PD would assign errors of 4 and 1 
+respectively).  The situation is more severe for the case of $\calp_4$, for which $VI(\calp_1, \calp_2) <  
+VI(\calp_1, \calp_4)$ for all $n \leq 22$ (for $n = 22$ the respective PD errors would be 11, 1 and 2 when 
+comparing $\calp_1$ to $\calp_2$, $\calp_3$ and $\calp_4$). 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table*}
+\caption{\textcolor{red}{This caption needs updating: (= 20 hours)Values of \emph{variation of information} 
+distance involving sample partitions $\calp_1, \calp_2, \calp_3, \calp_4$ for varying values of $n$ (natural 
+logarithms are used).}}\label{rgoa.table}
+\rule{\textwidth}{0.90pt}
+\begin{center}
+\begin{tabular}{c|cccc|ccc}
+\multicolumn{2}{c}{}&\multicolumn{3}{c}{PRT}&\multicolumn{3}{c}{RGOA} \\ \hline	
+	&N 	&	&N	&Time	&&N &Time \\ 
+Model	&Correct&Accuracy	&Repl.	&(sec)	&Accuracy	&Repl.&(sec) \\ \hline
+Rand-j10-o40-l2-a10	&4	&93.45	&100	&1563.7	&91.00	&24	&$> 72,000$ \\
+Rand-j10-o50-l2-a10	&6	&94.32	&100	&1981.0	&91.60	&13	&$> 72,000$ \\
+Rand-j10-o40-l3-a10	&58	&99.63	&100	&1617.5	&100.00	&7	&$> 72,000$ \\
+Rand-j10-o50-l3-a10	&57	&99.58	&100	&2120.1	&99.80	&7	&$> 72,000$ \\
+Rand-j10-o40-l4-a10	&94	&99.98	&100	&1589.6	&100.00	&3	&$> 72,000$ \\
+Rand-j10-o50-l4-a10	&95	&99.97	&100	&2134.2	&100.00	&3	&$> 72,000$
+\end{tabular}
+\end{center}
+\rule{\textwidth}{0.90pt}
+\end{table*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+A second problem involves the normalization. In \citet{BrownDexter2012} it is noted that $VI(\calp, \calp^
+\prime)$ is bounded above sharply by $\log n$, so this is used as a normalizing constant, forcing the metric 
+into the unit interval. The problem with this can be seen with the example  $VI(\calp_1, \calp_2)$. Since 
+this value does not depend on $n$, the quantity $[\log n]^{-1} VI(\calp_1, \calp_2)$ will approach 0 as $n$ 
+increases, even though there is no sense in which the estimate can be described as becoming more accurate. 
+In contrast, the quantities $VI(\calp_1, \calp_3)$ and  $VI(\calp_1, \calp_4)$ do approach 0 without any 
+normalization, sensibly, since the number of incorrectly assigned individuals (1 and 2, respectively) are an 
+increasingly small proportion of $n$. This renders accuracy reports in Table 1 of \citet{BrownDexter2012} 
+difficult to intepret across varying problem sizes. Because $VI(\calp, \calp^\prime)$ is bounded by joint 
+entropy $H(\calp, \calp^\prime)$ a more natural normalization scheme would be $[H(\calp, \calp^\prime)]^{-1} 
+VI(\calp, \calp^\prime)$, as proposed in \citet{kraskovEtAl2005}. This is preferable to $\log n$, which 
+represents a worst case scenario that is remote from any estimation problem involving discernable sibling 
+structure. 
+
+ 
+We finally note that the choice of partition distance should anticipate the forms of error most likely to 
+occur. Calculations in \citet{almudevar99} show that spurious additions to true sibling groups will be small 
+in number. The splitting of true sibling groups is more pervasive, so any alternative partition distance 
+should be sensitive to this.    
+
+\section*{Appendix 3 - A comparison with the Randomized Greedy Optimization Algorithm (RGOA)} 
+
+The authors of Kinalyzer have more recently proposed a modified formulation of the algorithm underlying 
+KINALYZER, which introduces statistical as well as combinatorical optimization criterion (see discussion in 
+\cite{alm&and11}). This in turn is modeled as a \emph{capacitated clustering problem} (CCP), a type of 
+constrained clustering problem \cite{Chou2012}. This yields a mixed-integer nonlinear programming (MINLP) 
+problem. The implementation is referred to by the authors as a  \emph{randomized greedy optimization 
+algorithm} (RGOA). 
+
+We offer a comparison of PRT to an evaluation of RGOA based on simulated data (Table 5, \cite{Chou2012}). 
+The model parameters, based on the simulation algorithm of Section 5.2 of \cite{Chou2012}  are taken to be
+\begin{eqnarray*}
+j & = & \mbox{Number of sibling groups} \\
+o & = & \mbox{Number of siblings per group} \\
+a & = & \parbox[t]{.395\textwidth}{Number of alleles per locus (assumed uniformly distributed)}\\
+l & = & \mbox{Number of loci (assumed unlinked)}. 
+\end{eqnarray*}
+Table \ref{rgoa.table} lists the models simulated in \citet{Chou2012}, using the nomenclature of Table 5. 
+For example, `Rand-j10-o40-l2-a10' refers to the model defined by parameters $j = 10$, $o = 40$, $l = 2$ and 
+$a = 10$. For each model PRT simulated 100 replications using the simulation utility \cite{alm&and11} (a 
+standard Windows based PC was used). In each case the accuracy was assessed using the pedigree distance $PD$ 
+(Accuracy = $(j\times o - PD)/(j \times o) \times 100\%$). Table \ref{rgoa.table} summarizes for each model 
+the total number of correct estimates of the 100 replications ($PD = 0$), the mean accuracy, and the total 
+time in seconds for the total simulation study. For example, the time taken to simulate 100 replications of 
+model `Rand-j10-o50-l4-a10', calculate the estimates and evaluate $PD$ was 2134.2 seconds, so that a single 
+MSG estimate averaged within 21.4 seconds. 
+The accuracy attained by the RGOA was comparable, however the computation time far exceeded that attained by 
+PRT. Our understanding of the study is that the algorithm was allowed to estimate sibling partitions of 
+model replications within an allowed time of 72,000 seconds (= 20 hours). In that time, for model `Rand-j10-
+o50-l4-a10' 3 estimates were completed, so that 5 hours is the most favorable report of the average 
+computation time for an estimate. This exceeds by far the 21.4 seconds attained by PRT, with no apparent 
+compromise in accuracy. Essentially the same conclusion may be reached for the remaining models. We 
+conjecture that both algorithms attain close to the optimal accuracy given the inherent statistical error of 
+the problem (see \cite{almudevar99} for methods with which to estimate this type of error).        
+
+It must be noted that summaries of the performance of PRT given in Table 4 of \citet{Chou2012} (identified 
+as `A\&F') are misleading, which presumably accounts for the failure in \citet{Chou2012} to accept PRT as a 
+performance benchmark. The PRT algorithm was originally proposed in \citet{almudevar99}. In that work, a 
+modification of the algorithm was described which permitted application to larger data sets. In particular, 
+this modification enabled PRT to complete an estimate for the `Salmon' data cited in Table 4 of 
+\citet{Chou2012}. The modified algorithm completed the estimate in approximately 11 hours using a Sun 
+SPARCstation 4 (a relatively high performance computer for the year 1999). The most recent version of PRT 
+completes the same estimate in 34.1 seconds \citep{alm&and11}. As reported in \citet{almudevar99}, this 
+modification was needed to complete that estimate. We must conclude, therefore, that the authors of 
+\citet{Chou2012} have not correctly implemented the algorithm as described in \citet{almudevar99}. 
+
+
+
+\bibliographystyle{men}
+{\footnotesize
+\bibliography{../../sib_assess_tex/SibEvalBib}}
+
+
+\end{document}
