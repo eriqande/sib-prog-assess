@@ -9,3 +9,5 @@ boxplots.pdf
 *.log
 *.toc
 *.out
+*.fdb_latexmk
+*.fls

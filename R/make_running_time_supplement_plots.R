@@ -131,7 +131,7 @@ for(S in The.SCENS) { # cycle over the Scenarios.  One page of plots for each sc
   
   # make a pdf file and write a line to the latex file
   dev.off() 
-  write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{",file.name,"} \\caption{Running times of \\colony{} (CO), \\colony{}-P (CP), \\familyfinder{} (FF), and \\prt{} (PRT) in scenario ",SCEN.latex[S], "} \\label{fig:run-time-noki-",S,"} \\end{figure}\\clearpage", sep=""),
+  write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{Running times of \\colony{} (CO), \\colony{}-P (CP), \\familyfinder{} (FF), and \\prt{} (PRT) in scenario ",SCEN.latex[S], "} \\label{fig:run-time-noki-",S,"} \\end{figure}\\clearpage", sep=""),
         file=latex.comms, append=T)
 }
 
