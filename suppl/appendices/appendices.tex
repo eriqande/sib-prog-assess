@@ -390,10 +390,10 @@ $ for the 20/20 model was changed from 3 to 4 to preserve monotonicity.
 For all models, the modified MSG-MG algorithm was used. For most models the MSG-MG algorithm used the 
 default settings (see documentation): 
 \begin{eqnarray*}
-\mbox{Minimum MSG Size} &=& \mbox{number of individuals in sample} \\
+\mbox{Min.~MSG Size (mMSG)} &=& \mbox{sample size} \\
 \mbox{Min MSG Size Increment} &=&  10  \\
-\mbox{Number of MSG Iterations} &=& 
- 2 + \mbox{(Minimum MSG Size – 4) div 10}  
+\mbox{No. of MSG Iterations} &=& 
+ 2 + \lfloor\mbox{mMSG} \times \frac{4}{10}\rfloor  
 \end{eqnarray*}
 with remaining options set to
 \begin{eqnarray*}
