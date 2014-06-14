@@ -418,7 +418,7 @@ the \kinalyzer{} solution and the truth.
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=.8\textwidth]{images/various_kin_smear.jpg}  %% Change extension from jpg to pdf for final version
+\includegraphics[width=.8\textwidth]{images/various_kin_smear.pdf}  %% Change extension from jpg to pdf for final version
 \end{center}
 \newcommand{\cvksmearcaption}{Scatterplots assessing performance of \kinalyzer{}.  {\em a}--{\em d} present comparisons of 
 \colony{} versus \kinalyzer{}'s 2-allele algorithm for 10,125 simulated data sets, showing values of $
@@ -500,7 +500,7 @@ produce poorer solutions than the 2-allele algorithm on data both with and witho
 %\end{equation}
 \begin{figure*}
 \begin{center}
-\includegraphics[width=.8\textwidth]{images/prt_ff_pair_smear.jpg}  %% Change extension from jpg to pdf for final version
+\includegraphics[width=.8\textwidth]{images/prt_ff_pair_smear.pdf}  %% Change extension from jpg to pdf for final version
 \end{center}
 \newcommand{\cvffsmearcaption}{Scatterplots comparing performance of \prt{} to \colony{} ({\em a,b}\/), \familyfinder{} 
 to \colony{} ({\em c,d}\/), and \colony-P to \colony{} ({\em e,f}\/).  Figures are as in 
@@ -805,9 +805,10 @@ explicitly take account of the occurrence of half-siblings.  With such modificat
 at least in cases with many, very informative markers.
 
 
-Overall, \colony{} consistently performed the best when
+Overall, \colony{} consistently performed well when
 there were actually siblings in the data set.  
-Given data of sufficient quality ($\geq 10$ alleles and $\geq 15$ loci) \prt{} can be generally recommended for 
+Given data of sufficient quality ($\geq 10$ alleles and $\geq 15$ loci)
+\prt{} can be generally recommended for 
 all models except those dominated by small sibling groups. Interestingly, given it's emphasis on large 
 sibling groups, \prt{} consistently performs as well, or better, than all other algorithms for the \nosibs{}, 
 \allhalf{}, and \allpathalf{} models, across all error models. 
@@ -824,7 +825,7 @@ We found no scenarios for which we could recommend the use of \kinalyzer{}.
 We did not assess the performance of these methods when using data on biallelic
 markers, like SNPs.  The explosion of next generation sequencing data 
 in molecular ecology suggests that very soon it will be possible to 
-generate large data sets with every individuals typed at 100's to 1,000s
+generate large data sets with every individual typed at 100's to 1,000s
 of SNPs.  Methods like \prt{} and \kinalyzer{} that rely on Mendelian 
 incompatibility to assist in the inference of sibling groups will not
 be effective for SNP data. Furthermore, none of the methods we reviewed 

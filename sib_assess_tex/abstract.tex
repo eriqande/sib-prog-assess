@@ -1,1 +1,26 @@
-Abstract
+%!TEX root = sib_prog_eval_two_columns.tex
+
+
+We assess the performance of four programs for inference of full sibling groups from
+genetic data: \colony{} \citep{wang04,Wang2012pairwise}, \prt{} 
+\citep{almudevar99}, \familyfinder{} \citep{beyer03}, and \kinalyzer{} 
+\citep{bergerwolf07, sheik08}. We used each program to infer full siblings
+in over ten thousand data sets of simulated microsatellite  
+genotypes from individuals falling into 10 distinct relationship configurations
+that differed in the number of individuals related as full- and half-siblings. 
+The accuracy of
+each method was assessed by calculating the partition distance between the true partition
+of the sample into full sibling groups and the inferred partition. Across most
+scenarios in which full siblings were present, \colony{} performed as well or better than
+any of the other programs; however we note that it has a tendency to report 
+small, erroneous, ``high-confidence'' full sibling groups from data sets in which there
+are no full siblings. In scenarios
+with just one large full sibing group and reasonably informative data ($\geq 15$ loci
+with $\geq 10$ alleles) \prt{} performed best, but \colony{} and \familyfinder{} were 
+nearly as accurate.  When data were very informative (many loci with many alleles), then
+\familyfinder{} was often as accurate as the most accurate program, so long as no
+half-siblings appeared in the data.  When half-siblings
+were present, \familyfinder{} tended to erroneously identify
+them as full-siblings, and the problem worsened with more markers and alleles.
+There were no scenarios in which \kinalyzer{} consistently outperformed the other methods.
+
