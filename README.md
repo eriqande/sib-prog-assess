@@ -1,6 +1,6 @@
 # sib-prog-assess
 
-This is LaTeX code to typeset a paper I wrote with Anthony Almudevar for Molecular Ecology Resources that evaluates a variety of sibship reconstruction software programs using simulated microsatellite data.  We are planning to submit it in late May or early June 2014.
+This is LaTeX code to typeset a paper I wrote with Anthony Almudevar for Molecular Ecology Resources that evaluates a variety of sibship reconstruction software programs using simulated microsatellite data.  We are planning to submit it in July 2014. We are just awaiting the conclusion of the internal NMFS review process before sending it in.
 
 It also includes a lot of data and scripts to create most of the plots for the paper.
 
