@@ -28,8 +28,7 @@ joint (as opposed to pairwise) relationship inference known as ``sibship inferen
 sibship inference it is assumed that all the members of a sample are of a single generation and are 
 related as either full or half siblings, or are otherwise unrelated. This type of scenario occurs 
 frequently in molecular ecology, especially in the study of fecund organisms such as fish 
-% I really should be citing the NorCal Paper here.  Grrrr.....
-\citep{And&Dun2008}, amphibians \citep{Halversonetal2006}, or invertebrates \citep{read12} that are 
+\citep{And&Dun2008,Garzaetal_norcal}, amphibians \citep{Halversonetal2006}, or invertebrates \citep{read12} that are 
 easily sampled during an early life stage that can be distinguished from reproductively-mature life 
 stages.  The goal of sibship inference is typically a partition of the sample into groups that are full 
 siblings. Some of the methods available today also aim to infer half sibling clusters.  
@@ -282,7 +281,7 @@ sets that include all elements of $U$, but in which some elements may appear mor
 words, the solution that \kinalyzer{} returns may indicate that $a$ is a full sibling of $b$ and $b$ is a 
 full sibling of $c$, but $c$ is not a full sibling of $a$.  This is obviously incompatible with
 biology, so, to evaluate such a result, it would be natural to penalize for repeat 
-occurrences of any element of $U$ in the solution.  Remarkably, in their series of papers, it appears 
+occurrences of any element of $U$ in the solution.  In their series of papers, it appears 
 the authors of \kinalyzer{} have never penalized their program for failing to return a partition.  To 
 compare a set cover solution $C$ to the true full sibling partition, $T$, they use what we will call $
 \W(C,T)$---the result of applying the Assignment Problem formulation to $T$ and $C$.     This 
