@@ -35,3 +35,9 @@ public domain within the United States.
 
 See TERMS.md for more information.
 
+
+
+## Doing the Analyses Themselves
+Many of the analyses were done over the course of several weeks to months of computation over multiple machines and spread over a number of months if not years, with a substantial amount of hand curation to re-do analyses that might have failed the first time due to any number of reasons (like power failures or disconnects, etc.  Given that, it is not, in Eric's opinion, reasonable to provide a single script that users can expect will flawlessly replicate all the analyses performed by all the different programs.  However, at the end of the process, we re-ran COLONY on a subset of the data sets using a few different options.  In the directory `analysis/colony` we provide scripts that should run reliably.  It should be clear from these scripts how one would replicate the COLONY analyses.  The following section documents this.  Below, in a following section, we also provide the scripts used to send jobs to the KINALYZER server.
+
+### Running Colony on the Simulated data
