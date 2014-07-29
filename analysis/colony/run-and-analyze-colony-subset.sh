@@ -69,4 +69,24 @@ cd $CURDIR
 # no_sibs 5 and 10 loci 10 alleles reps 1-15
 # allhalf 5 and 10 loci 10 alleles reps 1-15
 
-# So, we make some commmand lines that will pick these out with 
+# So, we make some commmand lines that will pick these out..
+mkdir -p huge-output
+cd huge-output
+
+echo
+echo "Setting up directory structure for colony analyses"
+echo "    Setting up LottaLarge data sets"
+mkdir -p LottaLarge  # give these their own directory
+cd LottaLarge  
+# grab the lotta larges
+../../script/MakeColonyCollectionFromSibAssessFiles.sh -n 5 /tmp/SibAssessDataSets1/{5,10,15,20,25}_Alleles/lotta_large/
+
+
+cd $CURDIR/huge-output
+mkdir -p n75
+cd n75
+echo "    Setting up some n75 data sets"
+../../script/MakeColonyCollectionFromSibAssessFiles.sh -n 15 /tmp/SibAssessDataSets1/10_Alleles/{nosibs,allhalf}
+echo
+
+
