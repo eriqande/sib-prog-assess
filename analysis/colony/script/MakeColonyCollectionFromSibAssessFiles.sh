@@ -17,9 +17,13 @@ Num is the highest index of reps to do in each directory. If \"-n Num\"
   However, if it is included and [-l Lo] is not included, then
   reps 1 through Num will be processed.
 
-NumAlle is the number of alleles at each locus.
-Dir is the name of the directory to operate on.  Its basename should
+
+Dir is the path of the directory to operate on.  Its basename should
   correspond to one of the simulation types in our sib-prog assess work.
+  In fact, it should be one of the directories in the SibAssessDataSets1
+  directory that holds all the simulated data sets.  It used the fact that
+  it is all within, say, a \"10_Alleles\" directory to figure out how many 
+  alleles each data set was simulated with.  So, its path must include that part!
   See function TwoCode for the currently defined simulation scenario names.
   This script lets you process multiple Dirs at once. 
  
@@ -63,7 +67,6 @@ done
 
 shift $((OPTIND-1));
 
-Alle=$1;
 
 
 
@@ -138,11 +141,14 @@ function Base25_2_cap {
 mkdir Collections
 
 # here is the main loop for processing the directories:
-shift;   # shift that Alle argument out of the way
 HowManyDone=0;
 while (( "$#" )); do 
 
     Dir=$1;
+    
+    # from the path of Dir, get the number of alleles
+    AlleDir=$(basename $(dirname $Dir))  # this is the name of the XX_Alleles directory it is inside
+    Alle=${AlleDir/_Alleles/}  # here we pull the XX part of the name out as its own number
 
     # here if NoNum==1 we have to count how many files there are to process:
     if [ $NoNum -eq 1 ]; then
