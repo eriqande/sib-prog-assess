@@ -13,8 +13,8 @@ if [ $(basename $(pwd)) != "colony" ]; then
 fi
 
 # check to make sure that the other directories we expect to be there are there:
-if [ ! -d script ] || [ ! -d colony-arena-parts ]; then 
-	echo "Did not find directories \"script\" or \"colony-arena-parts\".  You must have started the
+if [ ! -d script ] || [ ! -d bin ] || [ ! -d input ]; then 
+	echo "Did not find directories \"script\" or \"bin\" or \"input\".  You must have started the
 script $0 in the wrong directory.  Must be started in the ./analysis/colony directory"
 	echo "Exiting..."
 	exit 1
