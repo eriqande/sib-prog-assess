@@ -52,6 +52,10 @@ cd sib-prog-assess/analysis/colony/
 # from that directory, launch the run-and-analyze-colony-subset.sh script:
 ./run-and-analyze-colony-subset.sh
 
+# ERIC! Change that script to ./run-colony-subset.sh
+# and then make another separate one called ./analyze-colony-subset-runs.sh
+# which computes the partition distances.  It is crazy to put it all into
+# one script because running it can take so long.
 
 ```
 
