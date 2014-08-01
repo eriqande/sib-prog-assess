@@ -90,3 +90,92 @@ echo "    Setting up some n75 data sets"
 echo
 
 
+
+####  Now we run Colony
+# note that I can run colony like this to use the old version of colony and put output in 
+# a directory called "OldColony"  (note that the -o option tells it to use the old colony)
+#    ./script/SimpleColonyRun.sh -l 10 -L -o  huge-output/n75/Collections/akABaabn OldColony input 0 
+# and I can run it with the new colony like this:
+#    ./script/SimpleColonyRun.sh -l 10 -L  huge-output/n75/Collections/akABaabn NewColony input 0
+#
+
+
+#########
+# Now we prepare a list of commands to pipe to the GNU parallel script that will queue up a bunch 
+# of colony runs.  We do this for all the different data sets and also for different numbers of 
+# loci and different colony options:
+cd $CURDIR   # get back to the correct top directory
+
+# 1. do the n75 data sets in our subset (no sibs and allhalf) which all have 10 alleles at 5 and 10 loci
+# using the old version of colony
+for NUMLOC in 5 10; do
+	OPTSTR=" -l $NUMLOC -L -d .02 -m .02 -o ";
+	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
+	./script/RunAllColony.sh -f -d huge-output/n75/Collections -o " $OPTSTR "  $OPTNAME 0 4 
+done > colony-commands-for-parallel.txt 
+
+
+# 2. do the same n75 data sets as in #1 but use the new version of colony (by removing the -o option
+# in the OPTSTR option string.  Append these commands
+# to colony-commands-for-parallel.txt
+for NUMLOC in 5 10; do
+	OPTSTR=" -l $NUMLOC -L -d .02 -m .02  ";
+	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
+	./script/RunAllColony.sh -f -d huge-output/n75/Collections -o " $OPTSTR "  $OPTNAME 0 4 
+done >> colony-commands-for-parallel.txt 
+
+
+# 3. compile up the commands to do the lotta_large data sets with 10 loci only, but across all
+# the numbers of alleles that are in the LottaLarge directory with the old version of colony.  
+# Once again append this stuff to colony-commands-for-parallel.txt 
+for NUMLOC in 10; do
+	OPTSTR=" -l $NUMLOC -L -d .02 -m .02 -o ";
+	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
+	./script/RunAllColony.sh -f -d huge-output/LottaLarge/Collections -o " $OPTSTR "  $OPTNAME 0 4 
+done >> colony-commands-for-parallel.txt 
+
+
+# 4. compile up the commands to do the lotta_large data sets with 10 loci only, but across all
+# the numbers of alleles that are in the LottaLarge directory with the new version of colony.  
+# Once again append this stuff to colony-commands-for-parallel.txt 
+for NUMLOC in 10; do
+	OPTSTR=" -l $NUMLOC -L -d .02 -m .02  ";
+	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
+	./script/RunAllColony.sh -f -d huge-output/LottaLarge/Collections -o " $OPTSTR "  $OPTNAME 0 4 
+done >> colony-commands-for-parallel.txt 
+
+# finally, we make a simple script to launch under nohup.  This requires that GNU parallel is on the system!
+# It is set here to put stuff onto 16 cores
+echo "cat colony-commands-for-parallel.txt | parallel -P 16 "   > run-colony-in-parallel.sh
+chmod u+x run-colony-in-parallel.sh
+
+
+# now we can just run that script...
+echo "Starting up the colony runs as listed in colony-commands-for-parallel.txt"
+echo "Consult the file ColonyRuns_ProgressLog.txt to see how those runs are coming along..."
+nohup ./run-colony-in-parallel.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
