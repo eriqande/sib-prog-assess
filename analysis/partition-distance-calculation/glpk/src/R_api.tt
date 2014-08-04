@@ -1,0 +1,15 @@
+[%- FOREACH s IN symbols %]
+# glpk   api: [% s.glpk_dec %]
+# R_glpk api: SEXP [% s.R_c_method %]([% s.R_c_method_par.join(', ') %])
+[% s.R_r_method %] =
+function([% s.glpk_method_par_names.join(', ') %])
+{
+    ret = .Call("[% s.R_c_method %]"
+      [%- IF s.R_r_par_conv %], 
+        [%- s.R_r_par_conv.join(', ') %]
+      [%- END %], PACKAGE=.glpkPackageName);
+
+    if (is.null(ret)) invisible(ret)
+    else return(ret)
+}
+[%- END %]

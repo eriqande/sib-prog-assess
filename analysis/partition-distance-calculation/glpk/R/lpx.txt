@@ -1,0 +1,51 @@
+### This is a list of hand-coded defs for lpx.R -- the translator doesn't get 
+### these right.
+
+# glpk   api: int lpx_get_mat_row(LPX *lp, int i, int ind[], double val[]);
+# R_glpk api: SEXP R_lpx_get_mat_row(SEXP lp, SEXP i, SEXP ind, SEXP val)
+lpx_get_mat_row =
+#function(lp, i, ind, val)
+function(lp, i)
+{    
+    ret = .Call("R_lpx_get_mat_row", lp, as.integer(i), PACKAGE=.glpkPackageName);
+
+    if (is.null(ret)) invisible(ret)
+    else
+      {
+        # GLPK uses 1-based indexing NOT the native 0-based of C!
+        ret[[2]] = ret[[2]][-1]
+        ret[[3]] = ret[[3]][-1]
+        names(ret) = c("n", "ind", "val")
+        return(ret)
+      }
+}
+# glpk   api: int lpx_get_mat_col(LPX *lp, int j, int ind[], double val[]);
+# R_glpk api: SEXP R_lpx_get_mat_col(SEXP lp, SEXP j, SEXP ind, SEXP val)
+lpx_get_mat_col =
+#function(lp, j, ind, val)
+function(lp, j)
+{    
+    ret = .Call("R_lpx_get_mat_col", lp, as.integer(j), PACKAGE=.glpkPackageName);
+
+    if (is.null(ret)) invisible(ret)
+    else
+      {
+        # GLPK uses 1-based indexing NOT the native 0-based of C!
+        ret[[2]] = ret[[2]][-1]
+        ret[[3]] = ret[[3]][-1]
+        names(ret) = c("n", "ind", "val")
+        return(ret)
+      }
+
+}
+# glpk   api: LPX *lpx_read_model(char *model, char *data, char *output);
+# R_glpk api: SEXP R_lpx_read_model(SEXP model, SEXP data, SEXP output)
+lpx_read_model =
+function(model, data=NULL, output=NULL)
+{
+    ret = .Call("R_lpx_read_model", as.character(model), data, output, PACKAGE=.glpkPackageName);
+
+    if (is.null(ret)) invisible(ret)
+    else return(ret)
+}
+

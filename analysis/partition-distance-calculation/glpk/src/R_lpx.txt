@@ -1,0 +1,114 @@
+/** 
+ * This is a list of hand-coded defs for R_lpx.c -- the translator doesn't get 
+ * these right.
+ **/
+
+/*** void lpx_delete_prob(LPX *lp); ***/
+SEXP R_lpx_delete_prob(SEXP lp)
+{
+    SEXP ret = R_NilValue;
+    LPX *lpx = NULL;
+
+    R_LPX_TYPE_CHECK(lp);
+
+    if (R_glpk_setjmp()) goto end;
+
+    lpx = R_ExternalPtrAddr(lp);
+    if (lpx)
+      {
+        lpx_delete_prob(lpx);
+        R_ClearExternalPtr(lp);
+      }
+end:
+    return ret;
+}
+
+/** R-specifc routine for in-out parameters **/
+/** glpk api: int lpx_get_mat_row(LPX *lp, int i, int ind[], double val[]); **/
+SEXP R_lpx_get_mat_row(SEXP lp, SEXP i)
+{
+    int len, xret = 0;
+    SEXP ret, ind, val, listret = R_NilValue;
+
+    R_LPX_TYPE_CHECK(lp);
+
+    len = lpx_get_num_rows(R_ExternalPtrAddr(lp));
+
+    PROTECT(ind = NEW_INTEGER(len+1));
+    PROTECT(val = NEW_NUMERIC(len+1));
+
+    if (!R_glpk_setjmp())
+      {
+        xret = lpx_get_mat_row(R_ExternalPtrAddr(lp), 
+                               INTEGER_VALUE(i), 
+                               INTEGER_POINTER(ind), 
+                               NUMERIC_POINTER(val));
+        if (xret)
+          {
+            PROTECT(ret = NEW_INTEGER(1));
+            INTEGER_POINTER(ret)[0] = xret;
+            PROTECT(listret = NEW_LIST(3));
+            SET_ELEMENT(listret, 0, ret);
+            SET_ELEMENT(listret, 1, ind);
+            SET_ELEMENT(listret, 2, val);
+            UNPROTECT(2);
+          }
+      }
+    UNPROTECT(2);
+    return listret;
+
+} 
+/** R-specifc routine for in-out parameters **/
+/** glpk api: int lpx_get_mat_col(LPX *lp, int j, int ind[], double val[]); **/
+SEXP R_lpx_get_mat_col(SEXP lp, SEXP j)
+{
+    int len, xret = 0;
+    SEXP ret, ind, val, listret = R_NilValue;
+
+    R_LPX_TYPE_CHECK(lp);
+
+    len = lpx_get_num_rows(R_ExternalPtrAddr(lp));
+
+    PROTECT(ind = NEW_INTEGER(len+1));
+    PROTECT(val = NEW_NUMERIC(len+1));
+
+    if (!R_glpk_setjmp())
+      {
+        xret = lpx_get_mat_col(R_ExternalPtrAddr(lp), 
+                               INTEGER_VALUE(j), 
+                               INTEGER_POINTER(ind), 
+                               NUMERIC_POINTER(val));
+        if (xret)
+          {
+            PROTECT(ret = NEW_INTEGER(1));
+            INTEGER_POINTER(ret)[0] = xret;
+            PROTECT(listret = NEW_LIST(3));
+            SET_ELEMENT(listret, 0, ret);
+            SET_ELEMENT(listret, 1, ind);
+            SET_ELEMENT(listret, 2, val);
+            UNPROTECT(2);
+          }
+      }
+    UNPROTECT(2);
+    return listret;
+} 
+/** glpk api: LPX *lpx_read_model(char *model, char *data, char *output); **/
+SEXP R_lpx_read_model(SEXP model, SEXP data, SEXP output)
+{
+    SEXP ret = R_NilValue;
+    LPX * xret = 0;
+
+
+    if (R_glpk_setjmp()) goto end;
+
+    xret = lpx_read_model(CHARACTER_VALUE(model), 
+                          R_GLPK_CHARACTER_VALUE(data), 
+                          R_GLPK_CHARACTER_VALUE(output));
+    if (xret)
+      {
+        ret = R_MakeExternalPtr(xret, LPX_type_tag, R_NilValue);
+        R_RegisterCFinalizer(ret, (R_CFinalizer_t) R_lpx_delete_prob);
+      } 
+end:
+    return ret;
+} 
