@@ -1,0 +1,80 @@
+[%- FOREACH s IN symbols %]
+[%- IF loop.first %]
+/**
+ * Auto generated using GLPKTranslate framework. 
+ * Please inspect and fix translation errors.
+ **/
+#include <Rdefines.h>
+#include "glp[% s.glpk_class %].h"
+#include "R_glpk.h"
+
+#define R_[% s.glpk_class_type %]_NIL_CHECK(s) do {\
+    if (R_ExternalPtrAddr(s) == NULL) \
+        error("nil value passed"); \
+} while (0)
+
+#define R_[% s.glpk_class_type %]_TYPE_CHECK(s) do { \
+    if (TYPEOF(s) != EXTPTRSXP || \
+        R_ExternalPtrTag(s) != [% s.glpk_class_type %]_type_tag) \
+        error("bad type passed"); \
+} while (0)
+
+#define R_[% s.glpk_class_type %]_CHECK(s) do { \
+    R_[% s.glpk_class_type %]_NIL_CHECK(s); \
+    R_[% s.glpk_class_type %]_TYPE_CHECK(s); \
+} while (0)
+
+static SEXP [% s.glpk_class_type %]_type_tag;
+
+/** Initialization for this class -- for .First.lib or equivalent **/
+SEXP R_[% s.glpk_class %]_init(void)
+{
+    [% s.glpk_class_type %]_type_tag = install("
+    [%- s.glpk_class_type %]_TYPE_TAG");
+    return R_NilValue;
+}
+[%- END %] [%# IF loop.first %]
+/** glpk api: [% s.glpk_dec %] **/
+SEXP R_[% s.glpk_method %]([% s.R_c_method_par.join(', ') %])
+{
+    SEXP ret = R_NilValue;
+    [%- IF s.glpk_method_ret != 'void' %]
+    [% s.glpk_method_ret %] xret = 0;
+    [%- END %]
+
+    [%- IF s.Clean(s.glpk_method_par_types.0) == s.glpk_class_type %]
+    R_[% s.glpk_class_type %]_TYPE_CHECK([% s.glpk_method_par_names.0 %]);
+    [%- END %]
+
+    if (R_glpk_setjmp()) goto end;
+    [%- IF s.glpk_method_ret == 'void' %]
+    [% s.glpk_method %]([% s.R_c_par_conv.join(', ') %]);
+    [%- ELSE %]
+
+    xret = [% s.glpk_method %]([% s.R_c_par_conv.join(', ') %]);
+    if (xret)
+      {
+        [%- SWITCH s.R_c_ret %]
+        [%- CASE 'SEXP' %]
+        ret = R_MakeExternalPtr(xret, 
+        [%- s.Clean(s.glpk_method_ret) %]_type_tag, R_NilValue);
+        /** !! Replace with appropriate finalizer !! **/
+        /* R_RegisterCFinalizer(ret, (R_CFinalizer_t) R_lpx_delete_prob); */
+        [%- CASE [ 'CHARACTER' 'NUMERIC' 'INTEGER' ] %]
+        PROTECT(ret = NEW_[% s.R_c_ret %](1));
+        [%- SWITCH s.R_c_ret %]
+            [%- CASE 'CHARACTER' %]
+        SET_STRING_ELT(ret, 0, mkChar(xret));
+            [%- CASE 'NUMERIC' %]
+        NUMERIC_POINTER(ret)[0] = xret;
+            [%- CASE 'INTEGER' %]
+        INTEGER_POINTER(ret)[0] = xret;
+        [%- END %]
+        UNPROTECT(1);
+        [%- END %] [%# switch s.R_c_ret %]
+      }
+        [%- END %] [%# if glpk_method_ret != 'void' %]
+end:
+    return ret;
+}
+[%- END %]

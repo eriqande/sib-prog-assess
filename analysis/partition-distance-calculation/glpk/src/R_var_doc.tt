@@ -1,0 +1,46 @@
+\name{lpx_variables}
+\alias{lpx_variables}
+[%- FOREACH s IN symbols %]
+\alias{[% s.R_var %]}
+[%- END %]
+\title{
+    Constant or return codes for the GLPK lpx class.
+}
+\description{
+    This is a constant or return code used in the GLPK API.
+
+    The function \code{glpk_strerror} may be used to convert this value
+    into a string.
+
+    The global data frame \code{lpx_variables} contains symbolic, string,
+    and numeric values associated with these variables.
+
+    Please see the GLPK documentation for more info.
+}
+\details{
+[%- FOREACH s IN symbols %]
+
+    \code{[% s.R_var %]} =  [% s.TeXSafe(s.R_expl) %]  = [% s.R_val %]
+
+[%- END %]
+}
+\note{
+    Code should not rely on the numeric values.
+
+    Inquiries regarding this interface (R-GLPK) should NOT be sent to
+    GNU GLPK mailing lists.
+}
+\seealso{
+    \code{\link{glpk_strerror}}
+}
+\references{
+    The GNU GLPK home page at http://www.gnu.org/software/glpk/glpk.html
+}
+\author{
+    Lopaka Lee      <rlee@fpcc.net> (R-GLPK)
+
+    Andrew Makhorin <mao@gnu.org>   (GLPK)
+} 
+%\examples{
+%}
+\keyword{optimize}
