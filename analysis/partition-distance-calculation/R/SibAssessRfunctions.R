@@ -1,9 +1,11 @@
 
+# note that pd_path should be already defined.  Basically it is Sys.getenv("PD_STUFF_DIR") 
+
  # this is to get the glpk stuff to call.  No longer can use library to get it
-dyn.load("/Users/eriq/Documents/work/prj/HansSib/party_dist_calc_code/glpk/x86_64/glpk.so")
-source("/Users/eriq/Documents/work/prj/HansSib/party_dist_calc_code/glpk/R/glpk.R")
-source("/Users/eriq/Documents/work/prj/HansSib/party_dist_calc_code/glpk/R/lpx.R")
-source("/Users/eriq/Documents/work/prj/HansSib/party_dist_calc_code/TonyLibrary.R")
+dyn.load(file.path(pd_path, "glpk/src/glpk.so"))
+source(file.path(pd_path, "glpk/R/glpk.R"))
+source(file.path(pd_path, "glpk/R/lpx.R"))
+source(file.path(pd_path,"R/TonyLibrary.R"))
  
 
 

@@ -1,3 +1,10 @@
 huge-output
 colony-commands-for-parallel.txt
 run-colony-in-parallel.sh
+ColonyRuns_ProgressLog.txt
+condensed-colony-best-fs-families.txt
+nohup.out
+NewColony
+OldColony
+condensed-new-colony-best-fs-families.txt
+condensed-old-colony-best-fs-families.txt
