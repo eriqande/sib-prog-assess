@@ -1,16 +1,14 @@
-# if you want to, before you run this, you can set the estimates file like this:
-#EFile <- read.table("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/ProcessingOutputs/output/ColonyFirstFifteenReps.txt",header=T)
 
 
+pd_path <- Sys.getenv("PD_STUFF_DIR")  # get the absolute path of the directory with all the partitiion distance stuff in it
 
 
+# get the library of functions to use
+source(file.path(pd_path, "R/SibAssessRfunctions.R"));
 
-                                        # get the library of functions to use
-source("/Users/eriq/Documents/work/prj/HansSib/party_dist_calc_code/SibAssessRfunctions.R");
 
-
-# hardwired path to the file with all the true partitions in it 
-TFile <- read.table("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/ProcessingOutputs/TruePartitions.txt",header=T)
+# path to the file with all the true partitions in it 
+TFile <- read.table(file.path(pd_path, "input/TruePartitions.txt"),header=T)
 
 
 # read the file with the estimated partitions.  Here we have a default, but you could always open an R session and read the EFile from a different place first.

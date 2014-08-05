@@ -2,7 +2,7 @@
 
 # put default values here
 # VAR=default
-COMPILEPD=/Users/eriq/Documents/work/prj/HansSib/party_dist_calc_code/CompilePDs.R
+COMPILEPD=$PD_STUFF_DIR/R/CompilePDs.R
 
 
 

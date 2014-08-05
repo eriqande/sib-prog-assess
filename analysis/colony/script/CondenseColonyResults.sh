@@ -50,9 +50,12 @@ while (($#)); do
     FILE=$DIR/*.BestFSFamily;
     if [ -f $FILE ]; then
 	NAME=$(basename $FILE);
-	TAG=$(echo $NAME | awk '{split($1,a,/_/); code=a[1]; sub(/l/,"  ",a[2]); sub(/L/,"  ",a[2]);  gsub(/f/,"   f    ",a[2]); gsub(/\.BestFSFamily/,"",a[2]); print a[1],a[2];}');
+	TAG=$(echo $NAME | awk '{split($1,a,/_/); code=a[1]; sub(/l/,"  ",a[2]);   
+		if(match(a[2], /f/)) gsub(/f/,"   f    ",a[2]);  else sub(/L/,"     none      ",a[2]);
+		sub(/L/,"  ",a[2]);
+		gsub(/\.BestFSFamily/,"",a[2]); print a[1],a[2];}');
 
-	awk '/FullSibshipIndex/ || NF==0 {next} {printf("   %s   %d   ",$2,NF-2); for(i=3;i<=NF;i++) { a=$i; gsub(/[^0-9]/,"",a); printf("%d,",a);} printf("\n")}' $FILE | \
+	awk '/FullSibshipIndex/ || NF==0 {if($2=="Prob(Inc.)") NewVersionOutput = 1; next} {printf("   %s   %d   ",$2,NF-2-NewVersionOutput); for(i=3+NewVersionOutput;i<=NF;i++) { a=$i; gsub(/[^0-9]/,"",a); printf("%d,",a);} printf("\n")}' $FILE | \
 	    sed 's/,$//g;' | \
 	    sort -n -b -r -k 2 | \
 	    awk -v tag="$TAG" '{print tag,$0}' 
