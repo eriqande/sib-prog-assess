@@ -67,6 +67,8 @@ output, eventually, in directories PmP_XXX where XXX is the number of loci, insi
 the directories OldColony and NewColony
 
 Once those processes have finished up, it is time to slurp the Partition Distance
-results back."
+results back.
+
+You will do that with the script 03-slurp-up-colony-pds.sh"
 
 

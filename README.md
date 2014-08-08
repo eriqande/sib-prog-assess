@@ -54,12 +54,14 @@ git clone https://github.com/eriqande/sib-prog-assess.git
 cd sib-prog-assess/analysis/colony/
 
 # from that directory, launch the run-and-analyze-colony-subset.sh script:
-./run-and-analyze-colony-subset.sh
+./01-run-colony-subset.sh
 
-# ERIC! Change that script to ./run-colony-subset.sh
-# and then make another separate one called ./analyze-colony-subset-runs.sh
-# which computes the partition distances.  It is crazy to put it all into
-# one script because running it can take so long.
+# once that has completed, you will want to do:
+./02-analyze-colony-subset-runs.sh
+
+# That will create some PmP_XXX directories. Once the process 
+# is complete, you will want to do:
+./03-slurp-up-colony-pds.sh
 
 ```
 
