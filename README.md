@@ -56,11 +56,12 @@ cd sib-prog-assess/analysis/colony/
 # from that directory, launch the run-and-analyze-colony-subset.sh script:
 ./01-run-colony-subset.sh
 
-# once that has completed, you will want to do:
+# once that has completed, you will compute partition distances:
 ./02-analyze-colony-subset-runs.sh
 
 # That will create some PmP_XXX directories. Once the process 
-# is complete, you will want to do:
+# is complete, you consolidate the partition distances into a data
+# frame with:
 ./03-slurp-up-colony-pds.sh
 
 ```
