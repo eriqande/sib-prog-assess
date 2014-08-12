@@ -69,6 +69,6 @@ the directories OldColony and NewColony
 Once those processes have finished up, it is time to slurp the Partition Distance
 results back.
 
-You will do that with the script 03-slurp-up-colony-pds.sh"
+You will do that with the script 03-slurp-up-colony-pds.R"
 
 
