@@ -14,10 +14,19 @@ CodeToScenarioName <- function(Code) {
 	the.scen.names <- c("allhalf", "allpathalf", "lotta_large", "nosibs", "onelarge_noh", "onelarge_wh",
 											"sfs_noh", "sfs_wh", "slfsg_noh", "slfsg_wh")
 	names(the.scen.names) <- c("AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK")
-	as.factor(the.scen.names[substr(Code,3,4)])
+	the.scen.names[substr(Code,3,4)]
 }
 
 
 CodeToGenoError <- function(Code) {
-	as.factor(substr(Code,8,8))
+	substr(Code,8,8)
 }
+
+
+CodeToRepNumber <- function(Code) {
+  rep.letters <- paste("a", rep(c("a","b"), each=26), letters, sep="")
+  rep.nums <- 0:(length(rep.letters)-1)
+  names(rep.nums) <- rep.letters
+  rep.nums[substr(Code, 5, 7)]
+}
+

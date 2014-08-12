@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{43}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[\protect\citeauthoryear{Almudevar}{Almudevar}{2001}]{almudevar01b}
@@ -87,6 +87,14 @@ Dunn SJ, Clancey E, Waits LP, Byers JA (2011) Inbreeding depression in
 Fraser DJ, Duchesne P, Bernatchez L (2005) Migratory charr schools exhibit
   population and kin associations beyond juvenile stages. {\em Mol Ecol\/},
   {\bf 14}, 3133--46.
+
+\bibitem[\protect\citeauthoryear{Garza, Gilbert-Horvath, Spence, Williams,
+  Fish, Gough, Anderson, Hamm, \& Anderson}{Garza {\em
+  et~al.\/}}{2014}]{Garzaetal_norcal}
+Garza JC, Gilbert-Horvath EA, Spence BC, Williams TH, Fish H, Gough SA,
+  Anderson JH, Hamm D, Anderson EC (2014) Population structure of steelhead in
+  California. {\em Transactions of the American Fisheries Society\/}, {\bf
+  143}, 134--152.
 
 \bibitem[\protect\citeauthoryear{Gusfield}{Gusfield}{2002}]{gusfield02}
 Gusfield D (2002) Partition-distance: A problem and class of perfect graphs

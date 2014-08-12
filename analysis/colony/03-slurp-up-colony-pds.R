@@ -34,7 +34,7 @@ COL <- rbind(oldc, newc)
 
 
 #### Now parse out the meaning of the Code for each data set, etc ####
-source("../R/RecoverCodesWithinR.R")
+source("../../R/RecoverCodesWithinR.R")
 
 COL$Scenario <- CodeToScenarioName(COL$Code)  
 COL$NumAlleles <- CodeToAlleNum(COL$Code)  
