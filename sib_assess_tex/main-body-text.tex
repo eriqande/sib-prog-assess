@@ -325,7 +325,7 @@ method in each of the nine $n75$ scenarios.
 \begin{sidewaysfigure*}
 \begin{center}
 \includegraphics[width=\textwidth]{images/boxplots_for_paper25_num2.pdf}
-\newcommand{\boxponecaption}{Boxplot representation of values of $\PDS$ for $A=25$ alleles and $L=20$ ({\em a}) and $L=25$ 
+\newcommand{\boxponecaption}{Boxplot representation of values of $\PDS$ for $A=25$ alleles and $L=15$ ({\em a}) and $L=20$ 
 ({\em b}) loci for all methods (CO=\colony; CP=\colony{}-P; PRT=\prt{}; FF=\familyfinder; K2=
 \kinalyzer{} 2-allele algorithm; KC=\kinalyzer{} consensus algorithm) and all $n75$ scenarios (names 
 listed along top).  For each scenario, the top panel shows results for data with no genotyping errors, 
@@ -352,45 +352,36 @@ the three scenarios that include no true full siblings, and it also performs nea
 \colony{} in scenarios with true full sibling groups that are not very large; however it doesn't 
 perform as well in the \onelargenoh{} and \onelargewh{} scenarios.
 
-The results are somewhat different when $A=10$ and $L=15$ (Figure~\ref{fig:boxp2}{\em b})
+The results are somewhat different when $A=10$ and $L=10$ (Figure~\ref{fig:boxp2}{\em b})
 %% NOTE: These Boxplots figures have been made with the script:
 %% /Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/boxplots2_with_prt_and_pairwise.R
-
-
 %\begin{equation}
 %\mbox{FIGURE ped\_configs\_figure.pdf}\label{fig:boxp2}
 %\end{equation}
-
 \begin{sidewaysfigure*}
 \begin{center}
 \includegraphics[width=\textwidth]{images/boxplots_for_paper10_num1.pdf}
-\newcommand{\boxptwocaption}{Boxplot representation of values of $\PDS$ for $A=10$ alleles and $L=10$~({\em a}) and 
-$L=15$~({\em b}). Format as in Figure~\protect\ref{fig:boxp1}.}
+\newcommand{\boxptwocaption}{Boxplot representation of values of $\PDS$ for $A=10$ alleles and $L=5$~({\em a}) and 
+$L=10$~({\em b}). Format as in Figure~\protect\ref{fig:boxp1}.}
 \caption[\boxptwocaption]{\sometimes{\boxptwocaption}}
 \label{fig:boxp2}
 \end{center}
 \end{sidewaysfigure*}
-
+%%
 With such levels of data, which are perhaps closer to what might be employed in most sibship inference 
-studies using micro satellites, we observe that both \colony{} and \colony{}-P suffer inaccuracy in those scenarios with 
-no true full sibling groups, especially the \allhalf{} and \allpathalf{} scenarios.  As before, 
+studies using microsatellites, we observe that \prt{} finds few spurious full sibling groups 
+in the \nosibs{} case, outperforming both \colony{} and \colony{}-P in that scenario.
+However, in the \allhalf{} and \allpathalf{} scenarios, which, like \nosibs{}, include no
+full siblings, \colony{} and \colony{}-P outperform all the other programs.  As before, 
 \familyfinder{} performs worse in the presence of half siblings than when half-siblings are absent (though 
 relatively less poorly than with more informative data).  When half-siblings are not present, 
 \familyfinder{} produces higher partition distances than it does with more informative data, just as 
-one would expect.  The two \kinalyzer{} methods do quite poorly still. While \prt{} sees increased 
-error in cases with small full sibling groups, for $L=15$ it does much better than any other methods in 
-the three cases that have no true full siblings in them, and it seems relatively unaffected by the 
-presence of half-siblings. With $L=15$, \prt{} achieves $\PDS=0$ for all simulation replicates (apart 
-from a couple of outliers) for scenarios \nosibs{}, \allhalf{}, and \allpathalf{}, while \colony{} and 
-\colony{}-P suffer appreciably higher error rates, especially in the presence of half siblings. 
-However, \prt{} continues to suffer higher error rates than \colony{}, \colony{}-P, or \familyfinder{} 
+one would expect.  The two \kinalyzer{} methods do quite poorly still.  
+\prt{} continues to suffer higher error rates than \colony{}, \colony{}-P, or \familyfinder{} 
 in the presence of small or moderately-sized full sibling groups.
 
-With less uninformative data (such as $A=5$ and $L=5$) the performance of all methods is, predictably, 
-degraded.  Interestingly, \prt{} no longer enjoys an advantage in the three cases with no true full 
-siblings.  Rather, it erroneously infers very large sibling groups and performs quite poorly, a 
-phenomenon observed in cases \allhalf{} and \allpathalf{} with $A=10$ and $L=10$, as well (Figure~
-\ref{fig:boxp2}{\em a}).  Supplement~3 contains a full set of boxplots for all the $n75$ simulation 
+With even less-informative data (such as $A=5$ and $L=5$) the performance of all methods is, predictably, 
+degraded.  Interestingly, \prt{} no longer enjoys an advantage in the \nosibs{} case.  Rather, it erroneously infers very large sibling groups and performs worst of all the programs in the \nosibs{}, \allhalf{} and \allpathalf{} scenarios.  Supplement~3 contains a full set of boxplots for all the $n75$ simulation 
 conditions.
 
 \subsection*{$n75$ Scenarios---Detailed Comparisons}
@@ -837,5 +828,6 @@ large numbers of SNP markers.
 
 
 
-%\section*{Acknowledgments}
-
+\section*{Acknowledgments}
+We are grateful for Jinliang Wang's careful reading of an earlier draft of our manuscript and his very helpful
+comments and corrections.  We also acknowledge helpful correspondence with Tanya Berger-Wolf.
