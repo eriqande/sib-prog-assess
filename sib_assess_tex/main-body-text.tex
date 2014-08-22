@@ -673,7 +673,7 @@ rate increases, there is more spread in program performance.  With moderate geno
 \familyfinder{} performing nearly as well in these cases, and \prt{} suffering some evident
 inaccuracy at higher locus numbers.  With high genotyping error rates ($d=0.07,\ m=0.03$), 
 \familyfinder{} enjoys the highest level of accuracy across almost all conditions.  \colony{}, in these
-cases, suffers from splitting of the large (150-member) full sibling group (results not shown). As seen 
+cases, suffers from splitting of the large (150-member) full sibling group. As seen 
 in Figure~\ref{fig:new-colony-boxp}, this
 splitting is virtually eliminated in the most recent version, \colony{}-2.0.5.0
 \citep{Wang2013}, such that even at very high levels of genotyping error \colony{} makes no errors at 
@@ -688,8 +688,9 @@ all the other methods.
 results for \colony{}-2.0.5.0. 
 Different rows are different genotyping error rates and the columns are different numbers of loci. Names 
 of methods are C2=\colony{}-2.0.5.0, CO=\colony{}, CP=\colony-P, PRT=\prt, and 
-FF=\familyfinder).  Note in particular that, with high genotyping error rate, $\PDS$ is reduced 
-in C2 relative to CO, but still exceeds that of FF.} 
+FF=\familyfinder).  Note in particular that, even with high genotyping error rate, $\PDS$ is reduced 
+to near 0 in C2, indicating that the method of \citet{Wang2013} successfully avoids splitting 
+large sibling groups in these data sets.} 
 \caption[\newcolonyboxcaption]{\sometimes{\newcolonyboxcaption}}
 \label{fig:new-colony-boxp}
 \end{figure*}
@@ -730,7 +731,7 @@ incorrect sibling groups; however our results suggest this is not the case. With
 individuals, \colony{} identifies many high-confidence (posterior probability $\geq 0.98$) full sibling 
 pairs, and even trios, depending on the number of loci and alleles (Table~\ref{tab:hiconf}).
 Applying the same number of loci and alleles to a larger sample of unrelated individuals, \colony{} is 
-expected to infer even more erroneous sibling groups of high ``confidence."
+expected to infer even more erroneous sibling groups with high ``confidence."
 
 The latest version of \colony{} not only reduces splitting of large sibling group, but also applies
 a correction to reduce the inference of spurious small sibling groups.  A limited set of runs 
@@ -752,7 +753,8 @@ data set that matches the original in terms of genetic diversity, number of loci
 in which it is known that all individuals are completely unrelated.  This can be achieved by fixing 
 missing data in place in the original data set and then permuting the alleles within each locus amongst 
 all the members of the sample, and analyzing the result with \colony{}. If \colony{} continues to find 
-small sibling groups in the permuted data, then this should cast doubt upon the \colony{} results for 
+small sibling groups in the permuted data, then this should reduce one's confidence
+regarding \colony{}'s results for 
 the original data set.  Alternatively, \colony{} 
 itself now offers a simulation module that can assist in interpreting 
 \colony{}'s results (see \citealt{Wang2013simulation}).
@@ -813,7 +815,8 @@ Previous work has noted that \colony{} may have a tendency to erroneously split 
 splitting. An updated version of \colony{} now employs a correction
 to avoid splitting of large true full sibships \citep{Wang2013}.  Since we did not observe 
 much splitting with the old version of \colony{}, use of the new version would unlikely change
-our results in the $n75$ scenarios greatly.  However, a limited number of simulations confirmed
+our results in the $n75$ scenarios greatly.  However, a limited number of runs on several
+\lottalarge{} data sets confirmed
 that this updated version of \colony{} does not split large sibling groups in cases where the
 old version does.
 
@@ -852,20 +855,26 @@ at least in cases with many, very informative markers.
 
 Overall, \colony{} consistently performed well when
 there were actually siblings in the data set.  
-Given data of sufficient quality ($\geq 10$ alleles and $\geq 15$ loci)
-\prt{} can be generally recommended for 
-all models except those dominated by small sibling groups. Interestingly, given its emphasis on large 
-sibling groups, \prt{} consistently performs as well, or better, than all other algorithms for the \nosibs{}, 
-\allhalf{}, and \allpathalf{} models, across all error models. 
-For larger sibling groups with reasonably informative marker data
-($\geq 15$ loci with $\geq 10$ alleles) the situation varies. For 
-the \onelargenoh{} and \onelargewh{} models, \prt{} appears to be consistently 
-most accurate, although the accuracy of \colony{} 
-and \familyfinder{} is comparable. For the \slfsgnoh{} and \slfsgwh{} models \colony{} offers the best accuracy consistently, although 
-\colony-P, \prt, and \familyfinder{} remain viable alternatives. For these latter two scenarios, memory requirements sometimes hampered the 
-performance of \prt{}. For especially large problems careful tuning of memory parameters will be required. 
-For the \sfsnoh{} and  \sfswh{} models \colony{} and \colony-P were consistently most accurate.   
+Given data of sufficient quality
+\prt{} can be generally recommended for cases where there is a single large
+sibling group. For example, with $A\geq 10$ and $L\geq 15$ 
+in the \onelargenoh{} scenario, \prt{} appears to be consistently 
+accurate, although the accuracy of \colony{} 
+and \familyfinder{} are comparable; however the introduction of 
+half-siblings in the \onelargewh{} case presents more difficulty for
+\prt{} than for \colony{}.  
+Interestingly, given its emphasis on large 
+sibling groups, \prt{} consistently performs as well, or better, than all other algorithms for the 
+\nosibs{}, \allhalf{}, and \allpathalf{} scenarios when $A\geq10$ and $L\geq15$. 
+For scenarios with many large full sibling group, such as \slfsgnoh{} and \slfsgwh{},
+\colony{} offers the best accuracy, consistently, though \colony{}-P, \familyfinder{}, and 
+\prt{} remain viable alternatives.  
+For these latter two scenarios, memory requirements sometimes hampered the 
+performance of \prt{}. For especially large problems careful tuning of memory parameters will be 
+required. 
+When samples include many small full sibling groups, such as in the \sfsnoh{} and  \sfswh{} scenarios, \colony{} and \colony-P were consistently most accurate.   
 We found no scenarios for which we could recommend the use of \kinalyzer{}.
+
 
 We did not assess the performance of these methods when using data on biallelic
 markers, like SNPs.  The explosion of next generation sequencing data 
