@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{44}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[\protect\citeauthoryear{Almudevar}{Almudevar}{2001}]{almudevar01b}
@@ -226,9 +226,15 @@ Thompson EA (1975) The estimation of pairwise relationships. {\em Ann Hum
 Wang J (2007) Triadic IBD coefficients and applications to estimating pairwise
   relatedness. {\em Genet Res\/}, {\bf 89}, 135--53.
 
-\bibitem[\protect\citeauthoryear{Wang}{Wang}{2013}]{Wang2013}
-Wang J (2013) An improvement on the maximum likelihood reconstruction of
-  pedigrees from marker data. {\em Heredity\/}, {\bf 111}, 165--74.
+\bibitem[\protect\citeauthoryear{Wang}{Wang}{2013{\natexlab{a}}}]{Wang2013}
+Wang J (2013{\natexlab{a}}) An improvement on the maximum likelihood
+  reconstruction of pedigrees from marker data. {\em Heredity\/}, {\bf 111},
+  165--74.
+
+\bibitem[\protect\citeauthoryear{Wang}{Wang}{2013{\natexlab{b}}}]{Wang2013simulation}
+Wang J (2013{\natexlab{b}}) A simulation module in the computer program colony
+  for sibship and parentage analysis. {\em Molecular Ecology Resources\/}, {\bf
+  13}, 734--739.
 
 \bibitem[\protect\citeauthoryear{Wang \& Santure}{Wang \&
   Santure}{2009}]{wang09}

@@ -88,7 +88,7 @@ dev.off()
 #### OK, now let's look at the new version of colony with the anti-split correction ####
 # we will do this with ggplot 
 col2 <- read.table("./scores/Colony_do_over_with_new_version.txt", header = T)
-dl$c2 <- col2
+dl$c2 <- col2[col2$Version == "NewColony",]
 names(dl) <- toupper(names(dl))  # make the names uppercase
 library(plyr)
 df <- ldply(dl)  # make one big data frame out of all of them
