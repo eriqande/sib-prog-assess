@@ -65,4 +65,5 @@ stopifnot(file.copy(file.path(BOXDIR, "mega_boxplot_alles25_num2.pdf"), file.pat
 source("./R/lotta_large_analyses_and_plots.R")
 file.copy("lotta_large_boxplots.pdf", file.path(FINFIGOUT, "lotta_large_boxplots.pdf"), overwrite=T)
 file.remove("lotta_large_boxplots.pdf")
+file.rename("new-colony-boxplots-10-loci.pdf", file.path(FINFIGOUT, "new-colony-boxplots-10-loci.pdf"))
 

@@ -83,3 +83,28 @@ mtext(paste(seq(5,25,by=5)), 2, 2.8, T, at=(5:1 - .5)/5, las=1)
 mtext(expression(PD[S]), 2, 0.4, T, at=(5:1 - .4)/5, cex=.7)
 
 dev.off()
+
+
+#### OK, now let's look at the new version of colony with the anti-split correction ####
+# we will do this with ggplot 
+col2 <- read.table("./scores/Colony_do_over_with_new_version.txt", header = T)
+dl$c2 <- col2
+names(dl) <- toupper(names(dl))  # make the names uppercase
+library(plyr)
+df <- ldply(dl)  # make one big data frame out of all of them
+df$Prog <- factor(df$".id", levels = c("C2", "CO", "CP", "PRT", "FF")) # make Program a factor with levels in order we want them in 
+dfl <- df[df$Scenario == "lotta_large" & df$NumLoc == 10, ] # restrict it to just 10 loci
+geqc <- c(n = "d = 0, m = 0", l = "d = 0.03, m = 0.01", h = "d = 0.07, m = 0.03")
+dfl$GenoErrText <- factor(geqc[as.character(dfl$GenoError)], levels = geqc)  # make a text specification of the genotyping error rates
+
+
+
+library(ggplot2)
+g <- ggplot(dfl, aes(x = Prog, y = part.dist2)) +
+  geom_boxplot() + 
+  facet_grid(GenoErrText ~ NumAlleles) +
+  xlab("Program / Version") + 
+  ylab("Partition Distance")
+
+ggsave(filename = "new-colony-boxplots-10-loci.pdf", plot = g, width = 12.0, height = 5.2)
+

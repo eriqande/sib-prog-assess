@@ -100,7 +100,7 @@ echo
 #
 
 
-#########
+######### Here we make some stuff to run these all in parallel.
 # Now we prepare a list of commands to pipe to the GNU parallel script that will queue up a bunch 
 # of colony runs.  We do this for all the different data sets and also for different numbers of 
 # loci and different colony options:

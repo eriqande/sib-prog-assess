@@ -180,7 +180,11 @@ the product of pairwise probabilities over individuals that occur together in th
 and yet is more accurate than other approaches based on Mendelian incompatibility or different 
 formulations of pairwise likelihood and is only slightly less accurate than the full likelihood method.  
 We call this approximate \colony{} algorithm \colony{}-P and we assess its performance on a subset of 
-our simulated data.
+our simulated data.  After we had completed all the simulations a new
+version was released \citep{Wang2013} with improvements to reduce the splitting of large sibling groups noted by 
+\citet{Alm&And11}. This new version also reduces the occurrence of small, spurious sibling groups.
+We consequently re-ran a subset of our data sets (kindly suggested by J.~Wang) with this new version, \colony{}-2.0.5.0, to highlight the improvements.
+
 
 
 \prt{} uses an algorithm based on Mendelian incompatibility to generate a list of maximal, feasible 
@@ -232,11 +236,14 @@ Software & Varied Settings~~~~~~~ & Data Scenarios & No.~Rep & Total \\ \hline
 \colony{}-P & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
             &                  & \lottalarge{}          & 5  &    375\\
  \\
+ \colony{}-2.0.5.0 & $d=0.02$; $m=0.02$ & \nosibs{}, \allhalf{} & 15 & 360$^a$ \\
+          &                  & \lottalarge{}          & 5  &    150$^b$ \\      
+\\
 \prt{}      &    See Appendix~5              & $n75$ scenarios & 15 & 10,125 \\
             &                  & \lottalarge{}          & 15  &    1,125\\
 \\
 \kinalyzer{}~~~ & 2-allele      &   $n75$ scenarios & 50 & 33,750 \\ 
-             &               &   \lottalarge{} and $A=5$ & 50 & 750$^a$ \\ 
+             &               &   \lottalarge{} and $A=5$ & 50 & 750$^c$ \\ 
              & consensus      &   $n75$ scenarios  & 10 & 6,750 \\
 \\
 \familyfinder{}  &  none  &  all 10 scenarios  &  50  &  37,500 \\
@@ -244,7 +251,9 @@ Software & Varied Settings~~~~~~~ & Data Scenarios & No.~Rep & Total \\ \hline
 \end{tabular}
 \end{center}
 {\footnotesize
-$\mbox{}^a$Of these 750 data sets, only the 150 of them with 5 loci yielded results from \kinalyzer{}.  
+$\mbox{}^a$ Datasets with $A=10$ and $L\in\{5,10\}$ \\
+$\mbox{}^b$ Datasets with $A\in\{5, 10, 15, 20, 25\}$ and $L=10$ \\
+$\mbox{}^c$Of these 750 data sets, only the 150 of them with 5 loci yielded results from \kinalyzer{}.  
 It appears no data sets with $L>5$ were successfully completed. To avoid denying service of the 
 \kinalyzer{} server to other users, we submitted no more \lottalarge{} data sets to it.   
 }
@@ -662,6 +671,16 @@ scenarios with a small number of loci in which other methods performed better th
 cases with no genotyping error, but those were surprisingly few.  It is also interesting to see that 
 while \colony{} typically performed comparably to \familyfinder{} in cases with no or low genotyping 
 error, it performed remarkably poorly in situations with many loci with high genotyping error rates.  
+% New version of colony 10-locus boxplot figure
+\begin{figure*}
+\begin{center}
+\includegraphics[width=\textwidth]{./images/new-colony-boxplots-10-loci.pdf}
+\end{center}
+\newcommand{\newcolonyboxcaption}{Some text}
+\caption[\newcolonyboxcaption]{\sometimes{\newcolonyboxcaption}}
+\label{fig:new-colony-boxp}
+\end{figure*}
+
 
 Running times on the \lottalarge{} data appear in \ref{fig:run-time-noki-lotta_large}.  \familyfinder{} 
 never required more than 4.1 seconds to complete, and averaged 2.5 seconds across all data sets of the 
