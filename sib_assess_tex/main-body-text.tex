@@ -675,10 +675,10 @@ inaccuracy at higher locus numbers.  With high genotyping error rates ($d=0.07,\
 \familyfinder{} enjoys the highest level of accuracy across almost all conditions.  \colony{}, in these
 cases, suffers from splitting of the large (150-member) full sibling group (results not shown). As seen 
 in Figure~\ref{fig:new-colony-boxp}, this
-splitting is greatly reduced, but not entirely eliminated in the most recent version, \colony{}-2.0.5.0
-\citep{Wang2013}, such that at very high levels of genotyping error, and in situations where large full
-sibling groups (with no half siblings) are present, \familyfinder{} appears to be somewhat more
-accurate.
+splitting is virtually eliminated in the most recent version, \colony{}-2.0.5.0
+\citep{Wang2013}, such that even at very high levels of genotyping error \colony{} makes no errors at 
+$A=10$ and thus outperforms
+all the other methods.
 % New version of colony 10-locus boxplot figure
 \begin{figure*}
 \begin{center}
@@ -814,8 +814,9 @@ splitting. An updated version of \colony{} now employs a correction
 to avoid splitting of large true full sibships \citep{Wang2013}.  Since we did not observe 
 much splitting with the old version of \colony{}, use of the new version would unlikely change
 our results in the $n75$ scenarios greatly.  However, a limited number of simulations confirmed
-that this updated version of \colony{} does not split large sibling groups as often as the 
-older version.  
+that this updated version of \colony{} does not split large sibling groups in cases where the
+old version does.
+
 
 For reasons of computational efficiency, we did not use the setting in \colony{} introduced in
 \citet{wang09} allowing both sexes to by polygamous.  This setting would likely have
