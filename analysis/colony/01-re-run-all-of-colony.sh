@@ -88,7 +88,7 @@ cd $CURDIR/huge-output
 mkdir -p n75
 cd n75
 echo "    Setting up some n75 data sets"
-../../script/MakeColonyCollectionFromSibAssessFiles.sh -n 15 /tmp/SibAssessDataSets1/{5,10,15,20,25}_Alleles/{allhalf,onelarge_noh,sfs_noh,slfsg_noh,allpathalf,nosibs,onelarge_wh,sfs_wh,slfsg_wh}/
+../../script/MakeColonyCollectionFromSibAssessFiles.sh -n 15 /tmp/SibAssessDataSets1/{5,10,15,20,25}_Alleles/{allhalf,onelarge_noh}/  #,sfs_noh,slfsg_noh,allpathalf,nosibs,onelarge_wh,sfs_wh,slfsg_wh}/
 echo
 
 
@@ -108,40 +108,23 @@ echo
 # loci and different colony options:
 cd $CURDIR   # get back to the correct top directory
 
-# 1. do the n75 data sets in our subset (no sibs and allhalf) which all have 10 alleles at 5 and 10 loci
-# using the old version of colony
+
+
+# 1. do the  n75 data sets using the new version of colony. Be sure to use the
+# -f option to infer allele freqs taking account of sibship structure
 for NUMLOC in 5 10; do
-	OPTSTR=" -l $NUMLOC -L -d .02 -m .02 -o ";
+	OPTSTR=" -l $NUMLOC -L -f -d .02 -m .02  ";
 	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
 	./script/RunAllColony.sh -f -d huge-output/n75/Collections -o " $OPTSTR "  $OPTNAME 0 4 
 done > colony-commands-for-parallel.txt 
 
 
-# 2. do the same n75 data sets as in #1 but use the new version of colony (by removing the -o option
-# in the OPTSTR option string.  Append these commands
-# to colony-commands-for-parallel.txt
-for NUMLOC in 5 10; do
-	OPTSTR=" -l $NUMLOC -L -d .02 -m .02  ";
-	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
-	./script/RunAllColony.sh -f -d huge-output/n75/Collections -o " $OPTSTR "  $OPTNAME 0 4 
-done >> colony-commands-for-parallel.txt 
 
 
-# 3. compile up the commands to do the lotta_large data sets with 10 loci only, but across all
-# the numbers of alleles that are in the LottaLarge directory with the old version of colony.  
+# 2. compile up the commands to do the lotta_large data sets.  Use the -f option!
 # Once again append this stuff to colony-commands-for-parallel.txt 
 for NUMLOC in 10; do
-	OPTSTR=" -l $NUMLOC -L -d .02 -m .02 -o ";
-	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
-	./script/RunAllColony.sh -f -d huge-output/LottaLarge/Collections -o " $OPTSTR "  $OPTNAME 0 4 
-done >> colony-commands-for-parallel.txt 
-
-
-# 4. compile up the commands to do the lotta_large data sets with 10 loci only, but across all
-# the numbers of alleles that are in the LottaLarge directory with the new version of colony.  
-# Once again append this stuff to colony-commands-for-parallel.txt 
-for NUMLOC in 10; do
-	OPTSTR=" -l $NUMLOC -L -d .02 -m .02  ";
+	OPTSTR=" -l $NUMLOC -L -f -d .02 -m .02  ";
 	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
 	./script/RunAllColony.sh -f -d huge-output/LottaLarge/Collections -o " $OPTSTR "  $OPTNAME 0 4 
 done >> colony-commands-for-parallel.txt 
@@ -155,7 +138,8 @@ chmod u+x run-colony-in-parallel.sh
 # now we can just run that script...
 echo "Starting up the colony runs as listed in colony-commands-for-parallel.txt"
 echo "Consult the file ColonyRuns_ProgressLog.txt to see how those runs are coming along..."
-nohup ./run-colony-in-parallel.sh
+nohup ./run-colony-in-parallel.sh &
+
 
 
 

@@ -66,6 +66,21 @@ cd sib-prog-assess/analysis/colony/
 
 ```
 
+### Re-Running All The Colony Runs with the New Version
+I am in the process of re-running everything using the newest version of colony.
+
+Here what we  are up to so far:
+```sh
+# clone the repository:
+git clone https://github.com/eriqande/sib-prog-assess.git
+
+# change into the analysis/colony directory:
+cd sib-prog-assess/analysis/colony/
+
+# from that directory, launch the run-and-analyze-colony-subset.sh script:
+./01-re-run-all-of-colony.sh
+
+```
 
 
 
