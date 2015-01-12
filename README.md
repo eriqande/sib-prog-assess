@@ -78,7 +78,7 @@ git clone https://github.com/eriqande/sib-prog-assess.git
 cd sib-prog-assess/analysis/colony/
 
 # from that directory, launch the run-and-analyze-colony-subset.sh script:
-./01-re-run-all-of-colony.sh
+nohup ./01-re-run-all-of-colony.sh > Re-Run-Colony.log 2>&1 &
 
 ```
 

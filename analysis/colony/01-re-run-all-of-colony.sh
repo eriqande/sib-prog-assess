@@ -88,7 +88,7 @@ cd $CURDIR/huge-output
 mkdir -p n75
 cd n75
 echo "    Setting up some n75 data sets"
-../../script/MakeColonyCollectionFromSibAssessFiles.sh -n 15 /tmp/SibAssessDataSets1/{5,10,15,20,25}_Alleles/{allhalf,onelarge_noh}/  #,sfs_noh,slfsg_noh,allpathalf,nosibs,onelarge_wh,sfs_wh,slfsg_wh}/
+../../script/MakeColonyCollectionFromSibAssessFiles.sh -n 15 /tmp/SibAssessDataSets1/{5,10,15,20,25}_Alleles/{allhalf,onelarge_noh,sfs_noh,slfsg_noh,allpathalf,nosibs,onelarge_wh,sfs_wh,slfsg_wh}/
 echo
 
 
