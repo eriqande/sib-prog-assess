@@ -112,7 +112,7 @@ cd $CURDIR   # get back to the correct top directory
 
 # 1. do the  n75 data sets using the new version of colony. Be sure to use the
 # -f option to infer allele freqs taking account of sibship structure
-for NUMLOC in 5 10; do
+for NUMLOC in 5 10 15 20 25; do
 	OPTSTR=" -l $NUMLOC -L -f -d .02 -m .02  ";
 	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
 	./script/RunAllColony.sh -f -d huge-output/n75/Collections -o " $OPTSTR "  $OPTNAME 0 4 
@@ -123,7 +123,7 @@ done > colony-commands-for-parallel.txt
 
 # 2. compile up the commands to do the lotta_large data sets.  Use the -f option!
 # Once again append this stuff to colony-commands-for-parallel.txt 
-for NUMLOC in 10; do
+for NUMLOC in 5 10 15 20 25; do
 	OPTSTR=" -l $NUMLOC -L -f -d .02 -m .02  ";
 	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
 	./script/RunAllColony.sh -f -d huge-output/LottaLarge/Collections -o " $OPTSTR "  $OPTNAME 0 4 

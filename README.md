@@ -80,6 +80,9 @@ cd sib-prog-assess/analysis/colony/
 # from that directory, launch the run-and-analyze-colony-subset.sh script:
 nohup ./01-re-run-all-of-colony.sh > Re-Run-Colony.log 2>&1 &
 
+# once that has completed, you will compute partition distances:
+./02-analyze-colony-subset-runs.sh
+
 ```
 
 
