@@ -80,9 +80,19 @@ cd sib-prog-assess/analysis/colony/
 # from that directory, launch the run-and-analyze-colony-subset.sh script:
 nohup ./01-re-run-all-of-colony.sh > Re-Run-Colony.log 2>&1 &
 
-# once that has completed, you will compute partition distances:
-./02-analyze-colony-subset-runs.sh
+# once that has completed, compute partition distances:
+./02-analyze-colony-runs-script.sh full-colony-new-condensed.txt  FullColonyNewResults  huge-output/{n75,LottaLarge}/Collections/*/l[0-9]*Lfd.02m.02
 
+
+# in the above I have instructed it to process the output directories that match
+# the pattern l[125][0-9]*Lfd.02m.02 which are the ones that we just ran.
+
+# then to compile all those PDs into a data frame we start R in the "colony" directory we
+# are in and do this:
+source("03-slurp-up-colony-pds-func.R")
+slurp_up_partition_distances()
+
+# that puts the results into: ./scores/full_colony_new_version.txt in the repo.
 ```
 
 
