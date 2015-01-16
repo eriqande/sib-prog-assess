@@ -44,30 +44,11 @@ See TERMS.md for more information about public domain, etc.
 ## Doing the Analyses Themselves
 Many of the analyses were done over the course of several weeks to months of computation over multiple machines and spread over a number of months if not years, with a substantial amount of hand curation to re-do analyses that might have failed the first time due to any number of reasons (like power failures or disconnects, etc.  Given that, it is not, in Eric's opinion, reasonable to provide a single script that users can expect will flawlessly replicate all the analyses performed by all the different programs.  However, at the end of the process, we re-ran COLONY on a subset of the data sets using a few different options.  In the directory `analysis/colony` we provide scripts that should run reliably.  It should be clear from these scripts how one would replicate the COLONY analyses.  The following section documents this.  Below, in a following section, we also provide the scripts used to send jobs to the KINALYZER server.
 
-### Running Colony on the Simulated data
-Here is how to run colony on a handful of data sets (about 500 separate colony runs...)
-```sh
-# clone the repository:
-git clone https://github.com/eriqande/sib-prog-assess.git
 
-# change into the analysis/colony directory:
-cd sib-prog-assess/analysis/colony/
-
-# from that directory, launch the run-and-analyze-colony-subset.sh script:
-./01-run-colony-subset.sh
-
-# once that has completed, you will compute partition distances:
-./02-analyze-colony-subset-runs.sh
-
-# That will create some PmP_XXX directories. Once the process 
-# is complete, you consolidate the partition distances into a data
-# frame with:
-./03-slurp-up-colony-pds.sh
-
-```
 
 ### Re-Running All The Colony Runs with the New Version
-I am in the process of re-running everything using the newest version of colony.
+I am in the process of re-running everything using the newest version of colony. That is a good
+time to make this a wee bit more reproducible.
 
 Here what we  are up to so far:
 ```sh
@@ -95,5 +76,10 @@ slurp_up_partition_distances()
 # that puts the results into: ./scores/full_colony_new_version.txt in the repo.
 ```
 
+And, since we did that, we may as well re-run the colony-P results and the different
+genotyping error rates. Do that like this:
+```
 
+
+```
 

@@ -115,7 +115,7 @@ ff.all <- read.table("./scores/FamilyFinderAll.txt",header=T);
 cons.all <- read.table("./scores/KinaConsense75_PDs.txt",header=T);  # kinalyzer with consense option
 col.pair.all <- read.table("./scores/Colony_Pairwise_Results_All.txt",header=T);
 
-col.new.old.comp <- read.table("./scores/Colony_do_over_with_new_version.txt", header = T)
+col.new <- read.table("./scores/full_colony_new_version.txt", header = T)
 
 # restrict focus here to one Colony error setting
 col.med <- col.all[ col.all$gtyp.err.assumption == "d.02m.02",]
@@ -129,7 +129,8 @@ prt.all$GenoError <- CodeToGenoError(prt.all$Code)
 
 # now, create a list of most of those data sets, indexed by the name you want for
 # each method:
-all.data <- list(Colony=col.med, 
+all.data <- list(Colony2.0.5.0=col.new,
+                 Colony=col.med, 
                  ColonyP=col.pair.all,
                  PRT=prt.all,
                  FamilyFinder=ff.all,
@@ -146,11 +147,10 @@ the.SCEN.names <- c("NoSibs", "AllHalf", "AllPatHalf", "SmallSGs", "SmallSGs_H",
 names(the.SCEN.names) <- The.SCENS
 
 # this is for the typesetting of the table of contents, etc.
-latex.prog.names <- c("\\colony{}-P", "\\colony{}", "\\prt{}", "\\familyfinder{}", "\\kinalyzer{} 2-allele", "\\kinalyzer{} consense", 
-                      "\\colony{} assuming moderate error rate", "\\colony{} assuming no genotyping error", "\\colony{} assuming a high error rate",
-                      "\\colony{} version 2.0", "\\colony{} version 2.0.5.0")
-names(latex.prog.names) <- c("ColonyP", "Colony", "PRT", "FamilyFinder", "Kinalyzer", "KinaConsense", 
-                             "Colony d=0.02, m=0.02", "Colony d=0 m=0", "Colony d=0.07 m=0.03", "Colony version 2.0", "Colony version 2.0.5.0")
+latex.prog.names <- c("\\colony{} version 2.0.5.0", "\\colony{}-P", "\\colony{}", "\\prt{}", "\\familyfinder{}", "\\kinalyzer{} 2-allele", "\\kinalyzer{} consense", 
+                      "\\colony{} assuming moderate error rate", "\\colony{} assuming no genotyping error", "\\colony{} assuming a high error rate")
+names(latex.prog.names) <- c("Colony2.0.5.0", "ColonyP", "Colony", "PRT", "FamilyFinder", "Kinalyzer", "KinaConsense", 
+                             "Colony d=0.02, m=0.02", "Colony d=0 m=0", "Colony d=0.07 m=0.03")
 labstrs <- c("Colony d=0 m=0", "Colony d=0.07 m=0.03", "Colony d=0.02, m=0.02", "Colony version 2.0", "Colony version 2.0.5.0")
 texlabstrs <- c("ColNone", "ColHigh", "ColMed", "OldColony", "NewColony")
 names(texlabstrs) <- labstrs
@@ -194,22 +194,6 @@ for(Y in list(col.none, col.high)) {
 	merge.set <- merge(X, Y, by=c("Code","NumLoc"))
 	two.methods.all.smears(merge.set, meth1="Colony d=0.02, m=0.02", meth2=labstrs[i], outdir=OUTDIR);
 }
-
-
-
-#### NOW MAKE SOME PLOTS TO COMPARE THE NEW COLONY WITH THE OLD ####
-col.old <- col.new.old.comp[col.new.old.comp$Version=="OldColony", ]
-col.new <- col.new.old.comp[col.new.old.comp$Version=="NewColony", ]
-X <- col.old
-Y <- col.new
-write(paste("\\part{\\colony{} v2.0 compared to \\colony{} v2.0.5.0 on a limited set of runs", "\\label{sec:Colony-old-v-new}}", "\\newpage", sep=""), file=file.list, append=T)
-merge.set <- merge(X, Y, by=c("Code","NumLoc"))
-two.methods.all.smears(merge.set, meth1="Colony version 2.0", meth2="Colony version 2.0.5.0", outdir=OUTDIR)
-
-
-# once that is done, we need to remove the files that it tried to make 
-# from the scenarios that we didn't do:
-
 
 
 

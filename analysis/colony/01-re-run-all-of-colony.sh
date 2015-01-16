@@ -129,6 +129,29 @@ for NUMLOC in 5 10 15 20 25; do
 	./script/RunAllColony.sh -f -d huge-output/LottaLarge/Collections -o " $OPTSTR "  $OPTNAME 0 4 
 done >> colony-commands-for-parallel.txt 
 
+
+# 3. do the  n75 data sets using the new version of colony under the pairwise option!. Be sure to use the
+# -f option to infer allele freqs taking account of sibship structure
+for NUMLOC in 5 10 15 20 25; do
+  OPTSTR=" -l $NUMLOC -L -f -d .02 -m .02 -x ";
+	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
+	./script/RunAllColony.sh -f -d huge-output/n75/Collections -o " $OPTSTR "  $OPTNAME 0 4 
+done >> colony-commands-for-parallel.txt 
+
+
+
+
+# 4. compile up the commands to do the lotta_large data sets with the pairwise option.  Use the -f option! 
+# Once again append this stuff to colony-commands-for-parallel.txt 
+for NUMLOC in 5 10 15 20 25; do
+	OPTSTR=" -l $NUMLOC -L -f -d .02 -m .02  -x";
+	OPTNAME=$(echo $OPTSTR | sed 's/ //g; s/-//g;')
+	./script/RunAllColony.sh -f -d huge-output/LottaLarge/Collections -o " $OPTSTR "  $OPTNAME 0 4 
+done >> colony-commands-for-parallel.txt 
+
+
+
+
 # finally, we make a simple script to launch under nohup.  This requires that GNU parallel is on the system!
 # It is set here to put stuff onto 16 cores
 echo "cat colony-commands-for-parallel.txt | parallel -P 16 "   > run-colony-in-parallel.sh

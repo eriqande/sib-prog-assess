@@ -14,7 +14,7 @@ cons.all <- read.table("./scores/KinaConsense75_PDs.txt",header=T);  # kinalyzer
 col.pair <- read.table("./scores/Colony_Pairwise_Results_All.txt",header=T);  # colony with pairwise calculation
 
 
-col.med <- col.all[ col.all$gtyp.err.assumption == "d.02m.02",]
+col.med <- read.table("./scores/full_colony_new_version.txt",header=T);
 
 
 

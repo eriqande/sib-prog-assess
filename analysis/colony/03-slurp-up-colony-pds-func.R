@@ -6,7 +6,7 @@
 #' @param directory The directory holding the pmp_* files
 #' @param run_name A name that you want to give to this set of results. It ends up in the "Version" column
 #' of the resulting data frame.
-#' @param gtyp_rate  The genotyping rate at which the data were simulated.  This has to be set manually if it
+#' @param gtyp_rate  The genotyping rate assumed for a colony analysis.  This has to be set manually if it
 #' is different than d.02m.02
 #' @param score_file_name The name of the file that you want the data frame to be written to in the scores directory.
 slurp_up_partition_distances <- function(directory = "FullColonyNewResults",

@@ -20,8 +20,8 @@ cons.all <- read.table("./scores/KinaConsense75_PDs.txt",header=T);  # kinalyzer
 col.pair.all <- read.table("./scores/Colony_Pairwise_Results_All.txt",header=T);
 
 
-col.med <- col.all[ col.all$gtyp.err.assumption == "d.02m.02",]
-
+#col.med <- col.all[ col.all$gtyp.err.assumption == "d.02m.02",]
+col.med <- read.table("./scores/full_colony_new_version.txt",header=T);
 
 # now, we need to get a column of number of alleles, etc for prt.all from the Codes in the file
 prt.all$NumAlleles <- CodeToAlleNum(prt.all$Code)
