@@ -50,7 +50,7 @@ Many of the analyses were done over the course of several weeks to months of com
 I am in the process of re-running everything using the newest version of colony. That is a good
 time to make this a wee bit more reproducible.
 
-Here what we  are up to so far:
+Here what we  are up to so far---running full colony and pairwise colony at d.02m.02
 ```sh
 # clone the repository:
 git clone https://github.com/eriqande/sib-prog-assess.git
