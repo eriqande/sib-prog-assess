@@ -68,16 +68,28 @@ nohup ./01-re-run-all-of-colony.sh > Re-Run-Colony.log 2>&1 &
 # in the above I have instructed it to process the output directories that match
 # the pattern l[125][0-9]*Lfd.02m.02 which are the ones that we just ran.
 
+# we then have to compute partition distances for the pairwise versions, which have an "x"
+# on the end of the file names
+./02-analyze-colony-runs-script.sh full-colony-new-condensed-pairwise.txt  FullColonyNewPairwiseResults  huge-output/{n75,LottaLarge}/Collections/*/l[0-9]*Lfd.02m.02x
+
+
+#########################
+I've completed what's up above, but now I have to slurp it in.  FOR BOTH regular and pairwise.
+
 # then to compile all those PDs into a data frame we start R in the "colony" directory we
 # are in and do this:
 source("03-slurp-up-colony-pds-func.R")
-slurp_up_partition_distances()
+slurp_up_partition_distances()  # get the non-pairwise results (default values in function)
 
-# that puts the results into: ./scores/full_colony_new_version.txt in the repo.
+# then get the pairwise results
+slurp_up_partition_distances("FullColonyNewPairwiseResults", "ColonyNewVersionPairwise", score_file_name = "full_colony_new_version_pairwise.txt")
+
+# that puts the results into: ./scores/full_colony_new_version.txt  
+# and ./scores/full_colony_new_version_pairwise.txt in the repo.
 ```
 
-And, since we did that, we may as well re-run the colony-P results and the different
-genotyping error rates. Do that like this:
+Should we re-do the different genotyping error rates? I think I would rather just
+use the old version ones.  It is a pretty minor part of the story anyway.
 ```
 
 
