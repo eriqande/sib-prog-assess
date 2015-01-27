@@ -73,10 +73,9 @@ nohup ./01-re-run-all-of-colony.sh > Re-Run-Colony.log 2>&1 &
 ./02-analyze-colony-runs-script.sh full-colony-new-condensed-pairwise.txt  FullColonyNewPairwiseResults  huge-output/{n75,LottaLarge}/Collections/*/l[0-9]*Lfd.02m.02x
 
 
-#########################
-I've completed what's up above, but now I have to slurp it in.  FOR BOTH regular and pairwise.
+# Once that is done, you have to slurp the results in for both regular and pairwise.
 
-# then to compile all those PDs into a data frame we start R in the "colony" directory we
+# compile all those PDs into a data frame we start R in the "colony" directory we
 # are in and do this:
 source("03-slurp-up-colony-pds-func.R")
 slurp_up_partition_distances()  # get the non-pairwise results (default values in function)
@@ -86,6 +85,17 @@ slurp_up_partition_distances("FullColonyNewPairwiseResults", "ColonyNewVersionPa
 
 # that puts the results into: ./scores/full_colony_new_version.txt  
 # and ./scores/full_colony_new_version_pairwise.txt in the repo.
+
+## And finally we need to compute the colony running times from the log file ColonyRuns_ProgressLog.txt.
+# There is a script for that. From within the analysis/colony directory (still), do this:
+source("04-compute-and-store-colony-times.R")
+
+# that produces the files:
+# ./scores/full_colony_new_version_pairwise_with_times.txt
+# ./scores/full_colony_new_version_with_times.txt
+# which are the ones that will be used to make the plots and summarize results, etc.
+
+
 ```
 
 Should we re-do the different genotyping error rates? I think I would rather just
