@@ -129,7 +129,7 @@ prt.all$GenoError <- CodeToGenoError(prt.all$Code)
 
 # now, create a list of most of those data sets, indexed by the name you want for
 # each method:
-all.data <- list(Colony2.0.5.0=col.new,
+all.data <- list(Colony2.0.5.2=col.new,
                  Colony=col.med, 
                  ColonyP=col.pair.all,
                  PRT=prt.all,
@@ -147,9 +147,9 @@ the.SCEN.names <- c("NoSibs", "AllHalf", "AllPatHalf", "SmallSGs", "SmallSGs_H",
 names(the.SCEN.names) <- The.SCENS
 
 # this is for the typesetting of the table of contents, etc.
-latex.prog.names <- c("\\colony{} version 2.0.5.0", "\\colony{}-P", "\\colony{}", "\\prt{}", "\\familyfinder{}", "\\kinalyzer{} 2-allele", "\\kinalyzer{} consense", 
+latex.prog.names <- c("\\colony{} version 2.0.5.2", "\\colony{}-P", "\\colony{}", "\\prt{}", "\\familyfinder{}", "\\kinalyzer{} 2-allele", "\\kinalyzer{} consense", 
                       "\\colony{} assuming moderate error rate", "\\colony{} assuming no genotyping error", "\\colony{} assuming a high error rate")
-names(latex.prog.names) <- c("Colony2.0.5.0", "ColonyP", "Colony", "PRT", "FamilyFinder", "Kinalyzer", "KinaConsense", 
+names(latex.prog.names) <- c("Colony2.0.5.2", "ColonyP", "Colony", "PRT", "FamilyFinder", "Kinalyzer", "KinaConsense", 
                              "Colony d=0.02, m=0.02", "Colony d=0 m=0", "Colony d=0.07 m=0.03")
 labstrs <- c("Colony d=0 m=0", "Colony d=0.07 m=0.03", "Colony d=0.02, m=0.02", "Colony version 2.0", "Colony version 2.0.5.0")
 texlabstrs <- c("ColNone", "ColHigh", "ColMed", "OldColony", "NewColony")

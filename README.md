@@ -1,6 +1,6 @@
 # sib-prog-assess
 
-This is LaTeX code to typeset a paper I wrote with Anthony Almudevar for Molecular Ecology Resources that evaluates a variety of sibship reconstruction software programs using simulated microsatellite data.  We are planning to submit it in July 2014. We are just awaiting the conclusion of the internal NMFS review process before sending it in.
+This is LaTeX code to typeset a paper I wrote with Anthony Almudevar for Molecular Ecology Resources that evaluates a variety of sibship reconstruction software programs using simulated microsatellite data.  We are planned to submit it in July 2014, upon the conclusion of the internal NMFS review process, but then it got put on the back burner while I updated some of the simulations.
 
 It also includes a lot of data and scripts to create most of the plots for the paper.
 
@@ -94,10 +94,9 @@ source("04-compute-and-store-colony-times.R")
 # ./scores/full_colony_new_version_pairwise_with_times.txt
 # ./scores/full_colony_new_version_with_times.txt
 # which are the ones that will be used to make the plots and summarize results, etc.
-
-
 ```
 
+After that, 
 Should we re-do the different genotyping error rates? I think I would rather just
 use the old version ones.  It is a pretty minor part of the story anyway.
 ```

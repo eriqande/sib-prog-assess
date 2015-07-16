@@ -18,10 +18,11 @@ ff.all <- read.table("./scores/FamilyFinderAll.txt",header=T);
 cons.all <- read.table("./scores/KinaConsense75_PDs.txt",header=T);  # kinalyzer with consensus option
 #prt.all <- read.table("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/prt_part_dists_computed_by_eca.txt",header=T);
 col.pair.all <- read.table("./scores/Colony_Pairwise_Results_All.txt",header=T);
+col.new <- read.table("./scores/full_colony_new_version.txt", header=T);
+col.pair.new <- read.table("./scores/full_colony_new_version_pairwise.txt", header = TRUE)
 
+col.med <- col.all[ col.all$gtyp.err.assumption == "d.02m.02",]
 
-#col.med <- col.all[ col.all$gtyp.err.assumption == "d.02m.02",]
-col.med <- read.table("./scores/full_colony_new_version.txt",header=T);
 
 # now, we need to get a column of number of alleles, etc for prt.all from the Codes in the file
 prt.all$NumAlleles <- CodeToAlleNum(prt.all$Code)
@@ -72,7 +73,8 @@ for(panel.num in 1:6) {
   }
   
 
-
+col.new.a <- col.new[col.new$NumLoc==LOCS & col.new$NumAlleles==ALLES & col.new$Scenario!="lotta_large",]
+col.pair.new.a <- col.pair.new[col.pair.new$NumLoc==LOCS & col.pair.new$NumAlleles==ALLES  & col.pair.new$Scenario!="lotta_large",]
 col.a <- col.med[col.med$NumLoc==LOCS & col.med$NumAlleles==ALLES & col.med$Scenario!="lotta_large",]
 kina.a <- kina.all[kina.all$NumLoc==LOCS & kina.all$NumAlleles==ALLES  & kina.all$Scenario!="lotta_large",]
 ff.a <- ff.all[ff.all$NumLoc==LOCS & ff.all$NumAlleles==ALLES  & ff.all$Scenario!="lotta_large",]
@@ -82,7 +84,7 @@ col.pair.a <- col.pair.all[col.pair.all$NumLoc==LOCS & col.pair.all$NumAlleles==
 
 
 
-global.max <- max(col.a$part.dist2, col.pair.a$part.dist2, prt.a$part.dist.2, kina.a$part.dist2,ff.a$part.dist2,cons.a$part.dist2);
+global.max <- max(col.new.a$part.dist2, col.pair.new.a$part.dist2, col.a$part.dist2, col.pair.a$part.dist2, prt.a$part.dist.2, kina.a$part.dist2,ff.a$part.dist2,cons.a$part.dist2);
 
 for(GENERR in c("n","l","h")) {
 left.right <- 0;
@@ -91,6 +93,8 @@ for (SCEN in The.SCENS ) {
   left.right <- left.right + 1;
   
   # get the data we want in some convenient variable names
+  col.new.b.n <- col.new.a$part.dist2[col.new.a$Scenario==SCEN & col.new.a$GenoError==GENERR];
+  col.pair.new.b.n <- col.pair.new.a$part.dist2[col.pair.new.a$Scenario==SCEN  & col.pair.new.a$GenoError==GENERR];
   col.b.n <- col.a$part.dist2[col.a$Scenario==SCEN & col.a$GenoError==GENERR];
   kina.b.n <-  kina.a$part.dist2[kina.a$Scenario==SCEN  & kina.a$GenoError==GENERR];
   cons.b.n <- cons.a$part.dist2[cons.a$Scenario==SCEN   & cons.a$GenoError==GENERR];
@@ -101,7 +105,7 @@ for (SCEN in The.SCENS ) {
 
   if(GENERR=="n") {
     par(mar=c(0,.5,3,.5)+.1)
-    box.names=rep("",6);
+    box.names=rep("",8);
     box.main=paste(the.SCEN.names[SCEN]);
     if(panel.num %% 2 == 0) {
       box.main=""
@@ -109,12 +113,12 @@ for (SCEN in The.SCENS ) {
   }
   if(GENERR=="l") {
     par(mar=c(.25,.5,.25,.5)+.1)
-    box.names=rep("",6);
+    box.names=rep("",8);
     box.main="";
   }
    if(GENERR=="h") {
     par(mar=c(3,.5,0,.5)+.1)
-    box.names=c("CO", "CP", "PRT", "FF","K2","KC");
+    box.names=c("C25", "C2", "C25P", "C2P", "PRT", "FF","K2","KC");
     box.main="";
   }
   if(left.right>1) {
@@ -125,20 +129,23 @@ for (SCEN in The.SCENS ) {
     #par(mar=par("mar")+c(0,1.5,0,0))
   }
 
-  boxlist <- list(col.b.n,
-  				col.pair.b.n,
-  				prt.b.n,
-          ff.b.n,
-          kina.b.n,
-          cons.b.n);
-
+  boxlist <- list(col.new.b.n,
+                  col.b.n,
+                  col.pair.new.b.n,
+                  col.pair.b.n,
+                  prt.b.n,
+                  ff.b.n,
+                  kina.b.n,
+                  cons.b.n
+                  );
+  
   boxlistmax <- max(unlist(boxlist))
   
   boxplot(x=boxlist,
           lwd=1,
           #ylim=c(0,global.max),
           ylim=c(0,75),
-          boxwex=.3,
+          boxwex=.4,
           names=box.names,
           las=2,
           yaxt=box.yaxt,
