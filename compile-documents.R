@@ -13,19 +13,32 @@ if(any(!file.exists("suppl", "sib-prog-assess.Rproj"))) stop("It appears you are
 
 #### Generate the supplement plots.  Output goes to ./tmp/plots/ ####
 source("R/all_smearograms.R")  # make the smearogram plots.  Ouput goes to ./tmp/plots/smearograms
+
+######## THIS NEEDS TO BE REDONE STILL ##########
 source("R/BiggestSibshipAndSingletons.R") # output goes to ./tmp/plots/biggest_sibship
+
+
 source("R/make_boxplots.R")   # output goes to  ./tmp/plots/boxplots
+
+######## THIS NEEDS TO BE REDONE STILL ##########
 source("R/make_running_time_supplement_plots.R")  # output goes to  ./tmp/plots/running_times
 
 
 
 
 #### Generate the figures for the main document
-#### NOTE! THIS IS DISABLED AT THE MOMENT.  NOT PORTABLE. 
-# source("R/make-main-text-figures.R")
-# Note that the above, even if run, does not do the final copying of 
-# figures to the sib_assess_tex/images as would be needed.
+source("R/make-main-text-figures.R")
 
+# now I need to copy all those new figures to sib_assess_tex/images
+# I have this set to not do it automatically, since those images get
+# committed with the repository
+for(file in c("boxplots_for_paper10_num1.pdf",  "boxplots_for_paper25_num2.pdf",  "lotta_large_boxplots.pdf",      
+              "prt_ff_and_col_pair_smears.pdf", "various_kina_smears.pdf")) {
+  file.copy(file.path("tmp/plots/figures_for_main_paper", file), 
+            file.path("sib_assess_tex/images/", file),
+            overwrite = TRUE)
+  print(file)
+}
 
 
 

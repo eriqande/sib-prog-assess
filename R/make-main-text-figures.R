@@ -6,33 +6,6 @@ source("./R/all_aggregated_smearograms.R")
 
 
 
-# function to do fix-fragging calls
-# infile should have no extension. nor should outfile
-fix_frag <- function(infile, outfile, addToTop=10) {
-	CALL <- paste("latex ", infile, ".tex;  ", 
-	               "FixFrag.sh ", infile, ".dvi dump.pdf;  ",
-	                "awk '/^%%BoundingBox:/ {$NF+=", addToTop, "; print; next} {print}' dump.eps > ", outfile, ".eps;  ",
-	                " epstopdf ", outfile, ".eps",
-	                sep="")
-	
-	 system(CALL)
-	 return(paste(outfile, ".pdf", sep=""))
-}
-
-
-### NOT DOING FIX-FRAGGING ON GITHUB.  NOT PORTABLE
-# now do it:
-# now try fix-fragging
-#setwd("./image_forge")
-# then copy the files that need fix-fragging into ./image_forge
-#stopifnot(all(file.copy(file.path(FINFIGOUT, c("various_kin_smears.eps", "prt_ff_and_col_pair_smears.eps") ),  "./image_forge")))
-#final_fig <- fix_frag("various_kin_smear_forge", "various_kin_smear", 10)
-#file.copy(final_fig, IMGDIR, overwrite=T)
-#final_fig <- fix_frag("prt_ff_pair_smear_forge", "prt_ff_pair_smear", 10)
-#file.copy(final_fig, IMGDIR, overwrite=T)
-
-
-
 ## now compute some quantities:
 cvprt<-droplevels(col.vs.prt[col.vs.prt$Scenario.x!="lotta_large",])
 mean(cvprt$part.dist.x<=cvprt$part.dist.y)  # how many does colony do better than PRT?

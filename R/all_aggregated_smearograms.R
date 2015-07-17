@@ -5,13 +5,11 @@ dir.create(OUTDIR, recursive = TRUE)
 load("./scores/PRT_April_1_2014_party_dists.rda")
 prt.all <- PRT_party_dists
 rm(PRT_party_dists)
-#prt.all <- read.table("/Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/prt_part_dists_computed_by_eca.txt",header=T);
-col.all <- read.table("./scores/Colony_Results_All.txt",header=T);
 kina.all <- read.table("./scores/Kinalyzer75s_PDs_and_Time.txt",header=T);
 ff.all <- read.table("./scores/FamilyFinderAll.txt",header=T);
 cons.all <- read.table("./scores/KinaConsense75_PDs.txt",header=T);  # kinalyzer with consense option
 
-col.pair <- read.table("./scores/Colony_Pairwise_Results_All.txt",header=T);  # colony with pairwise calculation
+col.pair <- read.table("./scores/full_colony_new_version_pairwise.txt",header=T);  # colony with pairwise calculation
 
 
 col.med <- read.table("./scores/full_colony_new_version.txt",header=T);
@@ -44,7 +42,6 @@ kina.vs.cons <- merge(kina.all,cons.all,by=c("Code","NumLoc"));
 col.vs.prt <- merge(col.med, prt.all, by=c("Code","NumLoc"));
 col.vs.col.pair <- merge(col.med, col.pair, by=c("Code","NumLoc"));
 
-alph=c("a","b","c","d","e","f");
 
 
 
@@ -71,7 +68,7 @@ aggregated.smear.panel <- function(pd1,
          main=main.lab,
          col=my.colors[as.numeric(as.factor(GenoError))],
          pch=20,
-         cex=.15,
+         cex=.28,
          xlim=c(0,80), #c(0,max(pd1+r1,pd2+r2,na.rm=T)),
          ylim=c(0,80), #c(0,max(pd1+r1,pd2+r2,na.rm=T)),
          xlab=x.label,
@@ -100,78 +97,110 @@ aggregated.smear.panel <- function(pd1,
 
 
 # here is a function to take a pairwise comparison table X and
-# make a series of plots out of it.  Each scenario gets its own
-# page with all the PD calcs on it.  Note that the first of the pair
-# should have columns suffixed with x and the second with y
-aggregated.two.methods.smears <- function(X, meth1="Method1", meth2="Method2", filepref="file", columns=1:4, letters=alph) {
-  par(mar=c(4.1, 4.1, 3.1, 1.1))
+# make a series of plots out of it.  These are desiged to be panels
+# in an mfrow context
+agg.2m.smear.with.exp <- function(X, filepref="file", column=1, letter="a", 
+                                  xlabel = expression(Try~This~ Cr[ap]),
+                                  ylabel = expression(Or~This~Cra^p)) {
+  par(mar=c(4.1, 4.7, 3.1, 1.1))
   DISTS <- c("part.dist","part.dist2","trimmed.part.dist","trimmed.part.dist2");  # will be convenient to have
-  sDists <- c("w","x","y","z");
+  
   xd <- paste(DISTS,"x",sep=".");
   yd <- paste(DISTS,"y",sep=".");
   
-#  for (g in c('n','l','h')) { # cycle over genotyping error levels
-    d <- X [, c(xd,yd,"NumLoc","NumAlleles.x","GenoError.x")];  # now d has just the rows of interest and just the columns we want too
-                                        # now we cycle over the different versions of partition distances and plot them
-    c <- 0;
-    for(p in columns)  {
-      c <- c+1;
-      x <- d[,p];
-      y <- d[,4+p];  # this assumes there are four different partition distances we are dealing with
-      
-      aggregated.smear.panel(x,
-                  y,
-                  LN=d$NumLoc,
-                  GenoError=d$GenoError.x,
-                  x.label=paste(meth1,sDists[p],sep=""),
-                  y.label=paste(meth2,sDists[p],sep=""),
-                  #main.lab=paste(sDists[p],sep=" "),
-                  abc=paste("(",letters[c],")",sep=""),
-                  );
-      
-    }
-#  }
-#  dev.copy2eps(file=paste(filepref,"_",meth1,"_vs_",meth2,SCEN,".eps", sep=""));
+  d <- X [, c(xd,yd,"NumLoc","NumAlleles.x","GenoError.x")];  # now d has just the rows of interest and just the columns we want too
+  
+  # now we cycle over the different versions of partition distances and plot them
+  c <- 0;
+  p <- column
+    c <- c+1;
+    x <- d[,p];
+    y <- d[,4+p];  # this assumes there are four different partition distances we are dealing with
+    
+    
+    aggregated.smear.panel(x,
+                           y,
+                           LN=d$NumLoc,
+                           GenoError=d$GenoError.x,
+                           x.label=xlabel,
+                           y.label=ylabel,
+                           abc=paste("(",letter,")",sep="")
+    );
 }
 
 
 
-#### MAKE THE PLOTS ####
+#### MAKE THE FIRST AGGREGATED SMEAROGRAM PLOT ####
 # make colony vs kinalyzer and show all 4 PD types in a 2x2 matrix and put another row below that
 # for the consense option.
-#postscript(file=file.path(OUTDIR, "various_kina_smears.ps"), height=7.4, width=5.9)
-quartz("various_kina_smears.ps", height=7.4, width=5.9)
+pdf(file = file.path(OUTDIR, "various_kina_smears.pdf"), height=7.4, width=5.9)
 par(mfrow=c(3,2))
-aggregated.two.methods.smears(col.vs.kina,meth1="c",meth2="k");
+#aggregated.two.methods.smears(col.vs.kina,meth1="Colony 2.0.5.2",meth2="Kinalyzer 2-allele");
+agg.2m.smear.with.exp(col.vs.kina, column = 1, letter = "a",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[AP]),
+                      ylabel = expression("Kinalyzer 2-allele "~PD[AP]))
 
-# then we want to make two more plots on the bottom for the consense algorithm
-# here c=Colony, k=kinalyzer two allele, b=consense
-aggregated.two.methods.smears(col.vs.cons,meth1="c",meth2="b",columns=c(2),letters="e");
-aggregated.two.methods.smears(kina.vs.cons,meth1="k",meth2="b",columns=c(2),letters="f");
-dev.copy2eps(file=file.path(OUTDIR, "various_kin_smears.eps"));
-#dev.off()
+agg.2m.smear.with.exp(col.vs.kina, column = 2, letter = "b",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      ylabel = expression("Kinalyzer 2-allele "~PD[S]))
+
+agg.2m.smear.with.exp(col.vs.kina, column = 3, letter = "c",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[AP]^T),
+                      ylabel = expression("Kinalyzer 2-allele "~PD[AP]^T))
+
+agg.2m.smear.with.exp(col.vs.kina, column = 4, letter = "d",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
+                      ylabel = expression("Kinalyzer 2-allele "~PD[S]^T))
+
+agg.2m.smear.with.exp(col.vs.cons, column = 2, letter = "e",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      ylabel = expression("Kinalyzer consense "~PD[S]))
+
+agg.2m.smear.with.exp(kina.vs.cons, column = 2, letter = "f",
+                      xlabel = expression("Kinalyzer 2-allele "~PD[S]),
+                      ylabel = expression("Kinalyzer consense "~PD[S]))
+dev.off()
 
 
 
+
+#### MAKE THE SECOND AGG SMEARO FIGURE ####
 # now we are going to do another 3 by 2 set of panels.  The top row will be the
 # PRT results.  The middle the Family Finder Results and the bottom the colony pairwise
 # results.
-#postscript(file = file.path(OUTDIR, "prt_ff_and_col_pair_smears.eps"), height=7.4, width=5.9)
-quartz("prt_ff_and_col_pair_smears.eps", height=7.4, width=5.9)
+pdf(file = file.path(OUTDIR, "prt_ff_and_col_pair_smears.pdf"), height=7.4, width=5.9)
 par(mfrow=c(3,2))
+
 col.vs.prt75s <- col.vs.prt[ col.vs.prt$Scenario.x != "lotta_large", ]
-aggregated.two.methods.smears(col.vs.prt75s, meth1="c", meth2="p",columns=c(2),letters="a");
-aggregated.two.methods.smears(col.vs.prt75s, meth1="c", meth2="p",columns=c(4),letters="b");
-
 col.vs.ff75s <- col.vs.ff[ col.vs.ff$Scenario.x!="lotta_large",]
-aggregated.two.methods.smears(col.vs.ff75s,meth1="c",meth2="f",columns=c(2),letters="c");
-aggregated.two.methods.smears(col.vs.ff75s,meth1="c",meth2="f",columns=c(4),letters="d");
-
 col.vs.pair75s <- col.vs.col.pair [ col.vs.col.pair$Scenario.x != "lotta_large", ]
-aggregated.two.methods.smears(col.vs.pair75s, meth1="c",meth2="a",columns=c(2),letters="e");
-aggregated.two.methods.smears(col.vs.pair75s, meth1="c",meth2="a",columns=c(4),letters="f");
-dev.copy2eps(file = file.path(OUTDIR, "prt_ff_and_col_pair_smears.eps"));
-#dev.off()
+
+
+agg.2m.smear.with.exp(col.vs.prt75s, column = 2, letter = "a",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      ylabel = expression("PRT "~PD[S]))
+
+agg.2m.smear.with.exp(col.vs.prt75s, column = 4, letter = "b",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
+                      ylabel = expression("PRT "~PD[S]^T))
+
+agg.2m.smear.with.exp(col.vs.ff75s, column = 2, letter = "c",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      ylabel = expression("Family Finder "~PD[S]))
+
+agg.2m.smear.with.exp(col.vs.ff75s, column = 4, letter = "d",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
+                      ylabel = expression("Family Finder "~PD[S]^T))
+
+agg.2m.smear.with.exp(col.vs.pair75s, column = 2, letter = "e",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      ylabel = expression("Colony-P 2.0.5.2 "~PD[S]))
+
+agg.2m.smear.with.exp(col.vs.pair75s, column = 4, letter = "f",
+                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
+                      ylabel = expression("Colony-P 2.0.5.2 "~PD[S]^T))
+
+dev.off()
 
 
 
