@@ -17,10 +17,12 @@ suppressWarnings(file.remove(latex.comms))
 load("./scores/prt_archive_03_30_2014.rData")  # get the latest results from Tony
 
 dl <- list(
-  co=read.table("./scores/Colony_Results_All.txt", header=T),
+  c25 = read.csv("./scores/full_colony_new_version_with_times.txt"),
+  c25p = read.csv("./scores/full_colony_new_version_pairwise_with_times.txt"),
+  c2=read.table("./scores/Colony_Results_All.txt", header=T),
   ki=read.table("./scores/Kinalyzer75s_PDs_and_Time.txt", header=T),
   ff=read.table("./scores/FamilyFinderAll.txt", header=T),
-  cp=read.table("./scores/Colony_Pairwise_Results_All.txt", header=T),
+  c2p=read.table("./scores/Colony_Pairwise_Results_All.txt", header=T),
   prt=prt.archive  # these are the results that Tony sent on April 1. (after I put them in a text format).  They differ only in lotta_large from the results in Sept 2012.
 )
 
@@ -34,7 +36,7 @@ dl$prt$Number <- as.integer(gsub("r", "", dl$prt$Replication))
 
 
 # now, drop the other two genotyping error assumptions for colony:
-dl$co <- dl$co[dl$co$gtyp.err.assumption=="d.02m.02", ]
+dl$c2 <- dl$c2[dl$c2$gtyp.err.assumption=="d.02m.02", ]
 
 # if you want to see how many of each condition were done, you can do this:
 # Note that this will create some partially matched name warnings.
@@ -58,10 +60,10 @@ cnts.not.na<-lapply(dm, function(x) {x<-x[!is.na(x$Minutes), ]; table(x$GenoEr, 
 
 # rbind the rows into a long data frame, but drop KI because it is way too high and it screws up
 # the plots because the upper ylim is so high
-stacked<-rbind(dm$co, dm$ff, dm$cp, dm$prt)
+stacked<-rbind(dm$c25, dm$c25p, dm$c2, dm$ff, dm$c2p, dm$prt)
 
 # make sure that the Meth is a factor
-stacked$Meth <- factor(stacked$Meth)
+stacked$Meth <- factor(stacked$Meth, levels = c("C25", "C2", "C25P", "C2P", "PRT", "FF"))
 
 # now let's refactor GenoError and force the levels to be ordered as we want them to be:
 stacked$GenoError <- factor(stacked$GenoError, levels=c("n","l","h"))
@@ -76,8 +78,8 @@ for(S in The.SCENS) { # cycle over the Scenarios.  One page of plots for each sc
   
   # open the pdf device and set 'er up
   pdf(file.path(OUTDIR, file.name), 1.2*11, 1.2*7.3)
-  par(oma=c(0,4,4,0))
-  par(mar=rep(2.1,4))
+  par(oma=c(0,3,3,0))
+  par(mar=rep(2.1,4) + c(2, 0 , 0, 0))
   par(mfrow=c(5,5))
   
   for(A in seq(5,25,by=5)) {
@@ -91,8 +93,9 @@ for(S in The.SCENS) { # cycle over the Scenarios.  One page of plots for each sc
       
       # make the main plot		
       boxplot(ss$Minutes[pick] ~ ss$Meth[pick], 
-              outline=F, boxwex=.25, ylim=c(0, 1.22*max(b.vals$stats[5,], na.rm=T)),
-              border="black"
+              outline=F, boxwex=.2, ylim=c(0, 1.22*max(b.vals$stats[5,], na.rm=T)),
+              border="black",
+              las = 2
       )
       mtext(paste(A, "Alleles ", L, "Loci"), 3, .85, adj=.5, cex=.76)  # put the title on this way, because it needs to be a little further out than normal
       
@@ -131,7 +134,7 @@ for(S in The.SCENS) { # cycle over the Scenarios.  One page of plots for each sc
   
   # make a pdf file and write a line to the latex file
   dev.off() 
-  write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{Running times of \\colony{} (CO), \\colony{}-P (CP), \\familyfinder{} (FF), and \\prt{} (PRT) in scenario ",SCEN.latex[S], "} \\label{fig:run-time-noki-",S,"} \\end{figure}\\clearpage", sep=""),
+  write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{Running times of  \\colony{} 2.0.5.2 (C25), \\colony{} 2.0.5.2-P (C25P), \\colony{} 2.0 (C2), \\colony{} 2.0-P (C2P), \\familyfinder{} (FF), and \\prt{} (PRT) in scenario ",SCEN.latex[S], "} \\label{fig:run-time-noki-",S,"} \\end{figure}\\clearpage", sep=""),
         file=latex.comms, append=T)
 }
 
