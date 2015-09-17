@@ -7,6 +7,29 @@ source("./R/all_aggregated_smearograms.R")
 
 
 ## now compute some quantities:
+
+# how about colony vs kinalyer?
+colki <- droplevels(col.vs.kina[col.vs.kina$Scenario.x != "lotta_large",])
+mean(colki$part.dist.x<=colki$part.dist.y)  # how many does colony do better than Kinalyzer with the AP distance?
+mean(colki$part.dist2.x<=colki$part.dist2.y)  # how many does colony do better than Kinalyzer with the S distance?
+mean(colki$trimmed.part.dist2.x<=colki$trimmed.part.dist2.y, na.rm = T) # trimmed distance
+table(colki$Scenario.x, colki$part.dist2.x<=colki$part.dist2.y)
+
+
+
+
+colcons <- droplevels(col.vs.cons[col.vs.cons$Scenario.x != "lotta_large",])
+mean(colcons$part.dist.x<=colcons$part.dist.y)  # how many does colony do better than Kinalyzer with the AP distance?
+mean(colcons$part.dist2.x<=colcons$part.dist2.y)  # how many does colony do better than Kinalyzer with the S distance?
+table(colcons$Scenario.x, colcons$part.dist2.x<=colcons$part.dist2.y)
+
+
+# how does colony do compared to FF?
+colff <- droplevels(col.vs.ff[col.vs.ff$Scenario.x != "lotta_large",])
+mean(colff$part.dist.x<=colff$part.dist.y)  # how many does colony do better than FF 
+
+
+
 cvprt<-droplevels(col.vs.prt[col.vs.prt$Scenario.x!="lotta_large",])
 mean(cvprt$part.dist.x<=cvprt$part.dist.y)  # how many does colony do better than PRT?
 

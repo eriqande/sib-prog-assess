@@ -1,4 +1,4 @@
-%!TEX root = sib_prog_eval_two_columns.tex
+q%!TEX root = sib_prog_eval_two_columns.tex
 
 \section*{Introduction}
 
@@ -151,7 +151,7 @@ Relationship Configuration (10) & ~~No.~of Alleles (5)~~ & ~~No. of Loci (5)~~ &
 
 
 \subsection*{Inference Programs}
-We analyzed the simulated data using four different programs: \colony{}{\sc~2} \citep{wang04,wang09, 
+We analyzed the simulated data using four different programs: \colony{} \citep{wang04,wang09, 
 Wang2012pairwise}, \prt~V2.2 \citep{almudevar99,alm&and11}, \kinalyzer{} 
 \citep{bergerwolf07,ashley09,sheik08}, and \familyfinder{} \citep{beyer03}.  These methods were chosen 
 for their prominence in the published literature, their inclusion as sibship reconstruction methods in 
@@ -164,13 +164,19 @@ estimation of pairwise relatedness.
 
 
 \colony{} uses simulated annealing to search for the maximum-likelihood partition of a sample into 
-collections of full siblings, possibly nested within half siblings.  This can require a considerable 
+collections of full siblings, possibly nested within half siblings. We initially applied \colony~{\sc 2.0} to the simulated data 
+sets.  However, after we launched this simulation project, \citet{Wang2013} described significant improvements made to \colony{} 
+to reduce the splitting
+of large sibships \citep{alm&and11} and to better control the identification of small spurious sibling groups.  
+Accordingly, we repeated the analysis using the updated
+version \colony~{\sc 2.0.5.2}.  We report results for both versions of the program.  Runs of the software
+\colony{} can require a considerable 
 amount of time.  Therefore, in choosing program settings, we chose ones that would decrease running 
 time if possible: polygamy was allowed in just a single sex, allele frequencies were not updated, run 
 length was set to 1, precision was set to ``low'' but the full likelihood method was used. \colony{} 
 has a well developed model for genotyping errors, allowing for both dropout errors and miscall errors. 
 For most runs we set the rate of dropouts and miscalls used in \colony{}'s likelihood calculation to 
-both be 0.02.  In a smaller subset of runs we investigated the effect of changing the genotyping error 
+both be 0.02.  In a smaller subset of runs using \colony~{\sc 2.0} we investigated the effect of changing the genotyping error 
 rate settings in \colony{} to $d=0.07,\ m=0.03$ and also to $d=0.0,\ m=0.0$.    Note that although we 
 allowed \colony{} to infer half-sibling groups, we did not evaluate how well it inferred half-sibling 
 groups, only how well it inferred the full sibling groups. The program \colony{} has an option to 
@@ -180,10 +186,7 @@ the product of pairwise probabilities over individuals that occur together in th
 and yet is more accurate than other approaches based on Mendelian incompatibility or different 
 formulations of pairwise likelihood and is only slightly less accurate than the full likelihood method.  
 We call this approximate \colony{} algorithm \colony{}-P and we assess its performance on a subset of 
-our simulated data.  After we had completed all the simulations a new
-version was released \citep{Wang2013} with improvements to reduce the splitting of large sibling groups noted by 
-\citet{alm&and11}. This new version also reduces the occurrence of small, spurious sibling groups.
-We consequently re-ran a subset of our data sets (suggested by J.~Wang) with this new version, \colony{}-2.0.5.0, to highlight the improvements.
+our simulated data. 
 
 
 
@@ -228,16 +231,20 @@ than the name of the file holding the input data.
 \begin{tabular}{lllrr}
 \hline
 Software & Varied Settings~~~~~~~ & Data Scenarios & No.~Rep & Total \\ \hline
-\colony{} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
+\colony~{\sc 2.0.5.2} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
+          &                  & \lottalarge{}          & 5  &    375 \\      
+\\
+\colony{}-P~{\sc 2.0.5.2} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
+            &                  & \lottalarge{}          & 5  &    375\\
+ \\
+
+\colony~{\sc 2.0} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
           &                  & \lottalarge{}          & 5  &    375 \\      
           & $d=0.0$; $m=0.0$ & $n75$ scenarios & 5  &    3,375 \\ 
           & $d=0.07$; $m=0.03$ & $n75$ scenarios & 5  &    3,375 \\     
  \\
-\colony{}-P & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
+\colony{}-P~{\sc 2.0} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
             &                  & \lottalarge{}          & 5  &    375\\
- \\
- \colony{}-2.0.5.0 & $d=0.02$; $m=0.02$ & \nosibs{}, \allhalf{} & 15 & 180$^a$ \\
-          &                  & \lottalarge{}          & 5  &    75$^b$ \\      
 \\
 \prt{}      &    See Appendix~5              & $n75$ scenarios & 15 & 10,125 \\
             &                  & \lottalarge{}          & 15  &    1,125\\
@@ -344,7 +351,8 @@ the large middle panel for data with $d=.02$ and $m=.01$ and the bottom panel fo
 \end{center}
 \end{sidewaysfigure*}
 %%
-It is clear that \colony{} performs without error in almost all cases.  Equally evident is the fact 
+It is clear that \colony{} (both versions 2.0.5.2 and 2.0) performs without error in almost all cases.
+Equally evident is the fact 
 that \kinalyzer{}, in both its ``2-allele'' and ``consense'' forms, performs considerably worse (almost 
 uniformly so) than all other programs.  As discussed below, \kinalyzer{}'s apparent performance 
 relative to \colony{}'s is not markedly improved by using the different partition distances that are 
@@ -356,10 +364,9 @@ siblings, or which include just one large sibship, regardless of whether the sam
 half-siblings or not; however, it has quite high $\PDS$ values in cases where small true full sibling groups 
 occur in the sample.  From the raw output in those cases (not shown), it is apparent that the errors 
 made by \prt{} consist primarily of true sibships of size two that it fails to identify and also of 
-incorrectly inferred sibgroups of size 2, but not larger.  \colony{}-P performs as well as \colony{} in 
-the three scenarios that include no true full siblings, and it also performs nearly as well as 
-\colony{} in scenarios with true full sibling groups that are not very large; however it doesn't 
-perform as well in the \onelargenoh{} and \onelargewh{} scenarios.
+incorrectly inferred sibgroups of size 2, but not larger.  Within the same version, \colony{}-P never performs
+as well as the full-likelihood version of \colony{}; however, with this large amount of data, it does not
+perform much worse.
 
 The results are somewhat different when $A=10$ and $L=10$ (Figure~\ref{fig:boxp2}{\em b})
 %% NOTE: These Boxplots figures have been made with the script:
@@ -397,10 +404,10 @@ conditions.
 Direct comparisons between pairs of inference methods on the same simulated data sets gives a useful 
 sense of overall performance and helps to identify strengths and weaknesses of each method. A 
 comprehensive display of such pairwise comparisons, broken down by simulation scenario and genotyping 
-error rate, is available in Supplement~2. Across most of the scenarios, \colony{} typically performed 
+error rate, is available in Supplement~2. Across almost all of the scenarios, \colony~{\sc 2.0.5.2} performed 
 as well or better than the other methods, so it is a natural choice for comparison.
 Here, we will present and interpret several scatterplots comparing the performance of each method to 
-\colony{} on all of the $n75$ simulated data sets at once.  Such a presentation loses a considerable 
+\colony~{\sc 2.0.5.2} on all of the $n75$ simulated data sets at once.  Such a presentation loses a considerable 
 amount of the information expressed in the figures of Supplement~2, but still captures important 
 features.  Where it is helpful, we will refer readers to relevant individual figures in the 
 Supplements.
@@ -417,7 +424,7 @@ the \kinalyzer{} solution and the truth.
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=.8\textwidth]{images/various_kina_smears.pdf}  %% Change extension from jpg to pdf for final version
+\includegraphics[width=.8\textwidth]{images/various_kina_smears.jpg}  %% Change extension from jpg to pdf for final version
 \end{center}
 \newcommand{\cvksmearcaption}{Scatterplots assessing performance of \kinalyzer{}.  {\em a}--{\em d} present comparisons of 
 \colony{} versus \kinalyzer{}'s 2-allele algorithm for 10,125 simulated data sets, showing values of $
@@ -437,8 +444,8 @@ Each of the four panels in Figure~\ref{fig:cvksmear}{\em a--d} summarizes the re
 distance metric.  On the whole, it appears that \colony{} outperforms \kinalyzer{} regardless of which 
 distance is used, but, as predicted, by failing to penalize for biologically impossible solutions, the 
 $\W$ and $\WT$ formulations indicate that \kinalyzer{} performs better than it actually does.   
-Nonetheless, even assessing performance with $\W$ (Figure~\ref{fig:cvksmear}{\em a}), \colony{} 
-performs as well or better than \kinalyzer{} on more than 91\% of the simulated data sets. 
+Nonetheless, even when assessing performance with $\W$ (Figure~\ref{fig:cvksmear}{\em a}), \colony{} 
+performs as well or better than \kinalyzer{} on more than 94\% of the simulated data sets. 
 
 There are three prominent features in Figure~2{\em a}.  The first is the distinct bands of black dots 
 (indicating data sets with no genotyping error) at certain heights along the $y$-axis.  These 
@@ -452,7 +459,7 @@ and a singleton, then the \kinalyzer{} solution and the truth can be made identi
 individual from every pair; hence the line at $y=37$ in the plot. The second feature we notice is that, 
 in general, simulating data sets with genotyping error (depicted with gray points) increases the error 
 suffered by \kinalyzer{}.  Finally, the band of black and gray points at $y=0$ extending up to values 
-of $x$ in the mid-thirties tells us that there are some data sets in which $\W$ is quite high for 
+of $x$ around 20 tells us that there are some data sets in which $\W$ is quite high for 
 \colony{}, but is zero for \kinalyzer{}.  
 
 Figure~\ref{fig:cvksmear}{\em b} plots values of $\PDS$, a metric which levies a penalty of 1 upon a 
@@ -465,13 +472,7 @@ groups, defying biology.  We can conclude that the band at $y=0$ in Figure~2{\em
 data sets where \kinalyzer{} enjoys an advantage, but rather it indicates data sets in which the
 set-cover form of \kinalyzer{}'s solution attains its most pathological expression: every individual is 
 included in at least two different full sibling groups.  Based on $\PDS$, \kinalyzer{} obtains a better 
-result than \colony{} in just less than 1\% of the simulated data sets.  The vast majority of these 
-cases involve data sets from the \onelargenoh{} and \onelargewh{} scenarios with only 5 loci in which, 
-evidently, there is insufficient information in the data for either \colony{} or \kinalyzer{} to 
-accurately infer the sibship structure (Figures~\ref{fig:Colony_v_Kinalyzer_on_onelargenoh} and~
-\ref{fig:Colony_v_Kinalyzer_on_onelargewh}. Note that Figure Y in Supplement~X will be named SX--Y 
-throughout this paper).  
-%%(XX (count them up) individual plots like those in Figure~\ref{fig:cvksmear} are presented for every combination of simulated scenario and genotyping error rate with number of alleles and loci expressed with color and shape of symbols in Supplement~XX).
+result than \colony{} in none of the simulated data sets.
 
 The occurrence of the horizontal line patterns in Figure~\ref{fig:cvksmear}{\em a} and {\em b} 
 indicates that a large fraction of the errors made by \kinalyzer{} involve inferred sibships composed 
@@ -479,19 +480,19 @@ of unrelated individuals.  Some of these errors likely involve inferred sibships
 \kinalyzer{} has no mechanism for distinguishing between unrelated individuals and sibships of size 
 two.   However, Figure~\ref{fig:cvksmear}{\em c,d} reveals that, even using the trimmed partition 
 distances, \kinalyzer{} is still outperformed by \colony{}.   In fact, based on $\PDST$, \kinalyzer{} 
-did better than \colony{} in fewer than 1.6\% of the simulated data sets. 
+did better than \colony{} in fewer than 0.3\% of the simulated data sets. 
 
 We ran \kinalyzer{}'s consensus algorithm on 6,750 data sets and investigated the results.  In every 
 case, the consensus algorithm returned a solution in the form of a true partition, rather than as a set 
 cover; however, there was no clear advantage to using the consensus algorithm. \kinalyzer{}'s consensus 
-option yielded a lower value of $\PDS$ than \colony{} did in only 0.8\% of simulated data sets (Figure~
+option did not outperform \colony{} in any simulated data sets (Figure~
 \ref{fig:cvksmear}{\em e}).  The consensus option does not appear to consistently  improve upon the 
 results of the 2-allele algorithm in the presence of genotying error, and, in fact, often seems to 
 produce poorer solutions than the 2-allele algorithm on data both with and without genotyping errors 
 (Figures~\ref{fig:cvksmear}{\em f} and \ref{fig:Kinalyzer_v_KinaConsense_on_nosibs} through 
 \ref{fig:Kinalyzer_v_KinaConsense_on_onelargewh}). 
 
-\prt{}'s performance on individual data sets is compared to \colony{}'s in Figure~\ref{fig:cvffsmear}
+\prt{}'s performance on individual data sets is compared to \colony~{\sc 2.0.5.2}'s in Figure~\ref{fig:cvffsmear}
 {\em a,b}. 
 %%%%
 %\begin{equation}
@@ -499,7 +500,7 @@ produce poorer solutions than the 2-allele algorithm on data both with and witho
 %\end{equation}
 \begin{figure*}
 \begin{center}
-\includegraphics[width=.8\textwidth]{images/prt_ff_and_col_pair_smears.pdf}  %% Change extension from jpg to pdf for final version
+\includegraphics[width=.8\textwidth]{images/prt_ff_and_col_pair_smears.jpg}  %% Change extension from jpg to pdf for final version
 \end{center}
 \newcommand{\cvffsmearcaption}{Scatterplots comparing performance of \prt{} to \colony{} ({\em a,b}\/), \familyfinder{} 
 to \colony{} ({\em c,d}\/), and \colony-P to \colony{} ({\em e,f}\/).  Figures are as in 
@@ -508,19 +509,24 @@ Figure~\protect\ref{fig:cvksmear}}
 \label{fig:cvffsmear}
 \end{figure*}
 %%%%
-\colony{} achieves the same or a lower $\PDS$ than \prt{} on most (78.3\%) of the $n75$ data sets.  
-Figures~\ref{fig:ColonyP_v_PRT_on_nosibs} through \ref{fig:ColonyP_v_PRT_on_onelargewh} show that 
-\prt{} generally outperforms \colony{} in those cases where there are many individuals in the sample 
-that are not full siblings (\nosibs, \allhalf, \allpathalf, \onelargenoh, and \onelargewh), especially 
-with an intermediate amount of data (number of loci and alleles). With only 5 alleles, regardless of 
-the number of loci, neither \colony{} nor \prt{} performed well on the \nosibs{} configuration, but 
-\colony{} tended to perform better.  With 10 alleles and 10 loci, however, \prt{} was more successful 
-than \colony{} at not inferring erroneous sibships in the \nosibs{} case (Figure~\ref{fig:boxp2}{\em 
-b}), and accordingly performed better than \colony{} in that situation.   This is a consequence of 
+\colony{} achieves the same or a lower $\PDS$ than \prt{} on most (85.8\%) of the $n75$ data sets.  
+Figures~\ref{fig:Colony2.0.5.2_v_PRT_on_nosibs} through \ref{fig:Colony2.0.5.2_v_PRT_on_onelargewh} show that 
+the only cases where \prt{} consistently outperforms \colony{} are those with many unrelated individuals
+ (\nosibs, \allhalf, \allpathalf, \onelargenoh, and \onelargewh). Inspection of the 
+trimmed partition distances in these cases reveals that, when \prt{} outperforms \colony{}, it is because
+\prt{} correctly infers no siblings in the data set while \colony infers a few to many incorrect sibling groups
+of size 2.  
+%THe   With only 5 alleles, regardless of 
+%the number of loci, neither \colony{} nor \prt{} performed well on the \nosibs{} configuration, but 
+%\colony{} tended to perform better.  With 10 alleles and 10 loci, however, \prt{} was more successful 
+%than \colony{} at not inferring erroneous sibships in the \nosibs{} case (Figure~\ref{fig:boxp2}{\em 
+%b}), and accordingly performed better than \colony{} in that situation.   
+This is a consequence of 
 \colony{}'s tendency to erroneously infer small sibling groups (pairs or trios) where there aren't any.  
 This is confirmed by Figure~\ref{fig:cvffsmear}{\em b} which shows the band of dots at $y=0$ in Figure~
 \ref{fig:cvffsmear}{\em a} is essentially eliminated when using $\PDST$, which does not penalize 
-solutions for erroneously-inferred sibships of size 2. \colony{} achieves the same or a lower $\PDST$ 
+solutions for erroneously-inferred sibships of size 2. TALK ABOUT HOW THIS SEEMS TO APPLY TO A PARTICULAR BAND OF
+DATA PARAMETERS. THEN UPDATE THE FOLLOWING PERCENTAGE. \colony{} achieves the same or a lower $\PDST$ 
 as \prt{} on 96.6\% of the data sets.   
 
 With more loci and with more alleles \colony{} generally performed as well as \prt{} in the \nosibs{} 

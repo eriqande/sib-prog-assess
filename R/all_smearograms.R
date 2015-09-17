@@ -151,7 +151,7 @@ latex.prog.names <- c("\\colony{} version 2.0.5.2", "\\colony{}-P", "\\colony{}"
                       "\\colony{} assuming moderate error rate", "\\colony{} assuming no genotyping error", "\\colony{} assuming a high error rate")
 names(latex.prog.names) <- c("Colony2.0.5.2", "ColonyP", "Colony", "PRT", "FamilyFinder", "Kinalyzer", "KinaConsense", 
                              "Colony d=0.02, m=0.02", "Colony d=0 m=0", "Colony d=0.07 m=0.03")
-labstrs <- c("Colony d=0 m=0", "Colony d=0.07 m=0.03", "Colony d=0.02, m=0.02", "Colony version 2.0", "Colony version 2.0.5.0")
+labstrs <- c("Colony d=0 m=0", "Colony d=0.07 m=0.03", "Colony d=0.02, m=0.02", "Colony version 2.0", "Colony version 2.0.5.2")
 texlabstrs <- c("ColNone", "ColHigh", "ColMed", "OldColony", "NewColony")
 names(texlabstrs) <- labstrs
 
