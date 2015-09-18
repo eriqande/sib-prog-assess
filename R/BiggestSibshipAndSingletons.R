@@ -8,7 +8,7 @@ source("R/RecoverCodesWithinR.R") # for some useful functions
 
 
 ##########################################################
-############ Execute if you need to recompile the data
+############ Execute if you need to recompile the data   NOTICE YOU HAVE TO MANUALLY PUT THE NEW COLONY RESULTS IN THERE!
 if(REGENERATE_SAVED_DATA) {
 
 # make some temporary files to hold uncompresed output, etc
@@ -17,7 +17,7 @@ system("cat *_Alleles/Output.txt LottaLargeRuns/*_Alleles/Output.txt  | awk 'NR=
 system("gzcat /Users/eriq/Documents/work/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/PRT_April_1_2014_with_codes.txt.gz > /tmp/PRT_April_1_2014_with_codes.txt")
 
 # just set this here, though we make sure it is done later, too
-setwd("/Users/eriq/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/")
+#setwd("/Users/eriq/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/")
 
 
 
@@ -96,6 +96,9 @@ for(i in seq_along(my.files)) {
 }
 names(res.list) <- c("CO", "KI", "PRT", "FF", "CP", "KC"); 
 save(res.list, file="/Users/eriq/prj/AlmudevarCollab/SibProgramsEvaluation/FinalOutputs/plot/BiggestSibshipSavedData.Rda", compress="xz")
+
+
+# Then after that you ought to change into ./analysis/colony and run 05-add-new-colony-data-for-xplots.R  
 }
 ####################################################################
 
@@ -109,7 +112,7 @@ suppressWarnings(file.remove(latex.comms))
 #### LOAD DATA  (i havent put the resources to regenerate the data up on GitHub) ####
 # just load the data in to save time here if not regenerating data\
 if(!REGENERATE_SAVED_DATA) {
-	load("./scores/BiggestSibshipSavedData.Rda")
+	load("./scores/BiggestSibshipSavedData-WithNewColony.Rda")
 }
 
 
@@ -153,7 +156,7 @@ plot.a.quadrant <- function(X, xmult=1, ymult=1, add=T, ...) {
 
 
 
-plot.four.quadrants <- function(num.alle, num.loc, meths=c("PRT", "CO", "KI", "FF")) {
+plot.four.quadrants <- function(num.alle, num.loc, meths=c("PRT", "C25", "KI", "FF")) {
 	plot.a.quadrant(subset(res.list[[meths[1]]], Num.Alleles==num.alle & NumLoc==num.loc), 1, 1, add=F, 
 		main=paste(num.alle, "Alleles   ", num.loc, "Loci")
 		)
@@ -179,7 +182,7 @@ for(a in c(5,10,15,20,25)) {
 	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
 		plot.four.quadrants(a, l )  # this is the one for the first plot I made
 		dev.off()
-		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\prt{} (PRT), \\familyfinder{} (FF), and \\kinalyzer{} 2-allele (KI), $A=",a,"$, $L=",l,"$} \\label{xplot-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
+		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{}~2.0.5.2 (C25), \\prt{} (PRT), \\familyfinder{} (FF), and \\kinalyzer{} 2-allele (KI), $A=",a,"$, $L=",l,"$} \\label{xplot-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
 }
@@ -187,9 +190,9 @@ for(a in c(5,10,15,20,25)) {
 	for(l in c(5,10,15,20,25)) {
 	  file.name <- paste("biggest_sibship_with_kikc_alle",a,"_loc",l,".pdf",sep="")
 	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
-		plot.four.quadrants(a, l, meths=c("CP", "CO", "KI", "KC") )  # this one has CP and KC in there.
+		plot.four.quadrants(a, l, meths=c("C25P", "C25", "C2", "KC") )  # this one has CP and KC in there.
 		dev.off()
-		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{} (CO), \\colony{}-P (CP), \\kinalyzer{} 2-allele (KI), and \\kinalyzer{} consense (KC), $A=",a,"$, $L=",l,"$} \\label{xplot-kikc-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
+		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{}~~2.0.5.2 (C25), \\colony{}-P~2.0.5.2 (C25P), \\colony{}~2.0 (CO), and \\kinalyzer{} consense (KC), $A=",a,"$, $L=",l,"$} \\label{xplot-kikc-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
 }

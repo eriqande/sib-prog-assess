@@ -14,13 +14,13 @@ if(any(!file.exists("suppl", "sib-prog-assess.Rproj"))) stop("It appears you are
 #### Generate the supplement plots.  Output goes to ./tmp/plots/ ####
 source("R/all_smearograms.R")  # make the smearogram plots.  Ouput goes to ./tmp/plots/smearograms
 
-######## THIS NEEDS TO BE REDONE STILL ##########
+######## This has been redone for the new version of colony simulations!  ##########
 source("R/BiggestSibshipAndSingletons.R") # output goes to ./tmp/plots/biggest_sibship
 
 
 source("R/make_boxplots.R")   # output goes to  ./tmp/plots/boxplots
 
-######## THIS NEEDS TO BE REDONE STILL ##########
+######## Thi was redone for the new version of colony ##########
 source("R/make_running_time_supplement_plots.R")  # output goes to  ./tmp/plots/running_times
 
 

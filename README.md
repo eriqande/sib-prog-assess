@@ -68,10 +68,14 @@ nohup ./01-re-run-all-of-colony.sh > Re-Run-Colony.log 2>&1 &
 # in the above I have instructed it to process the output directories that match
 # the pattern l[125][0-9]*Lfd.02m.02 which are the ones that we just ran.
 
+
 # we then have to compute partition distances for the pairwise versions, which have an "x"
 # on the end of the file names
 ./02-analyze-colony-runs-script.sh full-colony-new-condensed-pairwise.txt  FullColonyNewPairwiseResults  huge-output/{n75,LottaLarge}/Collections/*/l[0-9]*Lfd.02m.02x
 
+
+# Note that the output files full-colony-new-condensed.txt and full-colony-new-condensed-pairwise.txt
+# will get used for a few plots later on. 
 
 # Once that is done, you have to slurp the results in for both regular and pairwise.
 
@@ -94,6 +98,9 @@ source("04-compute-and-store-colony-times.R")
 # ./scores/full_colony_new_version_pairwise_with_times.txt
 # ./scores/full_colony_new_version_with_times.txt
 # which are the ones that will be used to make the plots and summarize results, etc.
+
+# OK, now, we also need to add those new results to the old ones to make the "BiggestSibshipPlots" 
+# (i.e. the X-plots).  To do that we will use 05-add-new-colony-data-for-xplots.R
 ```
 
 After that, 
