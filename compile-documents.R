@@ -22,6 +22,7 @@ source("R/make_boxplots.R")   # output goes to  ./tmp/plots/boxplots
 
 ######## Thi was redone for the new version of colony ##########
 source("R/make_running_time_supplement_plots.R")  # output goes to  ./tmp/plots/running_times
+# this one also (when I am done) will create the table or running times for the text.
 
 
 

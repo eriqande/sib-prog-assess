@@ -1,4 +1,4 @@
-q%!TEX root = sib_prog_eval_two_columns.tex
+%!TEX root = sib_prog_eval_two_columns.tex
 
 \section*{Introduction}
 
@@ -603,29 +603,25 @@ There was a wide disparity between the running times of the different programs (
 \ref{tab:n75times}). 
 %%
 \begin{table*}
-\caption{Running times in minutes averaged over all $n75$ data sets analyzed for $A=15$ and 
+\caption{Running times in minutes averaged over all $n75$ data sets and over the 
+\lottalarge{} data sets, analyzed for $A=15$ and 
 $L$ as indicated. Slant font gives the 10\% and 90\% quantiles.\label{tab:n75times}}
 \begin{center}
-\begin{tabular}{lccccc}
-\hline
-  & \multicolumn{5}{c}{\underline{Number of Loci ($L$)}} \\
-        & 5  &  10  &  15  &  20  &  25 \\ \hline
-\colony{}$^a$  &  5.45  &  12.15  &  20.02  &  28.18  &  35.93 \\
-           &  {\sl 4.06--6.68}  &  {\sl 7.68--18.33}  &  {\sl 12.01--33.63}  &  {\sl 16.21--49.16}  &  {\sl 20.79--63.18} \\
-\colony{}-P$^a$  &  1.54  &  1.52  &  1.48  &  1.46  &  1.43 \\
-           &  {\sl 1.17--2.04}  &  {\sl 1.10--2.03}  &  {\sl 1.07--1.98}  &  {\sl 1.07--1.95}  &  {\sl 1.05--1.96} \\
-\prt{}$^b$  &  4.00  &  1.44  &  0.98  &  1.51  &  0.94 \\
-        &  {\sl 0.37--9.65}  &  {\sl 0.25--1.73}  &  {\sl 0.24--1.46}  &  {\sl 0.26--1.52}  &  {\sl 0.28--1.53} \\
-\familyfinder{}$^a$  &  $<1$ sec  &  $<1$ sec  &  $<1$ sec  &  $<1$ sec  &  $<1$ sec \\
-\kinalyzer{}$^c$  &  0.52  &  1.32  &  16.61  &  49.86  &  134.99 \\
-              &  {\sl 0.45--0.58}  &  {\sl 0.65--2.45}  &  {\sl 0.65--43.93}  &  {\sl 17.84--78.72}  &  {\sl 66.97--166.62} \\
+\begin{tabular}{llccccc}
+\hline \\
+& & \multicolumn{5}{c}{Number of loci, $L$} \\
+\input{running_time_table_n75}
+\\
+\input{running_time_table_lotta_large}
 \hline
 \end{tabular}
 \end{center}
 {\footnotesize $^a$Times listed are total clock times for each job.  Since each job was run on
 a dedicated processor, this will be close to {\em user} + {\em system} time.}\\
-{\footnotesize $^b${\em user} times}\\
-{\footnotesize $^c$Running times for \kinalyzer{} are approximate. \kinalyzer{} does not report
+{\footnotesize $^b$Each run was made on a single core of a MacPro5,1 with a 2.66 GHz 6-core Intel Xeon processor. }\\
+{\footnotesize $^c$Each run was made on a single core of a MacPro3,1 with a 2.8 GHz Quad-core Intel Xeon processor. }\\
+{\footnotesize $^d${\em user} times on a \textcolor{red}{TONY, PLEASE PROVIDE COMPUTER SPECS}}\\
+{\footnotesize $^e$Running times for \kinalyzer{} are approximate. \kinalyzer{} does not report
 the amount of computing resources used. Times listed here are the differences between the time
 that the job was submitted and the time that the result was emailed back to us. }
 \end{table*}
@@ -656,12 +652,13 @@ different data scenarios are found in Supplement~5.
 \begin{center}
 \includegraphics[width=\textwidth]{images/lotta_large_boxplots.pdf}  
 \end{center}
-\newcommand{\llboxpcaption}{Boxplot representation of values of $\PDS$ for on \lottalarge scenarios with $A$ and $L$ 
-varying in rows and columns, respectively.  For each method (CO=\colony{}, CP=\colony-P, PRT=\prt, and 
+\newcommand{\llboxpcaption}{Boxplot representation of values of $\PDS$ for on \lottalarge{} scenarios with $A$ and $L$ 
+varying in rows and columns, respectively.  For each method (C25=\colony{}, CP=\colony-P, PRT=\prt, and 
 FF=\familyfinder) three box plots are given.  The leftmost is for data with no genotyping error; the 
 center with $d=0.02$,~$m=.01$, and the rightmost with $d=0.07$,~$m=.03$.  Note that for some values of 
 $A$ and $L$, \prt{} failed to complete on any data sets, which is indicated by the absence of the 
-boxplot in those cases. }
+boxplot in those cases. The low values of $\PDS$ for C25, indicate that the method of \citet{Wang2013} successfully avoids splitting 
+large sibling groups in these data sets.}
 \caption[\llboxpcaption]{\sometimes{\llboxpcaption}}
 \label{fig:llboxp}
 \end{sidewaysfigure*}
@@ -686,20 +683,20 @@ splitting is virtually eliminated in the most recent version, \colony{}-2.0.5.0
 $A=10$ and thus outperforms
 all the other methods.
 % New version of colony 10-locus boxplot figure
-\begin{figure*}
-\begin{center}
-\includegraphics[width=\textwidth]{./images/new-colony-boxplots-10-loci.pdf}
-\end{center}
-\newcommand{\newcolonyboxcaption}{Boxplots of $\PDS$ for $A=10$ in the \lottalarge{} scenario including
-results for \colony{}-2.0.5.0. 
-Different rows are different genotyping error rates and the columns are different numbers of loci. Names 
-of methods are C2=\colony{}-2.0.5.0, CO=\colony{}, CP=\colony-P, PRT=\prt, and 
-FF=\familyfinder).  Note in particular that, even with high genotyping error rate, $\PDS$ is reduced 
-to near 0 in C2, indicating that the method of \citet{Wang2013} successfully avoids splitting 
-large sibling groups in these data sets.} 
-\caption[\newcolonyboxcaption]{\sometimes{\newcolonyboxcaption}}
-\label{fig:new-colony-boxp}
-\end{figure*}
+%\begin{figure*}
+%\begin{center}
+%\includegraphics[width=\textwidth]{./images/new-colony-boxplots-10-loci.pdf}
+%\end{center}
+%\newcommand{\newcolonyboxcaption}{Boxplots of $\PDS$ for $A=10$ in the \lottalarge{} scenario including
+%results for \colony{}-2.0.5.0. 
+%Different rows are different genotyping error rates and the columns are different numbers of loci. Names 
+%of methods are C25=\colony{}~2.0.5.0, C2=\colony{}~2.0, C25P=\colony{}-P~2.0.5.0 C2P=\colony-P~2.0, PRT=\prt, and 
+%FF=\familyfinder).  Note in particular that, even with high genotyping error rate, $\PDS$ is reduced 
+%to near 0 in C2, indicating that the method of \citet{Wang2013} successfully avoids splitting 
+%large sibling groups in these data sets.} 
+%\caption[\newcolonyboxcaption]{\sometimes{\newcolonyboxcaption}}
+%\label{fig:new-colony-boxp}
+%\end{figure*}
 
 
 Running times on the \lottalarge{} data appear in \ref{fig:run-time-noki-lotta_large}.  \familyfinder{} 

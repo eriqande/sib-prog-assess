@@ -138,3 +138,87 @@ for(S in The.SCENS) { # cycle over the Scenarios.  One page of plots for each sc
         file=latex.comms, append=T)
 }
 
+
+#### Down here we are going to generated the table for the text. ####
+library(dplyr)
+library(tidyr)
+
+write_running_times_table <- function(LOTTA_LARGE = FALSE) {
+  # put kinalyzer back in there
+  ST <- rbind(stacked, dm$ki) %>% 
+    tbl_df %>%
+    filter(!(NumLoc %in% c(3, 7)))
+  
+  if(LOTTA_LARGE) {
+    TMP <- ST %>%
+      filter(Scenario == "lotta_large", NumAlleles == 15)
+    FILE <- "./sib_assess_tex/running_time_table_lotta_large.tex"
+    LEFTCOL <- "\\lottalarge"
+  }
+  else {
+    TMP <- ST %>%
+      filter(Scenario != "lotta_large", NumAlleles == 15)
+    FILE <- "./sib_assess_tex/running_time_table_n75.tex"
+    LEFTCOL <- "$n75$"
+  }
+  
+  SUMS <- TMP %>%
+    group_by(Meth, NumLoc) %>%
+    summarize(Mean = mean(Minutes, na.rm = TRUE), Min = quantile(Minutes, probs = 0.1, na.rm = TRUE), Max = quantile(Minutes, probs = 0.9, na.rm = TRUE))
+  
+  
+  MeanTimes <- SUMS %>%
+    mutate(MeanFmt = sprintf(Mean, fmt = "%.2f")) %>%
+    select(Meth, NumLoc, MeanFmt) %>%
+    spread(., NumLoc, MeanFmt)
+  
+  RangeTimes <- SUMS %>%
+    mutate(range = paste("{\\sl ", sprintf(Min, fmt = "%.2f"), "--", sprintf(Max, fmt = "%.2f"), "}", sep = "") ) %>%
+    select(Meth, NumLoc, range) %>%
+    spread(., NumLoc, range)
+  
+  TAB <- rbind(MeanTimes, RangeTimes) %>% arrange(Meth)
+  
+  # take care of the family finder stuff
+  if(LOTTA_LARGE==FALSE) {
+    TAB[TAB$Meth == "FF", -1][1,] <- "$<1$ sec"
+    TAB[TAB$Meth == "FF", -1][2,] <- ""
+  }
+  
+  # now we just need to put the proper latexed names in for the software and a couple other tweaks.
+  Names <- c("\\colony~{\\sc 2.0.5.2}$^{a,b}$", 
+             "\\colony-P~{\\sc 2.0.5.2}$^{a,b}$",
+             "\\colony~{\\sc 2.0}$^{a,c}$",
+             "\\colony-P~{\\sc 2.0}$^{a,c}$",
+             "\\prt$^{d}$",
+             "\\kinalyzer$^{a}$",
+             "\\familyfinder$^{e}$")
+  
+  names(Names) <- c("C25", "C25P", "C2", "C2P", "PRT", "KI", "FF")
+  
+  TAB$Meth <- Names[as.character(TAB$Meth)]
+  
+  TAB$Meth[c(F,T)] <- ""
+  
+  names(TAB)[1] <- ""
+  
+  # now we have to put what type of data set it was in the first line of the first column
+  TAB2 <- cbind(LC = "", TAB, stringsAsFactors = FALSE)
+  TAB2$LC[1] <- LEFTCOL
+  names(TAB2)[1:2] <- ""
+  
+  if(LOTTA_LARGE==FALSE) {
+    write.table(rbind("", TAB2), row.names = FALSE, col.names = TRUE, sep = "  &  ", eol = "\\\\\n", quote = FALSE,
+                file = FILE)
+  }
+  else {
+    write.table(TAB2, row.names = FALSE, col.names = FALSE, sep = "  &  ", eol = "\\\\\n", quote = FALSE,
+                file = FILE)
+  }
+  
+  NULL
+  
+}
+
+write_running_times_table()
+write_running_times_table(TRUE)
