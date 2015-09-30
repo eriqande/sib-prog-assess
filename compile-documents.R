@@ -76,12 +76,18 @@ system("./script/CompileSuppRefs.sh")
 
 #### LaTeX the 2-column and the 1-column version of the main document   ####
 setwd(file.path(curdir, "sib_assess_tex"))
+
+# start from scratch on latexmk
+system("rm *.fdb_latexmk")
+
 system("latexmk -pdf sib_prog_eval_two_columns")   # make the two column version
 
 # now we generate a main-body-text file with no starred sidewaysfigures for the one column version
 mbt <- readLines("main-body-text.tex")
 mbtns <- gsub("sidewaysfigure\\*", "sidewaysfigure", mbt)  # remove the *'s
-cat(mbtns, sep="\n", file = "main-body-text-one-col.tex")
+mbtns2 <- gsub("\\%removepercforonecol", "", mbtns) # make a table smaller for the one col version.
+
+cat(mbtns2, sep="\n", file = "main-body-text-one-col.tex")
 
 # then latex the one column version
 system("latexmk -pdf sib_prog_eval")

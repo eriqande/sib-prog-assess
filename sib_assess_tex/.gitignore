@@ -11,3 +11,4 @@ main-body-text-one-col.tex
 *.log
 *.fdb_latexmk
 *.fls
+*synctex.gz

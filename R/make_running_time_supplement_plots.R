@@ -191,8 +191,8 @@ write_running_times_table <- function(LOTTA_LARGE = FALSE) {
              "\\colony~{\\sc 2.0}$^{a,c}$",
              "\\colony-P~{\\sc 2.0}$^{a,c}$",
              "\\prt$^{d}$",
-             "\\kinalyzer$^{a}$",
-             "\\familyfinder$^{e}$")
+             "\\kinalyzer$^{f}$",
+             "\\familyfinder$^{e,b}$")
   
   names(Names) <- c("C25", "C25P", "C2", "C2P", "PRT", "KI", "FF")
   

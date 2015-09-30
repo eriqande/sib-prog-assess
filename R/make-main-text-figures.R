@@ -31,10 +31,27 @@ mean(colff$part.dist.x<=colff$part.dist.y)  # how many does colony do better tha
 
 
 cvprt<-droplevels(col.vs.prt[col.vs.prt$Scenario.x!="lotta_large",])
-mean(cvprt$part.dist.x<=cvprt$part.dist.y)  # how many does colony do better than PRT?
+mean(cvprt$part.dist.x<=cvprt$part.dist.y)  # how many does colony do as well or better than PRT?
+
+# how many does colony do as well or better than PRT with the trimmed distance? 
+# this is a little hard because of the NA's.  Let't remove rows in which both are NAs and
+sum(!is.na(cvprt$trimmed.part.dist.x) & is.na(cvprt$trimmed.part.dist.y)) # there are 35 cases in which PRT is not NA but Colony is
+sum(is.na(cvprt$trimmed.part.dist.x) & !is.na(cvprt$trimmed.part.dist.y)) # and 559 in which colony is NA and PRT is not.
+# they are NA because there are no individuals left after trimming. Which is kind of like 0, so lets to this:
+cvprt2 <- cvprt
+cvprt2$trimmed.part.dist.x[is.na(cvprt2$trimmed.part.dist.x)] <- 0
+cvprt2$trimmed.part.dist.y[is.na(cvprt2$trimmed.part.dist.y)] <- 0
+
+mean(cvprt$trimmed.part.dist.x<=cvprt$trimmed.part.dist.y, na.rm = TRUE)  
+mean(cvprt2$trimmed.part.dist.x<=cvprt2$trimmed.part.dist.y, na.rm = TRUE)   # here with the NAs replaced by 0s
+
+# we will report the lower of these two numbers
+
+head(cvprt)
 
 cvp<-droplevels(col.vs.col.pair[col.vs.col.pair$Scenario.x!="lotta_large",])  # use same variable name as above, to make it easy....
 mean(cvp$part.dist.x<=cvp$part.dist.y) # how many does colony do better than pairwise colony on?
+mean(cvp$trimmed.part.dist.x<=cvp$trimmed.part.dist.y, na.rm = TRUE) # how many does colony do better than pairwise colony on?
 
 
 # what is the distribution of the number of alleles and number of loci and Scenario where colony-P does better?

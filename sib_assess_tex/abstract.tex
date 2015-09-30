@@ -14,8 +14,11 @@ of the sample into full sibling groups and the inferred partition. Across almost
 scenarios in which full siblings were present, \colony{} (version 2.0.5.2) performed as well or better than
 any of the other programs; however we note that it can exhibit a tendency to report 
 small, erroneous, ``high-confidence'' full sibling groups from data sets in which there
-are no full siblings. In particular, cauthion is warranted in the in identifying sibling
-{\em pairs} using \colony{}.  When data were very informative (many loci with many alleles), then
+are no full siblings. In particular, caution is warranted in identifying sibling
+{\em pairs} using \colony{}.  \prt{} outperformed \colony{} version 2.0 across a range of 
+locus and allele numbers in data sets that lacked any real full siblings.  However, this advantage
+was largely erased following the improvements made in \colony{} version 2.0.5.2. 
+When data were very informative (many loci with many alleles), then
 \familyfinder{}, which was orders of magnitude faster than any of the other programs,
 was often as accurate as the most accurate program, so long as no
 half-siblings appeared in the data.  When half-siblings
