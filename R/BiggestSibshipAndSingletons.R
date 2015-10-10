@@ -182,7 +182,7 @@ for(a in c(5,10,15,20,25)) {
 	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
 		plot.four.quadrants(a, l )  # this is the one for the first plot I made
 		dev.off()
-		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{}~2.0.5.2 (C25), \\prt{} (PRT), \\familyfinder{} (FF), and \\kinalyzer{} 2-allele (KI), $A=",a,"$, $L=",l,"$} \\label{xplot-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
+		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{}~2.0.5.7 (C25), \\prt{} (PRT), \\familyfinder{} (FF), and \\kinalyzer{} 2-allele (KI), $A=",a,"$, $L=",l,"$} \\label{xplot-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
 }
@@ -192,7 +192,7 @@ for(a in c(5,10,15,20,25)) {
 	  pdf(file = file.path(OUTDIR, file.name), width=11, height=7.5)
 		plot.four.quadrants(a, l, meths=c("C25P", "C25", "C2", "KC") )  # this one has CP and KC in there.
 		dev.off()
-		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{}~~2.0.5.2 (C25), \\colony{}-P~2.0.5.2 (C25P), \\colony{}~2.0 (CO), and \\kinalyzer{} consense (KC), $A=",a,"$, $L=",l,"$} \\label{xplot-kikc-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
+		write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{$X$-plot with \\colony{}~~2.0.5.7 (C25), \\colony{}-P~2.0.5.7 (C25P), \\colony{}~2.0 (CO), and \\kinalyzer{} consense (KC), $A=",a,"$, $L=",l,"$} \\label{xplot-kikc-a",a,"l",l,"} \\end{figure}\\clearpage", sep=""),
 			file=latex.comms, append=T)
 	}
 }

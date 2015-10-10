@@ -169,7 +169,7 @@ sets.  However, after we launched this simulation project, \citet{Wang2013} desc
 to reduce the splitting
 of large sibships \citep{alm&and11} and to better control the identification of small spurious sibling groups.  
 Accordingly, we repeated the analysis using the updated
-version \colony~{\sc 2.0.5.2}.  We report results for both versions of the program.  Runs of the software
+version \colony~{\sc 2.0.5.7}.  We report results for both versions of the program.  Runs of the software
 \colony{} can require a considerable 
 amount of time.  Therefore, in choosing program settings, we chose ones that would decrease running 
 time if possible: polygamy was allowed in just a single sex, allele frequencies were not updated, run 
@@ -232,10 +232,10 @@ than the name of the file holding the input data.
 \begin{tabular}{lllrr}
 \hline
 Software & Varied Settings~~~~~~~ & Data Scenarios & No.~Rep & Total \\ \hline
-\colony~{\sc 2.0.5.2} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
+\colony~{\sc 2.0.5.7} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
           &                  & \lottalarge{}          & 5  &    375 \\      
 \\
-\colony{}-P~{\sc 2.0.5.2} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
+\colony{}-P~{\sc 2.0.5.7} & $d=0.02$; $m=0.02$ & $n75$ scenarios & 15 & 10,125 \\
             &                  & \lottalarge{}          & 5  &    375\\
  \\
 
@@ -341,7 +341,7 @@ method in each of the nine $n75$ scenarios.
 \begin{center}
 \includegraphics[width=\textwidth]{images/boxplots_for_paper25_num2.pdf}
 \newcommand{\boxponecaption}{Boxplot representation of values of $\PDS$ for $A=25$ alleles and $L=15$ ({\em a}) and $L=20$ 
-({\em b}) loci for all methods (C25=\colony~{\sc 2.0.5.2}; C2=\colony~{\sc 2.0}; C25P=\colony-P~{\sc 2.0.5.2}; C2P=\colony-P~{\sc 2.0}; PRT=\prt{}; FF=\familyfinder; K2=\kinalyzer{} 2-allele algorithm; KC=\kinalyzer{} consensus algorithm) and all $n75$ scenarios (names 
+({\em b}) loci for all methods (C25=\colony~{\sc 2.0.5.7}; C2=\colony~{\sc 2.0}; C25P=\colony-P~{\sc 2.0.5.7}; C2P=\colony-P~{\sc 2.0}; PRT=\prt{}; FF=\familyfinder; K2=\kinalyzer{} 2-allele algorithm; KC=\kinalyzer{} consensus algorithm) and all $n75$ scenarios (names 
 listed along top).  For each scenario, the top panel shows results for data with no genotyping errors, 
 the large middle panel for data with $d=.02$ and $m=.01$ and the bottom panel for $d=.07$ and $m=.03$.}
 \caption[\boxponecaption]{\sometimes{\boxponecaption}}
@@ -349,7 +349,7 @@ the large middle panel for data with $d=.02$ and $m=.01$ and the bottom panel fo
 \end{center}
 \end{sidewaysfigure*}
 %%
-It is clear that \colony{} (both versions 2.0.5.2 and 2.0) performs without error in almost all cases.
+It is clear that \colony{} (both versions 2.0.5.7 and 2.0) performs without error in almost all cases.
 Equally evident is the fact 
 that \kinalyzer{}, in both its ``2-allele'' and ``consense'' forms, performs considerably worse (almost 
 uniformly so) than all other programs.  As discussed below, \kinalyzer{}'s apparent performance 
@@ -384,13 +384,13 @@ $L=10$~({\em b}). Format as in Figure~\protect\ref{fig:boxp1}.}
 %%
 With such levels of data, which are perhaps closer to what might be employed in many sibship inference 
 studies using microsatellites, we observe that \prt{} finds few spurious full sibling groups 
-in the \nosibs{} case, outperforming both versions 2.0 and 2.0.5.2
+in the \nosibs{} case, outperforming both versions 2.0 and 2.0.5.7
 of \colony{} and \colony{}-P in that scenario.
 However, in the \allhalf{} and \allpathalf{} scenarios, which, like \nosibs{}, include no
 full siblings, \colony{} and \colony{}-P outperform all the other programs. There are several
 other scenarios, mostly with 10 or fewer loci, in which  \prt{} does the best job of not identifying
 spurious sibling groups in data sets where there aren't any (NoSibs, AllHalf, AllPatHalf).  However,
-the new version of \colony{} (2.0.5.2) is a considerable improvement over version 2.0 in this regard, 
+the new version of \colony{} (2.0.5.7) is a considerable improvement over version 2.0 in this regard, 
 reducing considerably the advantage that \prt{} enjoys in this context (See Supplement~3).  As before, 
 \familyfinder{} performs worse in the presence of half siblings than when half-siblings are absent (though 
 relatively less poorly than with more informative data).  When half-siblings are not present, 
@@ -407,15 +407,15 @@ conditions.
 Direct comparisons between pairs of inference methods on the same simulated data sets gives a useful 
 sense of overall performance and helps to identify strengths and weaknesses of each method. A 
 comprehensive display of such pairwise comparisons, broken down by simulation scenario and genotyping 
-error rate, is available in Supplement~2. Across almost all of the scenarios, \colony~{\sc 2.0.5.2} performed 
+error rate, is available in Supplement~2. Across almost all of the scenarios, \colony~{\sc 2.0.5.7} performed 
 as well or better than the other methods, so it is a natural choice for comparison.
 Here, we will present and interpret several scatterplots comparing the performance of each method to 
-\colony~{\sc 2.0.5.2} on all of the $n75$ simulated data sets at once.  Such a presentation loses a considerable 
+\colony~{\sc 2.0.5.7} on all of the $n75$ simulated data sets at once.  Such a presentation loses a considerable 
 amount of the information expressed in the figures of Supplement~2, but still captures important 
 features.  Where it is helpful, we will refer readers to relevant individual figures in the 
 Supplements.
 
-We begin by comparing the performance of  \kinalyzer{}'s 2-allele algorithm to \colony{}~{\sc 2.0.5.2} on the 10,125 
+We begin by comparing the performance of  \kinalyzer{}'s 2-allele algorithm to \colony{}~{\sc 2.0.5.7} on the 10,125 
 $n75$ data sets that were analyzed with both programs.  In the scatterplots of Figure~
 \ref{fig:cvksmear} each point represents a single data set; its $x$-coordinate is the partition 
 distance between the \colony{} solution and the truth and its $y$-coordinate is the distance between 
@@ -431,7 +431,7 @@ the \kinalyzer{} solution and the truth.
 \end{center}
 \newcommand{\cvksmearcaption}{Scatterplots assessing performance of \kinalyzer{}.  
 {\em a}--{\em d} present comparisons of 
-\colony~{\sc 2.0.5.2} versus \kinalyzer{}'s 2-allele algorithm for 10,125 simulated
+\colony~{\sc 2.0.5.7} versus \kinalyzer{}'s 2-allele algorithm for 10,125 simulated
 data sets, showing values of $
 \W$, $\PDS$, $\WT$, and $\PDST$, respectively.  Thus, {\em b} and {\em d} penalize \kinalyzer{} for 
 solutions that are not partitions, and {\em c} and {\em d} use the trimmed partition distances to 
@@ -497,7 +497,7 @@ produce poorer solutions than the 2-allele algorithm on data both with and witho
 (Figures~\ref{fig:cvksmear}{\em f} and \ref{fig:Kinalyzer_v_KinaConsense_on_nosibs} through 
 \ref{fig:Kinalyzer_v_KinaConsense_on_onelargewh}). 
 
-\prt{}'s performance on individual data sets is compared to \colony~{\sc 2.0.5.2}'s in Figure~\ref{fig:cvffsmear}{\em a,b}. 
+\prt{}'s performance on individual data sets is compared to \colony~{\sc 2.0.5.7}'s in Figure~\ref{fig:cvffsmear}{\em a,b}. 
 %%%%
 %\begin{equation}
 %\mbox{FIGURE ped\_configs\_figure.pdf}\label{fig:cvffsmear}
@@ -514,7 +514,7 @@ Figure~\protect\ref{fig:cvksmear}}
 \end{figure*}
 %%%%
 \colony{} achieves the same or a lower $\PDS$ than \prt{} on most (85.8\%) of the $n75$ data sets.  
-Figures~\ref{fig:Colony2.0.5.2_v_PRT_on_nosibs} through \ref{fig:Colony2.0.5.2_v_PRT_on_onelargewh} show that 
+Figures~\ref{fig:Colony2.0.5.7_v_PRT_on_nosibs} through \ref{fig:Colony2.0.5.7_v_PRT_on_onelargewh} show that 
 the only cases where \prt{} consistently outperforms \colony{} are those with many unrelated individuals
  (\nosibs, \allhalf, \allpathalf, \onelargenoh, and \onelargewh). Inspection of the 
 trimmed partition distances in these cases reveals that, when \prt{} outperforms \colony{}, it is because
@@ -524,22 +524,22 @@ This is a consequence of
 \colony{}'s tendency to erroneously infer small sibling groups (pairs or trios) where there aren't any.  
 This is confirmed by Figure~\ref{fig:cvffsmear}{\em b} which shows the band of dots at $y=0$ in Figure~
 \ref{fig:cvffsmear}{\em a} is essentially eliminated when using $\PDST$, which does not penalize 
-solutions for erroneously-inferred sibships of size 2. \colony~{\sc 2.0.5.2} achieves the
+solutions for erroneously-inferred sibships of size 2. \colony~{\sc 2.0.5.7} achieves the
 same or a lower $\PDST$ 
 as \prt{} on 99.4\% of the data sets.   
 
 With more loci and with more alleles \colony{} generally performed as well as \prt{} in the \nosibs{} 
 scenario, but consistently performed better than \prt{} regardless of the amount of data in cases where 
 several small or medium-sized sibships occurred.  In these cases, since $\PDST$ was consistently less 
-than $\PDS$ for \prt{} (Figures \ref{fig:Colony2.0.5.2_v_PRT_on_sfsnoh} through 
-\ref{fig:Colony2.0.5.2_v_PRT_on_slfsgwh}), it is clear that some of the errors made by \prt{} involved the 
+than $\PDS$ for \prt{} (Figures \ref{fig:Colony2.0.5.7_v_PRT_on_sfsnoh} through 
+\ref{fig:Colony2.0.5.7_v_PRT_on_slfsgwh}), it is clear that some of the errors made by \prt{} involved the 
 inference of incorrect sibships of size two. 
 
 Additionally, Figures~\ref{xplot-a5l5} through \ref{xplot-a10l5} show that with relatively 
 uninformative data, \prt{} has a tendency to infer very large, incorrect sibships (some including all 
 the members of the sample) to a degree not seen in any of the other programs. This tendency may be due 
 to the difficulty of correctly calibrating \prt{}'s new {\em post-hoc} method for handling genotyping 
-errors.  Features in Figure~\ref{fig:Colony2.0.5.2_v_PRT_on_slfsgnoh} suggest that the method for handling 
+errors.  Features in Figure~\ref{fig:Colony2.0.5.7_v_PRT_on_slfsgnoh} suggest that the method for handling 
 genotyping errors might be difficult to calibrate---it is clear that with no genotyping error, \prt{} 
 performs better on data sets with many markers, but with genotyping error, there is a clear shift 
 apparent, and the data sets with more loci actually  have relatively higher $\PDS$ than their 
@@ -555,15 +555,15 @@ A prominent feature in Figure~\ref{fig:cvffsmear}{\em c} is the band of black do
 $y=75$ near $x=0$.  These are data sets in which \colony{}'s solutions are near perfect, but 
 \familyfinder{} makes many errors.  Most of those points are from the \allhalf{} and \allpathalf{} 
 scenarios and the higher $y$-values correspond to data sets with more loci (Figures~
-\ref{fig:Colony2.0.5.2_v_FamilyFinder_on_allhalf}, \ref{fig:Colony2.0.5.2_v_FamilyFinder_on_allpathalf}).  
+\ref{fig:Colony2.0.5.7_v_FamilyFinder_on_allhalf}, \ref{fig:Colony2.0.5.7_v_FamilyFinder_on_allpathalf}).  
 Effectively, with more data, \familyfinder{} is more likely to mistake large half-sibling groups as 
 large full sibling groups.  The fact that the band of dots does not appear using the trimmed partition 
 distance (Figure~\ref{fig:cvffsmear}{\em d}) indicates that many of the erroneous full sibling groups 
 found by \familyfinder{} in the \allhalf{} and \allpathalf{} scenarios consist of only two individuals.   
 Also apparent in Figure~\ref{fig:cvffsmear}{\em c,d} is a cloud of points below the $y=x$ line, where 
 neither \familyfinder{} nor \colony{} find accurate solutions, but \familyfinder{} tends to do better 
-than \colony{}.  Figures~\ref{fig:Colony2.0.5.2_v_FamilyFinder_on_nosibs} through 
-\ref{fig:Colony2.0.5.2_v_FamilyFinder_on_onelargewh} reveal that these points are predominantly from data sets 
+than \colony{}.  Figures~\ref{fig:Colony2.0.5.7_v_FamilyFinder_on_nosibs} through 
+\ref{fig:Colony2.0.5.7_v_FamilyFinder_on_onelargewh} reveal that these points are predominantly from data sets 
 with few markers and few alleles ($\leq 10$ of each) from the scenarios \allhalf{}, \allpathalf{}, 
 \nosibs{}, \onelargenoh{}, and \onelargewh{}\@.  Notably, all of these scenarios include large numbers 
 ($\geq$ 45) of individuals who are unrelated or are half siblings, and, in fact, most of the partition 
@@ -583,16 +583,16 @@ Of all the competing methods, \colony-P's performance is most closely correlated
 $ (Figure~\ref{fig:cvffsmear}{\em e}) to that using $\PDST$ (Figure~\ref{fig:cvffsmear}{\em f}), it appears
 that many instances where \colony{}-P achieves a lower partition distance than \colony{} are those cases 
 where \colony{} is erroneously inferring sibships of size~2.  Inspection of Figures~
-\ref{fig:Colony2.0.5.2_v_ColonyP_on_nosibs} through 
-\ref{fig:Colony2.0.5.2_v_ColonyP_on_onelargewh}, however, suggest that \colony-P might occasionally outperform
+\ref{fig:Colony2.0.5.7_v_ColonyP_on_nosibs} through 
+\ref{fig:Colony2.0.5.7_v_ColonyP_on_onelargewh}, however, suggest that \colony-P might occasionally outperform
 \colony{} in cases with many small sibling groups.  This appears to be related to the fact that, while
-the {\sc 2.0.5.2} version of \colony{} is far less likely the the {\sc 2.0} version to erroneously identify
+the {\sc 2.0.5.7} version of \colony{} is far less likely the the {\sc 2.0} version to erroneously identify
 unrelated individuals as siblings, it does appear to have reduced sensitivity---that is, 
-\colony{}~{\sc 2.0.5.2} appears more likely than \colony~{\sc 2.0} to fail to identify small sibling groups 
-(see Figures~\ref{fig:Colony2.0.5.2_v_Colony_on_nosibs} 
-through \ref{fig:Colony2.0.5.2_v_Colony_on_onelargewh}. Overall, \colony{}~{\sc 2.0.5.2}
+\colony{}~{\sc 2.0.5.7} appears more likely than \colony~{\sc 2.0} to fail to identify small sibling groups 
+(see Figures~\ref{fig:Colony2.0.5.7_v_Colony_on_nosibs} 
+through \ref{fig:Colony2.0.5.7_v_Colony_on_onelargewh}. Overall, \colony{}~{\sc 2.0.5.7}
 performed as well or better than 
-\colony{}-P~{\sc 2.0.5.2} in 90.4\% of the data sets on the basis of $\PDS$ and in 97.2\% of the data sets on the basis 
+\colony{}-P~{\sc 2.0.5.7} in 90.4\% of the data sets on the basis of $\PDS$ and in 97.2\% of the data sets on the basis 
 of $\PDST$.
 
 \subsection*{\lottalarge{} Scenarios}
@@ -602,7 +602,7 @@ of $\PDST$.
 \includegraphics[width=\textwidth]{images/lotta_large_boxplots.pdf}  
 \end{center}
 \newcommand{\llboxpcaption}{Boxplot representation of values of $\PDS$ for on \lottalarge{} scenarios with $A$ and $L$ 
-varying in rows and columns, respectively.  For each method (C25=\colony~{\sc 2.0.5.2}; C2=\colony~{\sc 2.0}; C25P=\colony-P~{\sc 2.0.5.2}; C2P=\colony-P~{\sc 2.0}; PRT=\prt; 
+varying in rows and columns, respectively.  For each method (C25=\colony~{\sc 2.0.5.7}; C2=\colony~{\sc 2.0}; C25P=\colony-P~{\sc 2.0.5.7}; C2P=\colony-P~{\sc 2.0}; PRT=\prt; 
 FF=\familyfinder) three box plots are given.  The leftmost is for data with no genotyping error; the 
 center with $d=0.02$,~$m=.01$, and the rightmost with $d=0.07$,~$m=.03$.  Note that for some values of 
 $A$ and $L$, \prt{} failed to complete on any data sets, which is indicated by the absence of the 
@@ -614,19 +614,19 @@ large sibling groups in these data sets.}
 
 %
 The data from the \lottalarge{} scenario included 390 individuals in several very large full sibships 
-with no half-siblings.  In these data sets, the superiority of \colony~{\sc 2.0.5.2} over its 
+with no half-siblings.  In these data sets, the superiority of \colony~{\sc 2.0.5.7} over its 
 predecessor, \colony~{\sc 2.0}, is clearly evident (Figure~\ref{fig:llboxp}).  With no genotyping error, \colony~{\sc 2.0}
 made few errors except for a small
 handful with $A=5,\ L=10$ and $A=10,\ L=5$, and substantially more (as expected) with $A=L=5$; however,
 with high genotyping error, \colony~{\sc 2.0} did not perform terribly well in any conditions.  By contrast,
-\colony~{\sc 2.0.5.2} produced very low partition distances from the \lottalarge{} data across
+\colony~{\sc 2.0.5.7} produced very low partition distances from the \lottalarge{} data across
 all numbers of markers and alleles
 and genotyping error rates.  The modifications in \citet{Wang2013} have been enormously successful in 
 addressing the problems that \citet{alm&and11} noted in the older version of \colony. None of the
-other programs or versions came close to performing as well as \colony~{\sc 2.0.5.2} across the entire 
+other programs or versions came close to performing as well as \colony~{\sc 2.0.5.7} across the entire 
 range of \lottalarge{} conditions. \prt{} suffered in the presence of genotyping error.  
 \familyfinder{} was less affected by genotyping error, but only achieved accuracy comparable to that of 
-\colony~{\sc 2.0.5.2} with very informative data sets (large $A$ and $L$). 
+\colony~{\sc 2.0.5.7} with very informative data sets (large $A$ and $L$). 
 
 \subsection*{Running Times}
 There was a wide disparity between the running times of the different programs (Table~\ref{tab:n75times}). 
@@ -663,7 +663,7 @@ that the job was submitted and the time that the result was emailed back to us. 
 The fastest program was \familyfinder{} which never required more than one second to analyze any of the 
 $n75$ data sets, regardless of the number of loci used.   \colony{}-P's run time was relatively 
 unaffected by the number of loci, being, on average, $\approx 0.45$ and 1.5 minutes for versions
-{\sc 2.0.5.2} and {\sc 2.0}, respectively, on the $n75$ data sets
+{\sc 2.0.5.7} and {\sc 2.0}, respectively, on the $n75$ data sets
 when $A=15$.
 This is to be expected, 
 as the approximation made in \colony{}-P permits the program to proceed without the need to recalculate 
@@ -671,7 +671,7 @@ likelihoods at each locus whenever it proposes a new sibling configuration of th
 times for data sets with 5 loci were higher than with 10 loci but running times with more loci were 
 relatively constant at about 1 to 1.5 minutes. By contrast, the full likelihood method of \colony{} 
 shows a roughly linear increase in computing time with number of loci. However, the run times of version
-2.0.5.2 are significantly lower (up to 9$\times$ lower in the $n75$ data sets) than the {\sc 2.0} version. 
+2.0.5.7 are significantly lower (up to 9$\times$ lower in the $n75$ data sets) than the {\sc 2.0} version. 
 Finally, \kinalyzer{}'s run times appear to increase exponentially with the number of loci; for $L=25$  
 \kinalyzer{} returned its result in 135 minutes, on average.  
 
@@ -683,9 +683,9 @@ Finally, \kinalyzer{}'s run times appear to increase exponentially with the numb
 Running times on the \lottalarge{} reflect the same patterns as on the $n75$ data sets.  \familyfinder{} 
 averaged 2.5 seconds across all data sets of the 
 \lottalarge{} scenario, and there was very little variability across different data sets.  
-Once again, the running time differences between \colony~{\sc 2.0.5.2} and~{\sc 2.0} 
+Once again, the running time differences between \colony~{\sc 2.0.5.7} and~{\sc 2.0} 
 were dramatic.  For example, with 25 loci, version {\sc 2.0} required, on average, 296 minutes, compared to
-version {2.0.5.2}'s 8.2 minutes---a 36-fold reduction in runtime.  Excluding those cases when it failed 
+version {2.0.5.7}'s 8.2 minutes---a 36-fold reduction in runtime.  Excluding those cases when it failed 
 to return a result, \prt{} typically required running times that averaged between 12 and 43 minutes.
 
 Detailed plots of run times for all the 
@@ -698,10 +698,10 @@ and \prt{}---by applying the methods to thousands of simulated data sets coverin
 and alleles, relationship configurations, and genotyping error rates.  We evaluated each solution by 
 comparing it to the true full sibling structure of the data on the basis of the partition distance.  
 There was no single method that performed best across every single simulated data scenario; however
-\colony~{\sc 2.0.5.2} came very close to earning that distinction---only in cases where no full siblings
-existed and data were limited (few loci and few alleles) was \colony~{\sc 2.0.5.2}
+\colony~{\sc 2.0.5.7} came very close to earning that distinction---only in cases where no full siblings
+existed and data were limited (few loci and few alleles) was \colony~{\sc 2.0.5.7}
 modestly outperformed; however
-across many other conditions \colony{}~{\sc 2.0.5.2} far outperformed the other methods. Several other 
+across many other conditions \colony{}~{\sc 2.0.5.7} far outperformed the other methods. Several other 
 strong patterns emerged and imply a number of reliable recommendations.
 
 The most consistent pattern in the results was the uniformly poor performance of \kinalyzer{}, both in 
@@ -710,18 +710,18 @@ methods across any of the simulation scenarios.  Furthermore, when presented wit
 (many alleles and loci), it performed considerably worse than the best programs, and had very long run 
 times.  We identified no situations for which we can recommend the use of \kinalyzer{}.
 
-When full siblings existed in the sample, \colony{}~{\sc 2.0.5.2} performed best at identifying them.  
+When full siblings existed in the sample, \colony{}~{\sc 2.0.5.7} performed best at identifying them.  
 This result was consistent across scenarios (with or without half siblings) and across numbers of 
-alleles and loci.  When no full siblings occurred in the sample, however, \colony{}~{\sc 2.0.5.2}
+alleles and loci.  When no full siblings occurred in the sample, however, \colony{}~{\sc 2.0.5.7}
 was occasionally outperformed.  We have previously discussed the need for statistical error control in 
 sibship inference \citep{alm&and11}, pointing out that for any given number of loci and alleles, there 
 exists a sufficiently large sample that some unrelated individuals will form feasible sibling groups 
-(and will have high likelihood of being full siblings).  In fact, version {\sc 2.0.5.2} includes
+(and will have high likelihood of being full siblings).  In fact, version {\sc 2.0.5.7} includes
 enhancements to reduce the identification of spurious sibling groups \citep{Wang2013}.  These
 enhancements offer an improvement over version {\sc 2.0}, as is readily visible in the reduced partition
 distances
 that the new version of \colony{} achieves when no full siblings exist (see Supplement~3).  Of course, the higher
-specificity of \colony~{\sc 2.0.5.2} comes with the cost of identifying a couple fewer full
+specificity of \colony~{\sc 2.0.5.7} comes with the cost of identifying a couple fewer full
 siblings when small full sibling groups actually do exist (for example compare C2 to C25 in the \sfsnoh{}
 scenario in \ref{fig:suppl_boxplot_A5_Num_2} and \ref{fig:suppl_boxplot_A5_Num_3}); however this small
 cost seems worth the higher specificity.
@@ -794,14 +794,14 @@ setting (\ref{fig:ColMed_v_ColNone_on_nosibs} through \ref{fig:ColMed_v_ColHigh_
 
 Previous work has noted that \colony{} may have a tendency to erroneously split large full sibling groups
 \citep{alm&and11}.  In our $n75$ simulations, we did not observe excessive amounts of such
-splitting with either \colony~{\sc 2.0} or with \colony~{\sc 2.0.5.2}, which employs a correction
+splitting with either \colony~{\sc 2.0} or with \colony~{\sc 2.0.5.7}, which employs a correction
 to avoid splitting of large true full sibships \citep{Wang2013}.  In the \lottalarge{} data,
 substantial amounts of splitting occurred with \colony~{\sc 2.0} when $L$ and $A$ were small, leading to high
 partition distances. By contrast, virtually no splitting was observed in the \lottalarge{} data when
-using \colony~{\sc 2.0.5.2}.  The correction introduced by \citet{Wang2013} has been very
-successful in this regard. It should also be noted that the the {\sc 2.0.5.2} version is signficantly
+using \colony~{\sc 2.0.5.7}.  The correction introduced by \citet{Wang2013} has been very
+successful in this regard. It should also be noted that the the {\sc 2.0.5.7} version is signficantly
 faster than {\sc 2.0}---up to 36 times faster on the \lottalarge{} data, making \colony{} faster than all
-the other methods save \familyfinder{} and \colony-P~{\sc 2.0.5.2} in that scenario.  
+the other methods save \familyfinder{} and \colony-P~{\sc 2.0.5.7} in that scenario.  
 
 
 For reasons of computational efficiency, we did not use the setting in \colony{}, introduced in
@@ -816,8 +816,8 @@ this joint inference.
 
 
 
-Although \colony~{\sc 2.0.5.2} is orders of magnitude faster than \colony~{\sc 2.0}, \colony-P~{\sc 2.0.5.2} \citep{Wang2012pairwise} is considerably faster than \colony{}~{\sc 2.0.5.2} on data sets with
-many individuals, and it performs as well, relative to \colony{}~{\sc 2.0.5.2}, as any of the other methods.
+Although \colony~{\sc 2.0.5.7} is orders of magnitude faster than \colony~{\sc 2.0}, \colony-P~{\sc 2.0.5.7} \citep{Wang2012pairwise} is considerably faster than \colony{}~{\sc 2.0.5.7} on data sets with
+many individuals, and it performs as well, relative to \colony{}~{\sc 2.0.5.7}, as any of the other methods.
 However, the full likelihood version of \colony{} is almost uniformly more accurate than 
 \colony-P, especially in the presence of half-siblings. Therefore, \colony{} should be preferred over \colony-P.
 whenever possible.  With very large data sets, if \colony{}'s run times become prohibitive, then \colony-P is a

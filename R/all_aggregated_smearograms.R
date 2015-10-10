@@ -135,25 +135,25 @@ agg.2m.smear.with.exp <- function(X, filepref="file", column=1, letter="a",
 # for the consense option.
 pdf(file = file.path(OUTDIR, "various_kina_smears.pdf"), height=7.4, width=5.9)
 par(mfrow=c(3,2))
-#aggregated.two.methods.smears(col.vs.kina,meth1="Colony 2.0.5.2",meth2="Kinalyzer 2-allele");
+#aggregated.two.methods.smears(col.vs.kina,meth1="Colony 2.0.5.7",meth2="Kinalyzer 2-allele");
 agg.2m.smear.with.exp(col.vs.kina, column = 1, letter = "a",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[AP]),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[AP]),
                       ylabel = expression("Kinalyzer 2-allele "~PD[AP]))
 
 agg.2m.smear.with.exp(col.vs.kina, column = 2, letter = "b",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]),
                       ylabel = expression("Kinalyzer 2-allele "~PD[S]))
 
 agg.2m.smear.with.exp(col.vs.kina, column = 3, letter = "c",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[AP]^T),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[AP]^T),
                       ylabel = expression("Kinalyzer 2-allele "~PD[AP]^T))
 
 agg.2m.smear.with.exp(col.vs.kina, column = 4, letter = "d",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]^T),
                       ylabel = expression("Kinalyzer 2-allele "~PD[S]^T))
 
 agg.2m.smear.with.exp(col.vs.cons, column = 2, letter = "e",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]),
                       ylabel = expression("Kinalyzer consense "~PD[S]))
 
 agg.2m.smear.with.exp(kina.vs.cons, column = 2, letter = "f",
@@ -177,28 +177,28 @@ col.vs.pair75s <- col.vs.col.pair [ col.vs.col.pair$Scenario.x != "lotta_large",
 
 
 agg.2m.smear.with.exp(col.vs.prt75s, column = 2, letter = "a",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]),
                       ylabel = expression("PRT "~PD[S]))
 
 agg.2m.smear.with.exp(col.vs.prt75s, column = 4, letter = "b",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]^T),
                       ylabel = expression("PRT "~PD[S]^T))
 
 agg.2m.smear.with.exp(col.vs.ff75s, column = 2, letter = "c",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]),
                       ylabel = expression("Family Finder "~PD[S]))
 
 agg.2m.smear.with.exp(col.vs.ff75s, column = 4, letter = "d",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]^T),
                       ylabel = expression("Family Finder "~PD[S]^T))
 
 agg.2m.smear.with.exp(col.vs.pair75s, column = 2, letter = "e",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]),
-                      ylabel = expression("Colony-P 2.0.5.2 "~PD[S]))
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]),
+                      ylabel = expression("Colony-P 2.0.5.7 "~PD[S]))
 
 agg.2m.smear.with.exp(col.vs.pair75s, column = 4, letter = "f",
-                      xlabel = expression("Colony 2.0.5.2 "~PD[S]^T),
-                      ylabel = expression("Colony-P 2.0.5.2 "~PD[S]^T))
+                      xlabel = expression("Colony 2.0.5.7 "~PD[S]^T),
+                      ylabel = expression("Colony-P 2.0.5.7 "~PD[S]^T))
 
 dev.off()
 

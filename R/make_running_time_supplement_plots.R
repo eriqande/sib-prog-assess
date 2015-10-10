@@ -134,7 +134,7 @@ for(S in The.SCENS) { # cycle over the Scenarios.  One page of plots for each sc
   
   # make a pdf file and write a line to the latex file
   dev.off() 
-  write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{Running times of  \\colony{} 2.0.5.2 (C25), \\colony{} 2.0.5.2-P (C25P), \\colony{} 2.0 (C2), \\colony{} 2.0-P (C2P), \\familyfinder{} (FF), and \\prt{} (PRT) in scenario ",SCEN.latex[S], "} \\label{fig:run-time-noki-",S,"} \\end{figure}\\clearpage", sep=""),
+  write(paste("\\begin{figure}\\includegraphics[width=\\textwidth]{", "../../", OUTDIR, "/", file.name,"} \\caption{Running times of  \\colony{} 2.0.5.7 (C25), \\colony{} 2.0.5.7-P (C25P), \\colony{} 2.0 (C2), \\colony{} 2.0-P (C2P), \\familyfinder{} (FF), and \\prt{} (PRT) in scenario ",SCEN.latex[S], "} \\label{fig:run-time-noki-",S,"} \\end{figure}\\clearpage", sep=""),
         file=latex.comms, append=T)
 }
 
@@ -186,8 +186,8 @@ write_running_times_table <- function(LOTTA_LARGE = FALSE) {
   }
   
   # now we just need to put the proper latexed names in for the software and a couple other tweaks.
-  Names <- c("\\colony~{\\sc 2.0.5.2}$^{a,b}$", 
-             "\\colony-P~{\\sc 2.0.5.2}$^{a,b}$",
+  Names <- c("\\colony~{\\sc 2.0.5.7}$^{a,b}$", 
+             "\\colony-P~{\\sc 2.0.5.7}$^{a,b}$",
              "\\colony~{\\sc 2.0}$^{a,c}$",
              "\\colony-P~{\\sc 2.0}$^{a,c}$",
              "\\prt$^{d}$",
